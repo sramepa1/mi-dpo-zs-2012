@@ -1,0 +1,34 @@
+CFLAGS = -pedantic -Wall
+
+all: game
+
+OBJECTS = $(patsubst %.cpp,build/%.o,$(wildcard ./*.cpp))
+
+build:
+	mkdir build
+
+build/%.o: %.cpp
+	g++ $(CFLAGS) -Wwrite-strings -pedantic -c -o $@ $< 
+
+game: build $(OBJECTS)
+	g++ -o $@ $(OBJECTS)
+
+.PHONY: clean
+
+clean:
+	rm -rf build
+	rm -f game
+
+run:
+	@echo "\n--------------------------------------------"
+	@echo "Pro spuštění kompilátoru zadejte příkaz:\n"
+	@echo "./compiler file [optim-level]\n"
+	@echo "optim-level je úroveň optimalizace, implicitně nastavena na 1, pokud ji nezadáte"
+	@echo "0 - optimalizace vypnuty"
+	@echo "1 - optimalizace podvýrazů a bezpečná optimalizace invariantů"
+	@echo "2 - optimalizace podvýrazů a odvážnější strategie hledání invariantů"
+	@echo "3 - optimalizace podvýrazů a maximální snaha nalézt co nejvíce invariantů\n"
+	@echo "Překladač svůj výstup vždy uloží do souboru 'out.tm'. Pro načtení interpreterem stačí napsat\n"
+	@echo "./tiny out.tm\n"
+
+
