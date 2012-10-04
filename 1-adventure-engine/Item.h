@@ -13,7 +13,7 @@
 
 class Item {
 public:
-    Item(char*, bool = true);
+    Item(const char*, bool = true);
     virtual ~Item() {}
     
     friend std::ostream& operator << (std::ostream&, Item&);
@@ -24,7 +24,7 @@ private:
     Item(const Item& orig) {}
     Item& operator = (const Item& orig) {return *this;}
     
-    char* description;
+    const char* description;
     
 };
 

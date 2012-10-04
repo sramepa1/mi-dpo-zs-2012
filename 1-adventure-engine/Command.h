@@ -10,7 +10,7 @@
 class ICommand {
 public:
 
-    virtual void execute(std::string, std::istringstream&, std::ostream&) = 0;
+    virtual void execute(std::istringstream&, std::ostream&) = 0;
 
     virtual ~ICommand() {}
 

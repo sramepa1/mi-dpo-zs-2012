@@ -13,7 +13,7 @@
 
 class Controler {
 public:
-    Controler(std::istream&, std::ostream&, World*);
+    Controler(std::istream&, std::ostream&, World&);
     ~Controler();
 
     void addCommand(std::string, ICommand*);

@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Controler::Controler(istream& _is, ostream& _os, World* _world) : is(_is), os(_os), world(_world) {}
+Controler::Controler(istream& _is, ostream& _os, World& _world) : is(_is), os(_os), world(&_world) {}
 
 Controler::~Controler() {
     for (map<std::string, ICommand*>::iterator it(commands.begin()); it != commands.end(); ++it) {
@@ -54,18 +54,19 @@ void Controler::run() {
             os << "Unknown command. Type \"help\" for command list." << endl;
         } else {
 
-            mit->second->execute(command, iss, os);
+            mit->second->execute(iss, os);
 
             //TODO lépe ... a asy je blbě iterátor (znevalidní se)
+            /*
             for(list<IEvent*>::iterator lit(events.begin()); lit != events.end(); lit++) {
                 (*lit)->execute();
                 if(!(*lit)->keepAlive()) {
                     delete *(lit);
                     events.erase(lit);
                 }
-            }
+            }*/
 
-            os << endl << *(world->player->location);
+            os << endl << world->player->getLocation();
 
             //TODO otestovat wining condition
         }

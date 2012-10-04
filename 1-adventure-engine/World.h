@@ -15,24 +15,36 @@
 #ifndef WORLD_H
 #define	WORLD_H
 
+
+struct WorldInit{
+    const char* worldDescription;
+    const char* startRoomDescription;
+    const char* playerName;
+    const char* playerDescription;
+};
+
+
 class World {
 public:
-    World(Character* _player = NULL, ICondition* _victory = NULL, char* _description = NULL, Room* _startRoom = NULL)
-            : player(_player), victoryCond(_victory), startRoom(_startRoom), description(_description) {}
+    World(const WorldInit&);
+
     ~World();
 
     Character* player;
     ICondition* victoryCond;
+
     Room* startRoom;
-    char* description;
     
-    Room* registerRoom(Room*);
+    Room& createRoom(const char* description);
 
     friend std::ostream& operator << (std::ostream&, World&);
     
 private:
     World(const World& orig) {}
     World& operator = (const World& orig) {return *this;}
+
+    const char* description;
+
 
     std::list<Room*> rooms;
 };

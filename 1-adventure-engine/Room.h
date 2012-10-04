@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   Room.h
  * Author: rusty
  *
@@ -9,35 +9,39 @@
 #include <map>
 #include <string>
 
-#include "Character.h"
-#include "Item.h"
+#include "Inventory.h"
+#include "xCharecterRoom.h"
+
 
 #ifndef ROOM_H
 #define	ROOM_H
 
+class World;
+
 class Room {
 public:
     
-    Room(char* _description);
-    ~Room();
-    
-    Room* north;
-    Room* east;
-    Room* south;
-    Room* west;
-    Room* up;
-    Room* down;
+    friend class World;
 
     Inventory* inventory;
+
+    void addWay(std::string, Room&);
+    void removeWay(std::string);
+    Room& findWay(std::string);
     
     friend std::ostream& operator << (std::ostream&, Room&);
     
 private:
+    Room(const char* _description);
+    ~Room();
     Room(const Room& orig) {}
     Room& operator = (const Room& orig) {return *this;}
     
-    char* description;
+    const char* description;
 
+    std::map<std::string, Room&> ways;
+
+    //TODO vyhodit
     std::multimap<std::string, Character*> npcs;
 
 };

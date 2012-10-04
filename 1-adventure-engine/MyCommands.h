@@ -10,7 +10,7 @@ public:
     MyCommandGo(Character* _player) : player(_player) {}
     virtual ~MyCommandGo() {}
 
-    virtual void execute(std::string, std::istringstream&, std::ostream&);
+    virtual void execute(std::istringstream&, std::ostream&);
 
 private:
     Character* player;
@@ -21,7 +21,7 @@ public:
     MyCommandTake(Character* _player) : player(_player) {}
     virtual ~MyCommandTake() {}
 
-    virtual void execute(std::string, std::istringstream&, std::ostream&);
+    virtual void execute(std::istringstream&, std::ostream&);
 
 private:
     Character* player;
@@ -32,7 +32,7 @@ public:
     MyCommandDrop(Character* _player) : player(_player) {}
     virtual ~MyCommandDrop() {}
 
-    virtual void execute(std::string, std::istringstream&, std::ostream&);
+    virtual void execute(std::istringstream&, std::ostream&);
 
 private:
     Character* player;
@@ -43,7 +43,7 @@ public:
     MyCommandInventory(Character* _player) : player(_player) {}
     virtual ~MyCommandInventory() {}
 
-    virtual void execute(std::string, std::istringstream&, std::ostream&);
+    virtual void execute(std::istringstream&, std::ostream&);
 
 private:
     Character* player;
@@ -54,7 +54,7 @@ public:
     MyCommandLight(Character* _player) : player(_player) {}
     virtual ~MyCommandLight() {}
 
-    virtual void execute(std::string, std::istringstream&, std::ostream&);
+    virtual void execute(std::istringstream&, std::ostream&);
 
 private:
     Character* player;

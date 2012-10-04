@@ -9,26 +9,30 @@
 #include <string>
 
 #include "Inventory.h"
+#include "xCharecterRoom.h"
 
 #ifndef CHARACTER_H
 #define	CHARACTER_H
 
-class Room;
-
 class Character {
 public:
-    Character(char* _name, char* description, Room* location);
+    Character(const char*, const char*, Room&);
     ~Character();
     
-    char* name;
+    const char* name;
     Inventory* inventory;
-    Room* location;
+
+    void goTo(std::string);
+    Room& getLocation();
+
+    friend std::ostream& operator << (std::ostream&, Character&);
     
 private:
-    Character(const Character& orig) {}
+    Character(const Character& orig) : location(orig.location) {}
     Character& operator = (const Character& orig) {return *this;}
 
-    char* description;
+    const char* description;
+    Room* location;
 };
 
 #endif	/* CHARACTER_H */
