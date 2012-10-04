@@ -9,6 +9,7 @@
 #include <iostream>
 
 #include "controler.h"
+#include "MyItems.h"
 #include "World.h"
 
 #include "MyCommands.h"
@@ -35,11 +36,25 @@ int main(int argc, char** argv) {
     World& world = *(new World(myInit));
 
     Room& r1 = world.createRoom("You are in a dark cave.");
+    Room& r2 = world.createRoom("You are in a dark cave.");
+    Room& r3 = world.createRoom("You are in a dark cave.");
+    Room& r4 = world.createRoom("You are in a dark cave.");
 
     Room& startRoom = *(world.startRoom);
 
     startRoom.addWay(string("west"), r1);
     r1.addWay(string("east"), startRoom);
+    startRoom.addWay(string("east"), r2);
+    r2.addWay(string("west"), startRoom);
+    startRoom.addWay(string("north"), r3);
+    r3.addWay(string("south"), startRoom);
+    startRoom.addWay(string("south"), r4);
+    r4.addWay(string("north"), startRoom);
+
+    startRoom.inventory->addItem("message", new Item("on the wall", false));
+    r3.inventory->addItem("torch", new Torch("looking very old"));
+
+    // TODO go to hell winning condition
 
 
 /*
@@ -63,6 +78,13 @@ int main(int argc, char** argv) {
     control->addCommand("take", new MyCommandTake(world.player));
     control->addCommand("drop", new MyCommandDrop(world.player));
     control->addCommand("inventory", new MyCommandInventory(world.player));
+    control->addCommand("help", new MyCommandEcho(
+        "go [direction] - go to next room\n"
+        "take [item]    - take an item\n"
+        "drop [item]    - drop an item\n"
+        "inventory      - list the inventory\n"
+        "q              - quit the game"
+    ));
 
     //control->addEvent(new Causality());
 

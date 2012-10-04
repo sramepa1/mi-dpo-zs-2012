@@ -49,6 +49,17 @@ private:
     Character* player;
 };
 
+class MyCommandEcho : public ICommand {
+public:
+    MyCommandEcho(const char* _echo) : echo(_echo) {}
+    virtual ~MyCommandEcho() {}
+
+    virtual void execute(std::istringstream&, std::ostream&);
+
+private:
+    const char* echo;
+};
+
 class MyCommandLight : public ICommand {
 public:
     MyCommandLight(Character* _player) : player(_player) {}

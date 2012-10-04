@@ -55,10 +55,10 @@ ostream& operator << (std::ostream& os, Room& room) {
     os << "You can go";
 
     for(map<std::string, Room&>::iterator it = room.ways.begin(); it != room.ways.end(); ++it) {
-        os << " " << it->first;
+        os << " " << it->first << ",";
     }
 
-    os << "." << endl << "There is " << *(room.inventory);
+    os << endl << "There is " << *(room.inventory);
 
     return os;
 }

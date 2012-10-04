@@ -5,7 +5,7 @@
 
 class Torch : public Item {
 public:
-    Torch(const char*, bool, bool);
+    Torch(const char*,bool _isMovable = true, bool _isLightened = true);
     bool isLightened;
 };
 

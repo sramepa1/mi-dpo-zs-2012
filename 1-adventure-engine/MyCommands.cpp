@@ -89,6 +89,12 @@ void MyCommandInventory::execute(istringstream& iss, ostream& os) {
 
 }
 
+void MyCommandEcho::execute(istringstream& iss, ostream& os) {
+
+    os << echo << endl;
+
+}
+
 /*
 MyCommandSouth::execute(istringstream& iss, ostream& os) {
     Character* player = World::getInstance()->character;
