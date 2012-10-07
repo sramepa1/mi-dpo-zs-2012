@@ -5,7 +5,7 @@
 
 using namespace std;
 //TODO předělat na třídy
-void MyCommandGo::execute(istringstream& iss, ostream& os) {
+void MyCommandGo::execute(istringstream& iss, ostream& os, World& world) {
 
     string destination;
 
@@ -17,14 +17,14 @@ void MyCommandGo::execute(istringstream& iss, ostream& os) {
     }
 
     try {
-        player->goTo(destination);
+        world.getPlayer().goTo(destination);
     } catch (const char* error) {
         os << error << endl;
     }
 
 }
 
-void MyCommandTake::execute(istringstream& iss, ostream& os) {
+void MyCommandTake::execute(istringstream& iss, ostream& os, World& world) {
 
     string itemName;
 
@@ -35,26 +35,19 @@ void MyCommandTake::execute(istringstream& iss, ostream& os) {
         return;
     }
 
-    Item* item = player->getLocation().inventory->findItem(itemName);
+    try{
+        Character& player = world.getPlayer();
 
-    if(item == NULL) {
-        os << "There is no such thing." << endl;
-        return;
+        player.getLocation().getInventory().moveItemTo(itemName, player.getInventory());
+        os << "You have taken the " << itemName << "." << endl;
+
+    } catch (const char* error) {
+        os << error << endl;
     }
-
-    if(!item->isMovable) {
-        os << "You can not take " << itemName << "." << endl;
-        return;
-    }
-
-    player->inventory->addItem(itemName, item);
-    player->getLocation().inventory->removeItem(itemName);
-
-    os << "You have taken the " << itemName << "." << endl;
 
 }
 
-void MyCommandDrop::execute(istringstream& iss, ostream& os) {
+void MyCommandDrop::execute(istringstream& iss, ostream& os, World& world) {
 
     string itemName;
 
@@ -65,52 +58,46 @@ void MyCommandDrop::execute(istringstream& iss, ostream& os) {
         return;
     }
 
-    Item* item = player->inventory->findItem(itemName);
+    try{
+        Character& player = world.getPlayer();
 
-    if(item == NULL) {
-        os << "I have no such thing." << endl;
-        return;
+        player.getInventory().moveItemTo(itemName, player.getLocation().getInventory());
+        os << "You have dropped the " << itemName << "." << endl;
+
+    } catch (const char* error) {
+        os << error << endl;
     }
-
-    if(!item->isMovable) {
-        os << "You can not drop " << itemName << "." << endl;
-        return;
-    }
-
-    player->inventory->removeItem(itemName);
-    player->getLocation().inventory->addItem(itemName, item);
-
-    os << "You have dropped the " << itemName << "." << endl;
-}
-
-void MyCommandInventory::execute(istringstream& iss, ostream& os) {
-
-    os << "You have " << *(player->inventory);
 
 }
 
-void MyCommandEcho::execute(istringstream& iss, ostream& os) {
+void MyCommandInventory::execute(istringstream& iss, ostream& os, World& world) {
+
+    os << "You have " << world.getPlayer().getInventory();
+
+}
+
+void MyCommandEcho::execute(istringstream& iss, ostream& os, World& world) {
 
     os << echo << endl;
 
 }
 
 /*
-MyCommandSouth::execute(istringstream& iss, ostream& os) {
+MyCommandSouth::execute(istringstream& iss, ostream& os, World& world) {
     Character* player = World::getInstance()->character;
     player->location = player->location->east;
 
     os << player->location;
 }
 
-MyCommandWest::execute(istringstream& iss, ostream& os) {
+MyCommandWest::execute(istringstream& iss, ostream& os, World& world) {
     Character* player = World::getInstance()->character;
     player->location = player->location->west;
 
     os << player->location;
 }
 
-MyCommandEast::execute(istringstream& iss, ostream& os) {
+MyCommandEast::execute(istringstream& iss, ostream& os, World& world) {
     Character* player = World::getInstance()->character;
     player->location = player->location->east;
 

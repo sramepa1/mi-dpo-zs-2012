@@ -23,7 +23,7 @@ public:
     
     friend class World;
 
-    Inventory* inventory;
+    Inventory& getInventory();
 
     void addWay(std::string, Room&);
     void removeWay(std::string);
@@ -41,8 +41,7 @@ private:
 
     std::map<std::string, Room&> ways;
 
-    //TODO vyhodit
-    std::multimap<std::string, Character*> npcs;
+    Inventory* inventory;
 
 };
 

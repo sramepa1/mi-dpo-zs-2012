@@ -24,6 +24,10 @@ void Character::goTo(string direction) {
     location = &(location->findWay(direction));
 }
 
+Inventory& Character::getInventory() {
+    return *inventory;
+}
+
 Room& Character::getLocation() {
     return *location;
 }

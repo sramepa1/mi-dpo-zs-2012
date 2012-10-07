@@ -15,7 +15,7 @@ class Item {
 public:
     Item(const char*, bool = true);
     virtual ~Item() {}
-    
+
     friend std::ostream& operator << (std::ostream&, Item&);
 
     bool isMovable;

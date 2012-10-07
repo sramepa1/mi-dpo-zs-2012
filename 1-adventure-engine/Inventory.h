@@ -19,17 +19,19 @@ public:
     Inventory();
     ~Inventory();
 
-    void addItem(std::string, Item*);
+    void addItem(std::string, Item&);
     void removeItem(std::string);
-    Item* findItem(std::string);
-    
+    Item& findItem(std::string);
+
+    void moveItemTo(std::string, Inventory&);
+
     friend std::ostream& operator << (std::ostream& os, Inventory&);
     
 private:
     Inventory(const Inventory& orig) {}
     Inventory& operator = (const Inventory& orig) {return *this;}
     
-    std::multimap<std::string, Item*> items;
+    std::multimap<std::string, Item&> items;
     
 };
 

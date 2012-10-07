@@ -21,9 +21,7 @@ using namespace std;
  */
 int main(int argc, char** argv) {
 
-    //TODO uděla factory na místnosti (auto registrace do světa)
     //TODO tupě zapoudřit všechny prvky
-    //TODO vazby mezi místnostmi aby to neporušilo demeter ale ani neubralo na obecnosti ... přez stringy ?
     //TODO zakomentovat header fily
 
     WorldInit myInit = {
@@ -40,7 +38,7 @@ int main(int argc, char** argv) {
     Room& r3 = world.createRoom("You are in a dark cave.");
     Room& r4 = world.createRoom("You are in a dark cave.");
 
-    Room& startRoom = *(world.startRoom);
+    Room& startRoom = world.getStartRoom();
 
     startRoom.addWay(string("west"), r1);
     r1.addWay(string("east"), startRoom);
@@ -51,8 +49,8 @@ int main(int argc, char** argv) {
     startRoom.addWay(string("south"), r4);
     r4.addWay(string("north"), startRoom);
 
-    startRoom.inventory->addItem("message", new Item("on the wall", false));
-    r3.inventory->addItem("torch", new Torch("looking very old"));
+    startRoom.getInventory().addItem("message", *(new Item("on the wall", false)));
+    r3.getInventory().addItem("torch", *(new Torch("looking very old")));
 
     // TODO go to hell winning condition
 
@@ -74,10 +72,10 @@ int main(int argc, char** argv) {
 
     Controler* control = new Controler(cin, cout, world);
 
-    control->addCommand("go", new MyCommandGo(world.player));
-    control->addCommand("take", new MyCommandTake(world.player));
-    control->addCommand("drop", new MyCommandDrop(world.player));
-    control->addCommand("inventory", new MyCommandInventory(world.player));
+    control->addCommand("go", new MyCommandGo());
+    control->addCommand("take", new MyCommandTake());
+    control->addCommand("drop", new MyCommandDrop());
+    control->addCommand("inventory", new MyCommandInventory());
     control->addCommand("help", new MyCommandEcho(
         "go [direction] - go to next room\n"
         "take [item]    - take an item\n"

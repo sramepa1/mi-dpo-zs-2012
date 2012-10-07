@@ -27,6 +27,14 @@ World::~World() {
     delete startRoom;
 }
 
+Room& World::getStartRoom() {
+    return *startRoom;
+}
+
+Character& World::getPlayer() {
+    return *player;
+}
+
 Room& World::createRoom(const char* description) {
 
     Room* room = new Room(description);

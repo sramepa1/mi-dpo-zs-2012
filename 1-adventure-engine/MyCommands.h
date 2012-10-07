@@ -7,46 +7,34 @@
 
 class MyCommandGo : public ICommand {
 public:
-    MyCommandGo(Character* _player) : player(_player) {}
+    MyCommandGo() {}
     virtual ~MyCommandGo() {}
 
-    virtual void execute(std::istringstream&, std::ostream&);
-
-private:
-    Character* player;
+    virtual void execute(std::istringstream&, std::ostream&, World&);
 };
 
 class MyCommandTake : public ICommand {
 public:
-    MyCommandTake(Character* _player) : player(_player) {}
+    MyCommandTake() {}
     virtual ~MyCommandTake() {}
 
-    virtual void execute(std::istringstream&, std::ostream&);
-
-private:
-    Character* player;
+    virtual void execute(std::istringstream&, std::ostream&, World&);
 };
 
 class MyCommandDrop : public ICommand {
 public:
-    MyCommandDrop(Character* _player) : player(_player) {}
+    MyCommandDrop() {}
     virtual ~MyCommandDrop() {}
 
-    virtual void execute(std::istringstream&, std::ostream&);
-
-private:
-    Character* player;
+    virtual void execute(std::istringstream&, std::ostream&, World&);
 };
 
 class MyCommandInventory : public ICommand {
 public:
-    MyCommandInventory(Character* _player) : player(_player) {}
+    MyCommandInventory() {}
     virtual ~MyCommandInventory() {}
 
-    virtual void execute(std::istringstream&, std::ostream&);
-
-private:
-    Character* player;
+    virtual void execute(std::istringstream&, std::ostream&, World&);
 };
 
 class MyCommandEcho : public ICommand {
@@ -54,7 +42,7 @@ public:
     MyCommandEcho(const char* _echo) : echo(_echo) {}
     virtual ~MyCommandEcho() {}
 
-    virtual void execute(std::istringstream&, std::ostream&);
+    virtual void execute(std::istringstream&, std::ostream&, World&);
 
 private:
     const char* echo;
@@ -65,7 +53,7 @@ public:
     MyCommandLight(Character* _player) : player(_player) {}
     virtual ~MyCommandLight() {}
 
-    virtual void execute(std::istringstream&, std::ostream&);
+    virtual void execute(std::istringstream&, std::ostream&, World&);
 
 private:
     Character* player;

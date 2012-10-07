@@ -33,7 +33,7 @@ void Controler::addEvent(IEvent* event) {
 void Controler::run() {
 
     os << *world << endl;
-    os << *(world->startRoom);
+    os << world->getStartRoom();
     os << "> ";
 
     string line;
@@ -54,7 +54,7 @@ void Controler::run() {
             os << "Unknown command. Type \"help\" for command list." << endl;
         } else {
 
-            mit->second->execute(iss, os);
+            mit->second->execute(iss, os, *world);
 
             //TODO lépe ... a asy je blbě iterátor (znevalidní se)
             /*
@@ -66,9 +66,7 @@ void Controler::run() {
                 }
             }*/
 
-            os << endl << world->player->getLocation();
-
-            //TODO otestovat wining condition
+            os << endl << world->getPlayer().getLocation();
         }
 
         os << "> ";

@@ -15,15 +15,14 @@ Room::Room(const char* _description) : description(_description) {
 
 Room::~Room() {
 
-    for (multimap<string, Character*>::iterator it(npcs.begin()); it != npcs.end(); ++it) {
-        delete it->second;
-    }
-
     //cesty nemažu
     
     delete inventory;
 }
 
+Inventory& Room::getInventory() {
+    return *inventory;
+}
 
 void Room::addWay(string name, Room& room) {
     ways.insert(pair<string, Room&> (name, room));

@@ -19,10 +19,9 @@ public:
     Character(const char*, const char*, Room&);
     ~Character();
     
-    const char* name;
-    Inventory* inventory;
-
     void goTo(std::string);
+
+    Inventory& getInventory();
     Room& getLocation();
 
     friend std::ostream& operator << (std::ostream&, Character&);
@@ -32,6 +31,10 @@ private:
     Character& operator = (const Character& orig) {return *this;}
 
     const char* description;
+    const char* name;
+
+    Inventory* inventory;
+
     Room* location;
 };
 

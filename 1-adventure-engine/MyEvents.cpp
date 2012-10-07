@@ -5,7 +5,7 @@ using namespace std;
 ShowRopeEvent::ShowRopeEvent(Room* _room) : room(_room) {}
 
 void ShowRopeEvent::execute() {
-    room->inventory->addItem("rope", new Item("loking safely enought to clib it up"));
+    throw "todo resolve";
 }
 
 

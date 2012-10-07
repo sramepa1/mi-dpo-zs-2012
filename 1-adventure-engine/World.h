@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   World.h
  * Author: rusty
  *
@@ -27,13 +27,12 @@ struct WorldInit{
 class World {
 public:
     World(const WorldInit&);
-
     ~World();
 
-    Character* player;
     ICondition* victoryCond;
 
-    Room* startRoom;
+    Room& getStartRoom();
+    Character& getPlayer();
     
     Room& createRoom(const char* description);
 
@@ -44,7 +43,8 @@ private:
     World& operator = (const World& orig) {return *this;}
 
     const char* description;
-
+    Room* startRoom;
+    Character* player;
 
     std::list<Room*> rooms;
 };
