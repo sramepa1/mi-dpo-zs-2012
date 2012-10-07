@@ -9,7 +9,7 @@
 
 using namespace std;
 
-Item::Item(const char* _description, bool _isMovable) : description(_description), isMovable(_isMovable) {}
+Item::Item(const char* _description, bool _isMovable) : isMovable(_isMovable), description(_description) {}
 
 ostream& operator << (std::ostream& os, Item& item) {
     os << item.description;

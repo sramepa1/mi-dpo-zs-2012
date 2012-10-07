@@ -4,17 +4,16 @@
  *
  * Created on 23. září 2012, 13:25
  */
+#ifndef ROOM_H
+#define	ROOM_H
 
 #include <ostream>
 #include <map>
 #include <string>
 
 #include "Inventory.h"
-#include "xCharecterRoom.h"
+#include "xCharacterRoom.h"
 
-
-#ifndef ROOM_H
-#define	ROOM_H
 
 class World;
 

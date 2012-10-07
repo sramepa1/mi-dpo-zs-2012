@@ -4,8 +4,8 @@ Character.cpp
 Character.h
 Command.h
 Condition.h
-controler.cpp
-controler.h
+Controller.cpp
+Controller.h
 Event.h
 Inventory.cpp
 Inventory.h
@@ -14,8 +14,8 @@ Item.h
 main.cpp
 MyCommands.cpp
 MyCommands.h
-myendcondition.cpp
-myendcondition.h
+MyEndCondition.cpp
+MyEndCondition.h
 MyEvents.cpp
 MyEvents.h
 MyItems.cpp
@@ -24,4 +24,4 @@ Room.cpp
 Room.h
 World.cpp
 World.h
-xCharecterRoom.h
+xCharacterRoom.h

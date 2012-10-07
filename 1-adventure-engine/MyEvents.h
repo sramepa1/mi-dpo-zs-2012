@@ -1,10 +1,11 @@
+#ifndef MYEVENTS_H
+#define MYEVENTS_H
+
 #include <ostream>
 
 #include "Event.h"
 #include "Room.h"
 
-#ifndef MYEVENTS_H
-#define MYEVENTS_H
 
 class ShowRopeEvent : public IEvent {
 public:

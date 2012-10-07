@@ -1,7 +1,8 @@
-#include "Item.h"
-
 #ifndef MYITEMS_H
 #define MYITEMS_H
+
+#include "Item.h"
+
 
 class Torch : public Item {
 public:

@@ -1,9 +1,9 @@
+#ifndef MYCOMMANDS_H
+#define MYCOMMANDS_H
 
 #include "Command.h"
 #include "World.h"
 
-#ifndef MYCOMMANDS_H
-#define MYCOMMANDS_H
 
 class MyCommandGo : public ICommand {
 public:

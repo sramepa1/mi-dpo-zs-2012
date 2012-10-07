@@ -1,8 +1,8 @@
+#ifndef MYENDCONDITION_H
+#define MYENDCONDITION_H
 
 #include "World.h"
 
-#ifndef MYENDCONDITION_H
-#define MYENDCONDITION_H
 
 class MyEndCondition : public ICondition
 {

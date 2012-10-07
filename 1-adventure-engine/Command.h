@@ -1,11 +1,11 @@
+#ifndef COMMAND_H
+#define COMMAND_H
 
 #include <ostream>
 #include <string>
 
 #include "Event.h"
 
-#ifndef COMMAND_H
-#define COMMAND_H
 
 class ICommand {
 public:

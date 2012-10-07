@@ -4,6 +4,8 @@
  *
  * Created on 23. září 2012, 15:39
  */
+#ifndef WORLD_H
+#define	WORLD_H
 
 #include <list>
 #include <ostream>
@@ -11,9 +13,6 @@
 #include "Causality.h"
 #include "Character.h"
 #include "Room.h"
-
-#ifndef WORLD_H
-#define	WORLD_H
 
 
 struct WorldInit{
