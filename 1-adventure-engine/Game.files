@@ -7,7 +7,6 @@ Condition.h
 controler.cpp
 controler.h
 Event.h
-game
 Inventory.cpp
 Inventory.h
 Item.cpp
