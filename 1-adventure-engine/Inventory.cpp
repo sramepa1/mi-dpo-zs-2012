@@ -46,7 +46,7 @@ void Inventory::moveItemTo(std::string name, Inventory& newInventory) {
 
     Item& item = findItem(name);
 
-    if(!item.isMovable) {
+    if(!item.canMove()) {
 
         string str("You can not take ");
         str.append(name);

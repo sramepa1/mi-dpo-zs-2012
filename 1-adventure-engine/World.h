@@ -43,10 +43,12 @@ private:
     World& operator = (const World& orig) {return *this;}
 
     const char* description;
+
     Room* startRoom;
     Character* player;
 
     std::list<Room*> rooms;
+
 };
 
 #endif	/* WORLD_H */

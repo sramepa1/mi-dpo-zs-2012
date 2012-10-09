@@ -11,6 +11,10 @@ using namespace std;
 
 Item::Item(const char* _description, bool _isMovable) : description(_description), isMovable(_isMovable) {}
 
+bool Item::canMove() {
+    return isMovable;
+}
+
 ostream& operator << (std::ostream& os, Item& item) {
     os << item.description;
     return os;

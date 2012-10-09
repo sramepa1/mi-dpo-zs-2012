@@ -16,15 +16,16 @@ public:
     Item(const char*, bool = true);
     virtual ~Item() {}
 
-    friend std::ostream& operator << (std::ostream&, Item&);
+    bool canMove();
 
-    bool isMovable;
+    friend std::ostream& operator << (std::ostream&, Item&);
 
 private:
     Item(const Item& orig) {}
     Item& operator = (const Item& orig) {return *this;}
     
     const char* description;
+    bool isMovable;
     
 };
 
