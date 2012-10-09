@@ -4,7 +4,7 @@
  * 
  * Created on 23. září 2012, 15:40
  */
-
+/*
 #include "Causality.h"
 
 Causality::Causality(ICondition* _con, IEvent* _eve) : condition(_con), event(_eve) {
@@ -30,3 +30,4 @@ bool Causality::keepAlive() {
 
     return true;
 }
+*/

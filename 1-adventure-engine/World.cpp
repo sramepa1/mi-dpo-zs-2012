@@ -12,6 +12,7 @@ using namespace std;
 
 World::World(const WorldInit& init) {
     description = init.worldDescription;
+    vicotryMessage = init.vicotryMessage;
     startRoom = new Room(init.startRoomDescription);
     player = new Character(init.playerName, init.playerDescription, *startRoom);
 }
@@ -42,6 +43,22 @@ Room& World::createRoom(const char* description) {
     rooms.push_back(room);
 
     return *room;
+}
+
+void World::addVictoryCondition(ICondition& condition) {
+    victoryCondition.push_back(&condition);
+}
+
+bool World::testVictory() {
+
+    for (list<ICondition*>::iterator it(victoryConditions.begin()); it != victoryConditions.end(); ++it) {
+        if(it->testCondition(*this) == VICOTRY) {
+            description = vicotryMessage;
+            return true;
+        }
+    }
+
+    return false;
 }
 
 ostream& operator << (std::ostream& os, World& world) {

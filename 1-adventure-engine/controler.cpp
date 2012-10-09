@@ -50,23 +50,20 @@ void Controler::run() {
         }
 
         map<string, ICommand*>::iterator mit = commands.find(command);
+
         if(mit == commands.end()) {
             os << "Unknown command. Type \"help\" for command list." << endl;
         } else {
 
             mit->second->execute(iss, os, *world);
 
-            //TODO lépe ... a asy je blbě iterátor (znevalidní se)
-            /*
-            for(list<IEvent*>::iterator lit(events.begin()); lit != events.end(); lit++) {
-                (*lit)->execute();
-                if(!(*lit)->keepAlive()) {
-                    delete *(lit);
-                    events.erase(lit);
-                }
-            }*/
+            //TODO move to abstract class so executu would return victory state
+            if(world->testVictory()) {
+                os << (*world) << endl;
+                break;
+            }
 
-            os << endl << world->getPlayer().getLocation();
+            os << endl << world->getPlayer();
         }
 
         os << "> ";

@@ -10,7 +10,7 @@ public:
     MyEndCondition(World* world) {}
     virtual ~MyEndCondition() {}
 
-    virtual bool testCondition() {return true;}
+    virtual bool condition() {return true;}
 };
 
 #endif // MYENDCONDITION_H

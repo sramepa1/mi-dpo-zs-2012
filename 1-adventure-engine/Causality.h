@@ -5,6 +5,7 @@
  * Created on 23. září 2012, 15:40
  */
 
+/*
 #include "Condition.h"
 #include "Event.h"
 

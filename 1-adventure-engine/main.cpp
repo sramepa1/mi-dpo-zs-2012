@@ -26,6 +26,7 @@ int main(int argc, char** argv) {
 
     WorldInit myInit = {
         "Welcome to Lightning's and RH's world of (wild programming) adventure.",
+        "Congratuations, your hard work and total comitment get you to hell!",
         "You are standing in a great cave.",
         "Me",
         "Programmer the mad."

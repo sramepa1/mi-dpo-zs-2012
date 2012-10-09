@@ -8,8 +8,8 @@
 #include <list>
 #include <ostream>
 
-#include "Causality.h"
 #include "Character.h"
+#include "Condition.h"
 #include "Room.h"
 
 #ifndef WORLD_H
@@ -18,6 +18,7 @@
 
 struct WorldInit{
     const char* worldDescription;
+    const char* vicotryMessage;
     const char* startRoomDescription;
     const char* playerName;
     const char* playerDescription;
@@ -29,25 +30,32 @@ public:
     World(const WorldInit&);
     ~World();
 
-    ICondition* victoryCond;
-
     Room& getStartRoom();
     Character& getPlayer();
     
     Room& createRoom(const char* description);
 
+    void addVictoryCondition(ICondition&);
+    bool testVictory();
+
     friend std::ostream& operator << (std::ostream&, World&);
     
+    std::list<IEvent*> events;
+
+
 private:
     World(const World& orig) {}
     World& operator = (const World& orig) {return *this;}
 
     const char* description;
+    const char* vicotryMessage;
 
     Room* startRoom;
     Character* player;
 
     std::list<Room*> rooms;
+
+    std::list<ICondition*> victoryConditions;
 
 };
 

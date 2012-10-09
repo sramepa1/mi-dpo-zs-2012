@@ -13,9 +13,7 @@ class World;
 class IEvent {
 public:
 
-    virtual void execute() = 0;
-    //TODO udělat lépe, tohle není moc pěkné
-    virtual bool keepAlive() {return true;}
+    virtual void execute(World&) = 0;
     
     virtual ~IEvent() {}
 
