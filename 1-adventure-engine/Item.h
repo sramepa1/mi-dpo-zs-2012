@@ -13,6 +13,7 @@
 
 class Item {
 public:
+        // TODO name parameters in headers!
     Item(const char*, bool = true);
     virtual ~Item() {}
 

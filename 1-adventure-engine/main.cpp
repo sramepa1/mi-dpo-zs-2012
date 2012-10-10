@@ -16,22 +16,28 @@
 
 using namespace std;
 
-/*
- * 
- */
+/* !                                                                                              !
+ * ================ THIS IS A TEMPORARY MAIN, THE REAL ONE WILL USE BUILDER! ======================
+ * !                                                                                              ! */
 int main(int argc, char** argv) {
 
     //TODO tupě zapoudřit všechny prvky
     //TODO zakomentovat header fily
 
+#if 0
     WorldInit myInit = {
         "Welcome to Lightning's and RH's world of (wild programming) adventure.",
         "You are standing in a great cave.",
         "Me",
         "Programmer the mad."
     };
+#endif
     
-    World& world = *(new World(myInit));
+    worldptr wptr(new World());
+    World& world = *wptr;
+
+    world.setDescription("Welcome to Lightning's and RH's world of (wild programming) adventure.");
+    world.setPlayer("Me", "Programmer the mad.");
 
     Room& r1 = world.createRoom("You are in a dark cave.");
     Room& r2 = world.createRoom("You are in a dark cave.");
@@ -70,7 +76,7 @@ int main(int argc, char** argv) {
   //  world->startRoom->inventory->addItem("message", new Item("on the wall", false));
    // world->startRoom->east->inventory->addItem("torch", new Item("looking very old"));
 
-    Controller* control = new Controller(cin, cout, world);
+    Controller* control = new Controller(cin, cout, wptr);
 
     control->addCommand("go", new MyCommandGo());
     control->addCommand("take", new MyCommandTake());
@@ -90,7 +96,7 @@ int main(int argc, char** argv) {
 
     //segfault
   //  delete control;
-    delete &world;
+    //delete &world; // shared ptr, not needed
     
     return 0;
 }

@@ -9,29 +9,25 @@
 
 #include <list>
 #include <ostream>
+#include <tr1/memory>
 
 #include "Causality.h"
 #include "Character.h"
 #include "Room.h"
 
 
-struct WorldInit{
-    const char* worldDescription;
-    const char* startRoomDescription;
-    const char* playerName;
-    const char* playerDescription;
-};
-
-
 class World {
 public:
-    World(const WorldInit&);
+    World();
     ~World();
 
     ICondition* victoryCond;
 
     Room& getStartRoom();
     Character& getPlayer();
+
+    void setDescription(const char* description);
+    void setPlayer(const char* playerName, const char* playerDesc);
     
     Room& createRoom(const char* description);
 
@@ -47,6 +43,8 @@ private:
 
     std::list<Room*> rooms;
 };
+
+typedef std::tr1::shared_ptr<World> worldptr;
 
 #endif	/* WORLD_H */
 

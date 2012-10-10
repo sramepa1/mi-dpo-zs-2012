@@ -14,7 +14,7 @@
 
 class Controller {
 public:
-    Controller(std::istream&, std::ostream&, World&);
+    Controller(std::istream&, std::ostream&, worldptr);
     ~Controller();
 
     void addCommand(std::string, ICommand*);
@@ -28,7 +28,7 @@ private:
 
     std::map<std::string, ICommand*> commands;
     std::list<IEvent*> events;
-    World* world;
+    worldptr world;
 
 };
 
