@@ -13,12 +13,12 @@ class Builder : public IBuilder
 public:
     Builder();
 
-    virtual bool addRoom(const std::string& roomName, const std::string& roomDescription);
-    virtual bool addWay(const std::string& roomFrom, const std::string& roomTo, const std::string& direction);
-    virtual bool addItemToRoom(const std::string& roomName, const std::string itemName, const std::string& itemDescription, bool isMovable);
+    virtual bool addRoom(const char* roomName, const char* roomDescription);
+    virtual bool addWay(const char* roomFrom, const char* roomTo, const char* direction);
+    virtual bool addItemToRoom(const char* roomName, const char* itemName, const char* itemDescription, bool isMovable);
 
-    virtual void setGreeting(const std::string worldGreeting);
-    virtual void setPlayer(const std::string& playerName, const std::string& playerDescription);
+    virtual void setGreeting(const char* worldGreeting);
+    virtual void setPlayer(const char* playerName, const char* playerDescription);
 
     // TODO victory condition interface
 
@@ -30,7 +30,7 @@ private:
     Builder(const Builder& orig) {}
     Builder& operator = (const Builder& orig) {return *this;}
 
-    Room* lookupRoom(const std::string& name);
+    Room* lookupRoom(const char* name);
 
     std::string greeting;
     std::map<const std::string, Room*> rooms;

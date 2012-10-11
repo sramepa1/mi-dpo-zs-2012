@@ -1,4 +1,4 @@
-CFLAGS = -pedantic -Wall
+CFLAGS = -pedantic -Wall -Wwrite-strings -O0 -g3
 
 all: game
 
@@ -8,7 +8,7 @@ build:
 	mkdir build
 
 build/%.o: %.cpp
-	g++ $(CFLAGS) -Wwrite-strings -c -o $@ $< 
+	g++ $(CFLAGS) -c -o $@ $<
 
 game: build $(OBJECTS)
 	g++ -o $@ $(OBJECTS)

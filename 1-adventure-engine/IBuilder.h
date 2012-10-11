@@ -10,12 +10,12 @@ class IBuilder
 {
 public:
 
-    virtual bool addRoom(const std::string& roomName, const std::string& roomDescription) =0;
-    virtual bool addWay(const std::string& roomFrom, const std::string& roomTo, const std::string& direction) =0;
-    virtual bool addItemToRoom(const std::string& roomName, const std::string itemName, const std::string& itemDescription, bool isMovable) =0;
+    virtual bool addRoom(const char* roomName, const char* roomDescription) =0;
+    virtual bool addWay(const char* roomFrom, const char* roomTo, const char* direction) =0;
+    virtual bool addItemToRoom(const char* roomName, const char* itemName, const char* itemDescription, bool isMovable) =0;
 
-    virtual void setGreeting(const std::string worldGreeting) =0;
-    virtual void setPlayer(const std::string& playerName, const std::string& playerDescription) =0;
+    virtual void setGreeting(const char* worldGreeting) =0;
+    virtual void setPlayer(const char* playerName, const char* playerDescription) =0;
 
     // TODO victory condition interface
 

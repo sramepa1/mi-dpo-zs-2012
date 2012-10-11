@@ -5,99 +5,47 @@
  * Created on 23. září 2012, 13:17
  */
 
-#include <cstdlib>
 #include <iostream>
-
-#include "Controller.h"
-#include "MyItems.h"
-#include "World.h"
-
-#include "MyCommands.h"
+#include "AdventureEngine.h"
 
 using namespace std;
 
-/* !                                                                                              !
- * ================ THIS IS A TEMPORARY MAIN, THE REAL ONE WILL USE BUILDER! ======================
- * !                                                                                              ! */
-int main(int argc, char** argv) {
+int main() {
 
     //TODO tupě zapoudřit všechny prvky
     //TODO zakomentovat header fily
 
-#if 0
-    WorldInit myInit = {
-        "Welcome to Lightning's and RH's world of (wild programming) adventure.",
-        "You are standing in a great cave.",
-        "Me",
-        "Programmer the mad."
-    };
-#endif
-    
-    worldptr wptr(new World());
-    World& world = *wptr;
+    BuilderFactory bf;
+    builderptr builder = bf.createBuilder();
 
-    world.setDescription("Welcome to Lightning's and RH's world of (wild programming) adventure.");
-    world.setPlayer("Me", "Programmer the mad.");
+    builder->setGreeting("Welcome to Lightning's and RH's world of (wild programming) adventure.");
+    builder->setPlayer("Me","Programmer, the mad.");
 
-    Room& r1 = world.createRoom("You are in a dark cave.");
-    Room& r2 = world.createRoom("You are in a dark cave.");
-    Room& r3 = world.createRoom("You are in a dark cave.");
-    Room& r4 = world.createRoom("You are in a dark cave.");
+    builder->addRoom("Start", "You are in a dark cave.");
+    builder->addRoom("WestCave", "You are in a dark cave.");
+    builder->addRoom("EastCave", "You are in a dark cave.");
+    builder->addRoom("SouthCave", "You are in a dark cave.");
+    builder->addRoom("NorthCave", "You are in a dark cave.");
 
-    Room& startRoom = world.getStartRoom();
+    builder->addWay("Start", "WestCave", "west");
+    builder->addWay("WestCave", "Start", "east");
+    builder->addWay("Start", "EastCave", "east");
+    builder->addWay("EastCave", "Start", "west");
+    builder->addWay("Start", "NorthCave", "north");
+    builder->addWay("NorthCave", "Start", "south");
+    builder->addWay("Start", "SouthCave", "south");
+    builder->addWay("SouthCave", "Start", "north");
 
-    startRoom.addWay(string("west"), r1);
-    r1.addWay(string("east"), startRoom);
-    startRoom.addWay(string("east"), r2);
-    r2.addWay(string("west"), startRoom);
-    startRoom.addWay(string("north"), r3);
-    r3.addWay(string("south"), startRoom);
-    startRoom.addWay(string("south"), r4);
-    r4.addWay(string("north"), startRoom);
+    builder->addItemToRoom("Start", "message", "on the wall", false);
+    builder->addItemToRoom("WestCave", "bone", "- likely human", true);
 
-    startRoom.getInventory().addItem("message", *(new Item("on the wall", false)));
-    r3.getInventory().addItem("torch", *(new Torch("looking very old")));
+    // TODO victory condition
+    // TODO special items // r3.getInventory().addItem("torch", *(new Torch("looking very old")));
 
-    // TODO go to hell winning condition
+    gameptr game = builder->exportGame();
 
+    game->run(cin, cout);
 
-/*
-    world->startRoom->north = world->registerRoom(new Room("You are in a dark cave. The only way leads south."));
-    world->startRoom->west = world->registerRoom(new Room("You are in a dark cave. The only way leads east."));
-    world->startRoom->east = world->registerRoom(new Room("You are in a dark cave. The only way leads west."));
-    world->startRoom->south = world->registerRoom(new Room("You are in a dark cave. The only way leads north."));
-
-    world->startRoom->north->south = world->startRoom;
-    world->startRoom->south->north = world->startRoom;
-    world->startRoom->west->east = world->startRoom;
-    world->startRoom->east->west = world->startRoom;
-*/
-
-  //  world->startRoom->inventory->addItem("message", new Item("on the wall", false));
-   // world->startRoom->east->inventory->addItem("torch", new Item("looking very old"));
-
-    Controller* control = new Controller(cin, cout, wptr);
-
-    control->addCommand("go", new MyCommandGo());
-    control->addCommand("take", new MyCommandTake());
-    control->addCommand("drop", new MyCommandDrop());
-    control->addCommand("inventory", new MyCommandInventory());
-    control->addCommand("help", new MyCommandEcho(
-        "go [direction] - go to next room\n"
-        "take [item]    - take an item\n"
-        "drop [item]    - drop an item\n"
-        "inventory      - list the inventory\n"
-        "q              - quit the game"
-    ));
-
-    //control->addEvent(new Causality());
-
-    control->run();
-
-    //segfault
-  //  delete control;
-    //delete &world; // shared ptr, not needed
-    
     return 0;
 }
 

@@ -3,17 +3,17 @@
 
 using namespace std;
 
-Builder::Builder()
+Builder::Builder() : world(new World())
 {
 }
 
 
-bool Builder::addRoom(const std::string& roomName, const std::string& roomDescription) {
-    return rooms.insert(make_pair(roomName, &(world->createRoom(roomDescription.c_str())))).second;
+bool Builder::addRoom(const char* roomName, const char* roomDescription) {
+    return rooms.insert(make_pair(roomName, &(world->createRoom(roomDescription)))).second;
 }
 
 
-bool Builder::addWay(const std::string& roomFromName, const std::string& roomToName, const std::string& direction) {
+bool Builder::addWay(const char* roomFromName, const char* roomToName, const char* direction) {
     Room* fromRoom = lookupRoom(roomFromName);
     Room* toRoom = lookupRoom(roomToName);
     if(fromRoom == NULL || toRoom == NULL) {
@@ -24,25 +24,25 @@ bool Builder::addWay(const std::string& roomFromName, const std::string& roomToN
 }
 
 
-bool Builder::addItemToRoom(const std::string& roomName, const std::string itemName, const std::string& itemDescription, bool isMovable) {
+bool Builder::addItemToRoom(const char* roomName, const char* itemName, const char* itemDescription, bool isMovable) {
     Room* room = lookupRoom(roomName);
     if(!room) {
         return false;
     }
-    room->getInventory().addItem(itemName,*(new Item(itemDescription.c_str(), isMovable))); // TODO Demeter!
+    room->getInventory().addItem(itemName,*(new Item(itemDescription, isMovable))); // TODO Demeter!
     return true;
 }
 
-void Builder::setGreeting(const std::string worldGreeting) {
-    world->setDescription(worldGreeting.c_str());
+void Builder::setGreeting(const char* worldGreeting) {
+    world->setDescription(worldGreeting);
 }
 
 
-void Builder::setPlayer(const std::string& playerName, const std::string& playerDescription) {
-    world->setPlayer(playerName.c_str(), playerDescription.c_str());
+void Builder::setPlayer(const char* playerName, const char* playerDescription) {
+    world->setPlayer(playerName, playerDescription);
 }
 
-Room* Builder::lookupRoom(const string &name) {
+Room* Builder::lookupRoom(const char* name) {
     map<const std::string, Room*>::iterator it = rooms.find(name);
     return it == rooms.end() ? NULL : it->second;
 }
