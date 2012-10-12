@@ -4,13 +4,13 @@
  *
  * Created on 23. září 2012, 15:40
  */
+#ifndef CAUSALITY_H
+#define	CAUSALITY_H
 
 /*
 #include "Condition.h"
 #include "Event.h"
 
-#ifndef CAUSALITY_H
-#define	CAUSALITY_H
 
 class Causality : public IEvent {
 public:

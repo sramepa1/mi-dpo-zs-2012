@@ -4,6 +4,8 @@
  *
  * Created on 23. září 2012, 13:47
  */
+#ifndef INVENTORY_H
+#define	INVENTORY_H
 
 #include <map>
 #include <ostream>
@@ -11,8 +13,6 @@
 
 #include "Item.h"
 
-#ifndef INVENTORY_H
-#define	INVENTORY_H
 
 class Inventory {
 public:

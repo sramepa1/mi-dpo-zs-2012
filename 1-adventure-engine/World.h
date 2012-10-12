@@ -4,6 +4,8 @@
  *
  * Created on 23. září 2012, 15:39
  */
+#ifndef WORLD_H
+#define	WORLD_H
 
 #include <list>
 #include <ostream>
@@ -11,9 +13,7 @@
 #include "Character.h"
 #include "Condition.h"
 #include "Room.h"
-
-#ifndef WORLD_H
-#define	WORLD_H
+#include "State.h"
 
 
 struct WorldInit{
@@ -35,12 +35,12 @@ public:
     
     Room& createRoom(const char* description);
 
-    void addVictoryCondition(ICondition&);
-    bool testVictory();
+    void addCondition(ICondition&);
+    const State& evaluateGameState();
 
     friend std::ostream& operator << (std::ostream&, World&);
     
-    std::list<IEvent*> events;
+   // std::list<IEvent*> events;
 
 
 private:
@@ -55,7 +55,8 @@ private:
 
     std::list<Room*> rooms;
 
-    std::list<ICondition*> victoryConditions;
+    std::list<ICondition*> conditions;
+    State* state;
 
 };
 

@@ -1,3 +1,6 @@
+#ifndef CONTROLLER_H
+#define CONTROLLER_H
+
 #include <istream>
 #include <list>
 #include <map>
@@ -8,13 +11,11 @@
 #include "Event.h"
 #include "World.h"
 
-#ifndef CONTROLER_H
-#define CONTROLER_H
 
-class Controler {
+class Controller {
 public:
-    Controler(std::istream&, std::ostream&, World&);
-    ~Controler();
+    Controller(std::istream&, std::ostream&, World&);
+    ~Controller();
 
     void addCommand(std::string, ICommand*);
     void addEvent(IEvent*);
@@ -31,4 +32,4 @@ private:
 
 };
 
-#endif // CONTROLER_H
+#endif // CONTROLLER_H

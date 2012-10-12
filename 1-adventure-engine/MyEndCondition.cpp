@@ -1,4 +1,4 @@
-#include "myendcondition.h"
+#include "MyEndCondition.h"
 
 /*
 MyEndCondition::MyEndCondition() {

@@ -9,7 +9,7 @@
 
 using namespace std;
 
-Item::Item(const char* _description, bool _isMovable) : description(_description), isMovable(_isMovable) {}
+Item::Item(const char* _description, bool _isMovable) : isMovable(_isMovable), description(_description) {}
 
 bool Item::canMove() {
     return isMovable;

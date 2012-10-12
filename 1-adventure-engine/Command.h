@@ -1,23 +1,29 @@
+#ifndef COMMAND_H
+#define COMMAND_H
 
 #include <ostream>
 #include <string>
 
 #include "Event.h"
-
-#ifndef COMMAND_H
-#define COMMAND_H
-
-enum GameState {
-    RUNNING, VICOTRY
-};
+#include "State.h"
+#include "World.h"
 
 class ICommand {
 public:
 
-    virtual void execute(std::istringstream&, std::ostream&, World&) = 0;
-    virtual GameState commandExecute(std::istringstream&, std::ostream&, World&);
+    virtual const State& execute(std::istringstream&, std::ostream&, World&) = 0;
 
     virtual ~ICommand() {}
+
+};
+
+class ACommand : public ICommand {
+public:
+
+    virtual const State& execute(std::istringstream&, std::ostream&, World&);
+    virtual void commandExecute(std::istringstream&, std::ostream&, World&) = 0;
+
+    virtual ~ACommand() {}
 
 };
 

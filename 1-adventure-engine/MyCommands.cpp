@@ -4,8 +4,8 @@
 #include "World.h"
 
 using namespace std;
-//TODO předělat na třídy
-void MyCommandGo::execute(istringstream& iss, ostream& os, World& world) {
+
+void MyCommandGo::commandExecute(istringstream& iss, ostream& os, World& world) {
 
     string destination;
 
@@ -24,7 +24,7 @@ void MyCommandGo::execute(istringstream& iss, ostream& os, World& world) {
 
 }
 
-void MyCommandTake::execute(istringstream& iss, ostream& os, World& world) {
+void MyCommandTake::commandExecute(istringstream& iss, ostream& os, World& world) {
 
     string itemName;
 
@@ -47,7 +47,7 @@ void MyCommandTake::execute(istringstream& iss, ostream& os, World& world) {
 
 }
 
-void MyCommandDrop::execute(istringstream& iss, ostream& os, World& world) {
+void MyCommandDrop::commandExecute(istringstream& iss, ostream& os, World& world) {
 
     string itemName;
 
@@ -70,37 +70,15 @@ void MyCommandDrop::execute(istringstream& iss, ostream& os, World& world) {
 
 }
 
-void MyCommandInventory::execute(istringstream& iss, ostream& os, World& world) {
+void MyCommandInventory::commandExecute(istringstream& iss, ostream& os, World& world) {
 
     os << "You have " << world.getPlayer().getInventory();
 
 }
 
-void MyCommandEcho::execute(istringstream& iss, ostream& os, World& world) {
+void MyCommandEcho::commandExecute(istringstream& iss, ostream& os, World& world) {
 
     os << echo << endl;
 
 }
 
-/*
-MyCommandSouth::execute(istringstream& iss, ostream& os, World& world) {
-    Character* player = World::getInstance()->character;
-    player->location = player->location->east;
-
-    os << player->location;
-}
-
-MyCommandWest::execute(istringstream& iss, ostream& os, World& world) {
-    Character* player = World::getInstance()->character;
-    player->location = player->location->west;
-
-    os << player->location;
-}
-
-MyCommandEast::execute(istringstream& iss, ostream& os, World& world) {
-    Character* player = World::getInstance()->character;
-    player->location = player->location->east;
-
-    os << player->location;
-}
-*/

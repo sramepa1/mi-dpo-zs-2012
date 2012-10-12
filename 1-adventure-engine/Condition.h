@@ -5,6 +5,7 @@
  * Created on 23. září 2012, 15:34
  */
 
+#include "State.h"
 #include "World.h"
 
 #ifndef CONDITION_H
@@ -13,18 +14,8 @@
 class ICondition {
 public:
 
-    virtual bool condition(World&) = 0;
+    virtual GameState testCondition(World&) = 0;
 
-    virtual ~ICondition() {}
-
-};
-
-class VictoryCondition : public ICondition {
-public:
-    
-    virtual bool condition(World&) = 0;
-
-    
     virtual ~ICondition() {}
 
 };

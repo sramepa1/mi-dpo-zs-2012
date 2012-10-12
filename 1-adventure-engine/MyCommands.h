@@ -1,59 +1,59 @@
+#ifndef MYCOMMANDS_H
+#define MYCOMMANDS_H
 
 #include "Command.h"
 #include "World.h"
 
-#ifndef MYCOMMANDS_H
-#define MYCOMMANDS_H
 
-class MyCommandGo : public ICommand {
+class MyCommandGo : public ACommand {
 public:
     MyCommandGo() {}
     virtual ~MyCommandGo() {}
 
-    virtual void execute(std::istringstream&, std::ostream&, World&);
+    virtual void commandExecute(std::istringstream&, std::ostream&, World&);
 };
 
-class MyCommandTake : public ICommand {
+class MyCommandTake : public ACommand {
 public:
     MyCommandTake() {}
     virtual ~MyCommandTake() {}
 
-    virtual void execute(std::istringstream&, std::ostream&, World&);
+    virtual void commandExecute(std::istringstream&, std::ostream&, World&);
 };
 
-class MyCommandDrop : public ICommand {
+class MyCommandDrop : public ACommand {
 public:
     MyCommandDrop() {}
     virtual ~MyCommandDrop() {}
 
-    virtual void execute(std::istringstream&, std::ostream&, World&);
+    virtual void commandExecute(std::istringstream&, std::ostream&, World&);
 };
 
-class MyCommandInventory : public ICommand {
+class MyCommandInventory : public ACommand {
 public:
     MyCommandInventory() {}
     virtual ~MyCommandInventory() {}
 
-    virtual void execute(std::istringstream&, std::ostream&, World&);
+    virtual void commandExecute(std::istringstream&, std::ostream&, World&);
 };
 
-class MyCommandEcho : public ICommand {
+class MyCommandEcho : public ACommand {
 public:
     MyCommandEcho(const char* _echo) : echo(_echo) {}
     virtual ~MyCommandEcho() {}
 
-    virtual void execute(std::istringstream&, std::ostream&, World&);
+    virtual void commandExecute(std::istringstream&, std::ostream&, World&);
 
 private:
     const char* echo;
 };
 
-class MyCommandLight : public ICommand {
+class MyCommandLight : public ACommand {
 public:
     MyCommandLight(Character* _player) : player(_player) {}
     virtual ~MyCommandLight() {}
 
-    virtual void execute(std::istringstream&, std::ostream&, World&);
+    virtual void commandExecute(std::istringstream&, std::ostream&, World&);
 
 private:
     Character* player;

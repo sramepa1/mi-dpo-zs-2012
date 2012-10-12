@@ -4,12 +4,12 @@
  *
  * Created on 23. září 2012, 13:39
  */
+#ifndef ITEM_H
+#define	ITEM_H
 
 #include <map>
 #include <ostream>
 
-#ifndef ITEM_H
-#define	ITEM_H
 
 class Item {
 public:

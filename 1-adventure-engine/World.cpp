@@ -15,17 +15,23 @@ World::World(const WorldInit& init) {
     vicotryMessage = init.vicotryMessage;
     startRoom = new Room(init.startRoomDescription);
     player = new Character(init.playerName, init.playerDescription, *startRoom);
+
+    state = new State();
 }
 
 World::~World() {    
-    delete player;
-    delete victoryCond;
 
     for (list<Room*>::iterator it(rooms.begin()); it != rooms.end(); ++it) {
         delete *(it);
     }
 
+    for (list<ICondition*>::iterator it(conditions.begin()); it != conditions.end(); ++it) {
+        delete *(it);
+    }
+
     delete startRoom;
+    delete player;
+    delete state;
 }
 
 Room& World::getStartRoom() {
@@ -45,20 +51,17 @@ Room& World::createRoom(const char* description) {
     return *room;
 }
 
-void World::addVictoryCondition(ICondition& condition) {
-    victoryCondition.push_back(&condition);
+void World::addCondition(ICondition& condition) {
+    conditions.push_back(&condition);
 }
 
-bool World::testVictory() {
+const State& World::evaluateGameState() {
 
-    for (list<ICondition*>::iterator it(victoryConditions.begin()); it != victoryConditions.end(); ++it) {
-        if(it->testCondition(*this) == VICOTRY) {
-            description = vicotryMessage;
-            return true;
-        }
+    for (list<ICondition*>::iterator it(conditions.begin()); it != conditions.end(); ++it) {
+        state->nextState((*it)->testCondition(*this));
     }
 
-    return false;
+    return *state;
 }
 
 ostream& operator << (std::ostream& os, World& world) {

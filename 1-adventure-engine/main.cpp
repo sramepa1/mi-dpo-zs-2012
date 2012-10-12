@@ -8,7 +8,7 @@
 #include <cstdlib>
 #include <iostream>
 
-#include "controler.h"
+#include "Controller.h"
 #include "MyItems.h"
 #include "World.h"
 
@@ -71,7 +71,7 @@ int main(int argc, char** argv) {
   //  world->startRoom->inventory->addItem("message", new Item("on the wall", false));
    // world->startRoom->east->inventory->addItem("torch", new Item("looking very old"));
 
-    Controler* control = new Controler(cin, cout, world);
+    Controller* control = new Controller(cin, cout, world);
 
     control->addCommand("go", new MyCommandGo());
     control->addCommand("take", new MyCommandTake());
