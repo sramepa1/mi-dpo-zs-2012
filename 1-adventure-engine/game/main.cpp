@@ -6,6 +6,7 @@
  */
 
 #include <iostream>
+#include <sstream>
 #include "AdventureEngine.h"
 
 using namespace std;
@@ -44,7 +45,9 @@ int main() {
 
     gameptr game = builder->exportGame();
 
-    game->run(cin, cout);
+    istringstream sin("q\n");
+
+    game->run(sin, cout);
 
     return 0;
 }

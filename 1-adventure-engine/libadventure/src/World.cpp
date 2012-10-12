@@ -19,8 +19,6 @@ World::~World() {
     for (list<Room*>::iterator it(rooms.begin()); it != rooms.end(); ++it) {
         delete *(it);
     }
-
-    delete startRoom;
 }
 
 Room& World::getStartRoom() {
