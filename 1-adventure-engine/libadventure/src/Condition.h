@@ -14,7 +14,10 @@
 class ICondition {
 public:
 
-    virtual GameState testCondition(World&) = 0;
+    /**
+     * Tests an condition.
+     */
+    virtual GameState testCondition(World& world) = 0;
 
     virtual ~ICondition() {}
 

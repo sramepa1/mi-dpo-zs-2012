@@ -1,15 +1,16 @@
 #ifndef MYENDCONDITION_H
 #define MYENDCONDITION_H
 
+#include "Condition.h"
 #include "World.h"
 
-class ItemInRoomEndVictory : public ICondition
+class ItemInRoomCondition : public ICondition
 {
 public:
-    ItemInRoomEndVictory(Room& _room, std::string _itemName, GameState _result) : room(_room), itemName(_itemName), result(_result) {}
-    virtual ~ItemInRoomEndVictory() {}
+    ItemInRoomCondition(Room& _room, std::string _itemName, GameState _result) : room(_room), itemName(_itemName), result(_result) {}
+    virtual ~ItemInRoomCondition() {}
 
-    virtual GameState testCondition(World&);
+    virtual GameState testCondition(World& world);
 
 private:
     Room& room;

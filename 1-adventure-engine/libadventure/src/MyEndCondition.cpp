@@ -1,6 +1,6 @@
 #include "MyEndCondition.h"
 
-GameState ItemInRoomEndVictory::testCondition(World& world) {
+GameState ItemInRoomCondition::testCondition(World& world) {
     try {
         room.getInventory().findItem(itemName);
         return result;

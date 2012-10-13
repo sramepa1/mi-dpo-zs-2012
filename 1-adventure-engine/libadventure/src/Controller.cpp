@@ -12,10 +12,6 @@ Controller::~Controller() {
     for (map<std::string, ICommand*>::iterator it(commands.begin()); it != commands.end(); ++it) {
         delete it->second;
     }
-
-    for (list<IEvent*>::iterator it(events.begin()); it != events.end(); ++it) {
-        delete *(it);
-    }
 }
 
 void Controller::addCommand(string text, ICommand* command) {
@@ -24,10 +20,6 @@ void Controller::addCommand(string text, ICommand* command) {
     }
 
     commands.insert(pair<string, ICommand*> (text, command));
-}
-
-void Controller::addEvent(IEvent* event) {
-    events.push_back(event);
 }
 
 void Controller::run() {

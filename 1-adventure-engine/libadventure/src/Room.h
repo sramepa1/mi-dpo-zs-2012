@@ -22,11 +22,25 @@ public:
     
     friend class World;
 
+    /**
+     * Get the room's inventory.
+     */
     Inventory& getInventory();
 
-    void addWay(std::string, Room&);
-    void removeWay(std::string);
-    Room& findWay(std::string);
+    /**
+     * Add a way to another room.
+     */
+    void addWay(std::string directionName, Room& room);
+
+    /**
+     * Remove a way to another room.
+     */
+    void removeWay(std::string directionName);
+
+    /**
+     * Find a way to another room. If not found then method throws an const char* exception.
+     */
+    Room& findWay(std::string directionName);
     
     friend std::ostream& operator << (std::ostream&, Room&);
     

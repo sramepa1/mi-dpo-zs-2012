@@ -1,7 +1,5 @@
 Makefile
 game/main.cpp
-libadventure/src/Causality.cpp
-libadventure/src/Causality.h
 libadventure/src/Character.cpp
 libadventure/src/Character.h
 libadventure/src/Command.cpp
@@ -9,7 +7,6 @@ libadventure/src/Command.h
 libadventure/src/Condition.h
 libadventure/src/Controller.cpp
 libadventure/src/Controller.h
-libadventure/src/Event.h
 libadventure/src/Inventory.cpp
 libadventure/src/Inventory.h
 libadventure/src/Item.cpp
@@ -18,8 +15,6 @@ libadventure/src/MyCommands.cpp
 libadventure/src/MyCommands.h
 libadventure/src/MyEndCondition.cpp
 libadventure/src/MyEndCondition.h
-libadventure/src/MyEvents.cpp
-libadventure/src/MyEvents.h
 libadventure/src/MyItems.cpp
 libadventure/src/MyItems.h
 libadventure/src/Room.cpp

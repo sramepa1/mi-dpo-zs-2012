@@ -13,13 +13,15 @@
 
 class Item {
 public:
-        // TODO name parameters in headers!
-    Item(const char*, bool = true);
+    Item(const char* description, bool isMovable= true);
     virtual ~Item() {}
 
+    /**
+     * Can the item be moved?
+     */
     bool canMove();
 
-    friend std::ostream& operator << (std::ostream&, Item&);
+    friend std::ostream& operator << (std::ostream& os, Item& item);
 
 private:
     Item(const Item& orig) {}

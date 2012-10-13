@@ -4,14 +4,16 @@
 #include <ostream>
 #include <string>
 
-#include "Event.h"
 #include "State.h"
 #include "World.h"
 
 class ICommand {
 public:
 
-    virtual const State& execute(std::istringstream&, std::ostream&, World&) = 0;
+    /**
+     * Executes an command which determines new game state.
+     */
+    virtual const State& execute(std::istringstream& is, std::ostream& os, World& world) = 0;
 
     virtual ~ICommand() {}
 
@@ -20,8 +22,15 @@ public:
 class ACommand : public ICommand {
 public:
 
-    virtual const State& execute(std::istringstream&, std::ostream&, World&);
-    virtual void commandExecute(std::istringstream&, std::ostream&, World&) = 0;
+    /**
+     * Executes an command and automaticaly determines the game state
+     */
+    virtual const State& execute(std::istringstream& is, std::ostream& os, World& world);
+
+    /**
+     * Executes a simple command.
+     */
+    virtual void commandExecute(std::istringstream& is, std::ostream& os, World& world) = 0;
 
     virtual ~ACommand() {}
 

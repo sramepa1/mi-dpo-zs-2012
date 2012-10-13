@@ -10,10 +10,24 @@ public:
     State() : state(RUNNING) {}
     State(GameState _state) : state(_state) {}
 
-    virtual void nextState(GameState);
+    /**
+     * Determine next state of the game.
+     */
+    virtual void nextState(GameState state);
+
+    /**
+     * Get current state of the game.
+     */
     virtual GameState getState();
 
+    /**
+     * Is the game in victory state?
+     */
     virtual bool isVictory() const;
+
+    /**
+     * Is the game in defeat state?.
+     */
     virtual bool isDefeat() const;
 
 private:

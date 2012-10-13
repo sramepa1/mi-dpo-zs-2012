@@ -18,19 +18,33 @@ public:
     Inventory();
     ~Inventory();
 
-    void addItem(std::string, Item&);
-    void removeItem(std::string);
-    Item& findItem(std::string);
+    /**
+     * Add an item to the inventory.
+     */
+    void addItem(std::string itemName, Item& item);
 
-    void moveItemTo(std::string, Inventory&);
+    /**
+     * Remove an item from the inventory.
+     */
+    void removeItem(std::string itemName);
 
-    friend std::ostream& operator << (std::ostream& os, Inventory&);
+    /**
+     * Find an item in the inventory. If not found then method throws an const char* exception.
+     */
+    Item& findItem(std::string itemName);
+
+    /**
+     * Move an to another inventory. If not found then method throws an const char* exception.
+     */
+    void moveItemTo(std::string itemName, Inventory& inventory);
+
+    friend std::ostream& operator << (std::ostream& os, Inventory& inventory);
     
 private:
     Inventory(const Inventory& orig) {}
     Inventory& operator = (const Inventory& orig) {return *this;}
     
-    std::multimap<std::string, Item&> items;
+    std::map<std::string, Item&> items;
     
 };
 

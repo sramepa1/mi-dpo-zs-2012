@@ -8,18 +8,22 @@
 #include <string>
 
 #include "Command.h"
-#include "Event.h"
 #include "World.h"
 
 
 class Controller {
 public:
-    Controller(std::istream&, std::ostream&, worldptr);
+    Controller(std::istream& is, std::ostream& os, worldptr worldPointer);
     ~Controller();
 
+    /**
+     * Add command to the controller.
+     */
     void addCommand(std::string, ICommand*);
-    void addEvent(IEvent*);
 
+    /**
+     * Starts the game. This method is blocking until the game ends.
+     */
     void run();
 
 private:
@@ -27,7 +31,6 @@ private:
     std::ostream& os;
 
     std::map<std::string, ICommand*> commands;
-    std::list<IEvent*> events;
     worldptr world;
 
 };

@@ -59,27 +59,5 @@ private:
     Character* player;
 };
 
-/*
-class MyCommandSouth : public ICommand {
-public:
-    virtual ~MyCommandSouth() {}
-
-    virtual void execute(std::istringstream&, std::ostream&);
-};
-
-class MyCommandWest : public ICommand {
-public:
-    virtual ~MyCommandWest() {}
-
-    virtual void execute(std::istringstream&, std::ostream&);
-};
-
-class MyCommandEast : public ICommand {
-public:
-    virtual ~MyCommandEast() {}
-
-    virtual void execute(std::istringstream&, std::ostream&);
-};
-*/
 
 #endif // MYCOMMANDS_H

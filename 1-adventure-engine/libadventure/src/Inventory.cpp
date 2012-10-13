@@ -13,7 +13,7 @@ Inventory::Inventory() {
 }
 
 Inventory::~Inventory() {
-    for (multimap<string, Item&>::iterator it(items.begin()); it != items.end(); ++it) {
+    for (map<string, Item&>::iterator it(items.begin()); it != items.end(); ++it) {
         delete &it->second;
     }
 }
@@ -23,7 +23,7 @@ void Inventory::addItem(string name, Item& item) {
 }
 
 void Inventory::removeItem(string name) {
-    multimap<std::string, Item&>::iterator it = items.find(name);
+    map<std::string, Item&>::iterator it = items.find(name);
 
     if(it == items.end()) {
         return;
@@ -33,7 +33,7 @@ void Inventory::removeItem(string name) {
 }
 
 Item& Inventory::findItem(string name) {
-    multimap<std::string, Item&>::iterator it = items.find(name);
+    map<std::string, Item&>::iterator it = items.find(name);
 
     if(it == items.end()) {
         throw "There is no such thing.";
@@ -65,7 +65,7 @@ ostream& operator << (std::ostream& os, Inventory& inventory) {
 
     if(inventory.items.begin() != inventory.items.end()) {
 
-        for (multimap<string, Item&>::iterator it(inventory.items.begin()); it != inventory.items.end(); ++it) {
+        for (map<string, Item&>::iterator it(inventory.items.begin()); it != inventory.items.end(); ++it) {
             os << "a "  << it->first << " " << it->second << ", ";
         }
 

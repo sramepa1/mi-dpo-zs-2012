@@ -16,18 +16,40 @@
 
 class Character {
 public:
-    Character(const char*, const char*, Room&);
+    Character(const char* name, const char* description, Room& initLocation);
     ~Character();
     
-    void goTo(std::string);
-    void teleport(Room& room);
+    /**
+     * Move character to a neighour location.
+     */
+    void goTo(std::string locationName);
+
+    /**
+     * Teleport character to any location.
+     */
+    void teleport(Room& location);
+
+    /**
+     * Get the charact's location.
+     */
     Room& getLocation();
 
-    void takeItem(std::string);
-    void dropItem(std::string);
-    void listItems(std::ostream&);
+    /**
+     * Take an item which is in character's location to the inventory.
+     */
+    void takeItem(std::string itemName);
 
-    friend std::ostream& operator << (std::ostream&, Character&);
+    /**
+     * Drop an item to the ground.
+     */
+    void dropItem(std::string itemName);
+
+    /**
+     * List character's inventory.
+     */
+    void listItems(std::ostream& os);
+
+    friend std::ostream& operator << (std::ostream& os, Character& character);
     
 private:
     Character(const Character& orig) : location(orig.location) {}
