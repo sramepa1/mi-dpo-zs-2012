@@ -7,6 +7,8 @@
 class IGame
 {
 public:
+    virtual ~IGame() {}
+
     virtual void run(std::istream& input, std::ostream& output) =0;
 };
 

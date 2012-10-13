@@ -44,8 +44,8 @@ void Character::listItems(ostream& os) {
     os << "You have " << (*inventory);
 }
 
-ostream& operator << (std::ostream& os, Character& room) {
-    os << room << endl;
+ostream& operator << (std::ostream& os, Character& character) {
+    os << *(character.location) << endl;
 
     return os;
 }
