@@ -5,9 +5,9 @@ using namespace std;
 
 static GameState TransitionLookup[][3]  = {
     // RUNNING = 0, VICOTRY = 1, DEFEAT = 2
-    {RUNNING, VICOTRY, DEFEAT},
-    {VICOTRY, VICOTRY, VICOTRY},
-    {DEFEAT, VICOTRY, DEFEAT},
+    {RUNNING, VICTORY, DEFEAT},
+    {VICTORY, VICTORY, VICTORY},
+    {DEFEAT, VICTORY, DEFEAT},
 };
 
 void State::nextState(GameState nextState) {
@@ -19,7 +19,7 @@ GameState State::getState() {
 }
 
 bool State::isVictory() const {
-    return state == VICOTRY;
+    return state == VICTORY;
 }
 
 bool State::isDefeat() const {
