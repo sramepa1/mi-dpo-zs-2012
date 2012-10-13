@@ -3,14 +3,18 @@
 
 #include "World.h"
 
-
-class MyEndCondition : public ICondition
+class ItemInRoomEndVictory : public ICondition
 {
 public:
-    MyEndCondition(World* world) {}
-    virtual ~MyEndCondition() {}
+    ItemInRoomEndVictory(Room& _room, std::string _itemName, GameState _result) : room(_room), itemName(_itemName), result(_result) {}
+    virtual ~ItemInRoomEndVictory() {}
 
-    virtual bool condition() {return true;}
+    virtual GameState testCondition(World&);
+
+private:
+    Room& room;
+    std::string itemName;
+    GameState result;
 };
 
 #endif // MYENDCONDITION_H

@@ -36,11 +36,8 @@ void MyCommandTake::commandExecute(istringstream& iss, ostream& os, World& world
     }
 
     try{
-        Character& player = world.getPlayer();
-
-        player.getLocation().getInventory().moveItemTo(itemName, player.getInventory());
+        world.getPlayer().takeItem(itemName);
         os << "You have taken the " << itemName << "." << endl;
-
     } catch (const char* error) {
         os << error << endl;
     }
@@ -59,11 +56,8 @@ void MyCommandDrop::commandExecute(istringstream& iss, ostream& os, World& world
     }
 
     try{
-        Character& player = world.getPlayer();
-
-        player.getInventory().moveItemTo(itemName, player.getLocation().getInventory());
+        world.getPlayer().dropItem(itemName);
         os << "You have dropped the " << itemName << "." << endl;
-
     } catch (const char* error) {
         os << error << endl;
     }
@@ -72,7 +66,7 @@ void MyCommandDrop::commandExecute(istringstream& iss, ostream& os, World& world
 
 void MyCommandInventory::commandExecute(istringstream& iss, ostream& os, World& world) {
 
-    os << "You have " << world.getPlayer().getInventory();
+    world.getPlayer().listItems(os);
 
 }
 

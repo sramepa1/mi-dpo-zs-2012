@@ -9,6 +9,7 @@ class Game : public IGame
 {
 public:
     Game(worldptr world);
+    virtual ~Game() {}
 
     virtual void run(std::istream &input, std::ostream &output);
 

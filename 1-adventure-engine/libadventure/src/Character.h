@@ -21,16 +21,11 @@ public:
     
     void goTo(std::string);
     void teleport(Room& room);
-
-    Inventory& getInventory();
     Room& getLocation();
 
-    //TODO
-    /*
     void takeItem(std::string);
     void dropItem(std::string);
-    void listItems();
-    */
+    void listItems(std::ostream&);
 
     friend std::ostream& operator << (std::ostream&, Character&);
     

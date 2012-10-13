@@ -28,12 +28,20 @@ void Character::teleport(Room &room) {
     location = &(room);
 }
 
-Inventory& Character::getInventory() {
-    return *inventory;
-}
-
 Room& Character::getLocation() {
     return *location;
+}
+
+void Character::takeItem(string itemName) {
+    location->getInventory().moveItemTo(itemName, *inventory);
+}
+
+void Character::dropItem(string itemName) {
+    inventory->moveItemTo(itemName, location->getInventory());
+}
+
+void Character::listItems(ostream& os) {
+    os << "You have " << (*inventory);
 }
 
 ostream& operator << (std::ostream& os, Character& room) {
