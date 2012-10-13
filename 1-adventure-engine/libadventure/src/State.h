@@ -2,7 +2,7 @@
 #define STATE_H
 
 enum GameState {
-    RUNNING = 0, VICOTRY = 1, DEFEAT = 2
+    RUNNING = 0, VICTORY = 1, DEFEAT = 2
 };
 
 class State {

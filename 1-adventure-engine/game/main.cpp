@@ -38,10 +38,13 @@ int main() {
         builder->addWay("Start", "SouthCave", "south");
         builder->addWay("SouthCave", "Start", "north");
 
-        builder->addItemToRoom("Start", "message", "on the wall", false);
-        builder->addItemToRoom("WestCave", "bone", "- likely human", true);
+        builder->addItem("message", "on the wall", false);
+        builder->addItemToRoom("Start", "message");
+        builder->addItem("bone", "- likely human", true);
+        builder->addItemToRoom("WestCave", "bone");
 
-        // TODO victory condition
+        builder->addItemInRoomEnd("NorthCave", "bone", true);
+
         // TODO special items // r3.getInventory().addItem("torch", *(new Torch("looking very old")));
 
         gameptr game = builder->exportGame();
