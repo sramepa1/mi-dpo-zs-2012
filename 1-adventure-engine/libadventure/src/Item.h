@@ -13,6 +13,7 @@
 
 class Item {
 public:
+        // TODO name parameters in headers!
     Item(const char*, bool = true);
     virtual ~Item() {}
 
@@ -24,8 +25,8 @@ private:
     Item(const Item& orig) {}
     Item& operator = (const Item& orig) {return *this;}
     
-    const char* description;
     bool isMovable;
+    const char* description;
     
 };
 

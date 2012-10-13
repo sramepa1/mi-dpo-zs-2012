@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Controller::Controller(istream& _is, ostream& _os, World& _world) : is(_is), os(_os), world(&_world) {}
+Controller::Controller(istream& _is, ostream& _os, worldptr _world) : is(_is), os(_os), world(_world) {}
 
 Controller::~Controller() {
     for (map<std::string, ICommand*>::iterator it(commands.begin()); it != commands.end(); ++it) {

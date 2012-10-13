@@ -20,6 +20,7 @@ public:
     ~Character();
     
     void goTo(std::string);
+    void teleport(Room& room);
 
     Inventory& getInventory();
     Room& getLocation();

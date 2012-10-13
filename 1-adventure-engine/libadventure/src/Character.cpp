@@ -21,7 +21,11 @@ Character::~Character() {
 }
 
 void Character::goTo(string direction) {
-    location = &(location->findWay(direction));
+    teleport(location->findWay(direction));
+}
+
+void Character::teleport(Room &room) {
+    location = &(room);
 }
 
 Inventory& Character::getInventory() {

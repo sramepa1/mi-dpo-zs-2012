@@ -1,26 +1,21 @@
-CFLAGS = -pedantic -Wall
+all: adventure
 
-all: game
+adventure:	game/game
+	cp game/game adventure
 
-OBJECTS = $(patsubst %.cpp,build/%.o,$(wildcard ./*.cpp))
+game/game:	libadventure/libadventure.a
+	cd game && $(MAKE) all
 
-build:
-	mkdir build
-
-build/%.o: %.cpp
-	g++ $(CFLAGS) -Wwrite-strings -c -o $@ $< 
-
-game: build $(OBJECTS)
-	g++ -o $@ $(OBJECTS)
+libadventure/libadventure.a:
+	cd libadventure && $(MAKE) all
 
 .PHONY: clean
 
 clean:
-	rm -rf build
-	rm -f game
+	cd game && $(MAKE) clean
+	cd libadventure && $(MAKE) clean
+	rm -f adventure
 
-run:
-	@echo "Vypsat nápovědu"
-
-
+run: adventure
+	./adventure
 

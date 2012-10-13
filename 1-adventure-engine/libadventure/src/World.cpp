@@ -10,14 +10,11 @@
 
 using namespace std;
 
-World::World(const WorldInit& init) {
-    description = init.worldDescription;
-    vicotryMessage = init.vicotryMessage;
-    startRoom = new Room(init.startRoomDescription);
-    player = new Character(init.playerName, init.playerDescription, *startRoom);
 
+World::World() : description(NULL), startRoom(NULL), player(NULL) { 
     state = new State();
 }
+
 
 World::~World() {    
 
@@ -29,7 +26,6 @@ World::~World() {
         delete *(it);
     }
 
-    delete startRoom;
     delete player;
     delete state;
 }
@@ -45,11 +41,16 @@ Character& World::getPlayer() {
 Room& World::createRoom(const char* description) {
 
     Room* room = new Room(description);
-
+    if(startRoom == NULL) {
+        startRoom = room;
+        if(player != NULL) {
+            player->teleport(*room);
+        }
+    }
     rooms.push_back(room);
-
     return *room;
 }
+
 
 void World::addCondition(ICondition& condition) {
     conditions.push_back(&condition);
@@ -62,6 +63,14 @@ const State& World::evaluateGameState() {
     }
 
     return *state;
+}
+
+void World::setDescription(const char* _description) {
+    description = _description;
+}
+
+void World::setPlayer(const char* playerName, const char* playerDesc) {
+    player = new Character(playerName,playerDesc, *startRoom);
 }
 
 ostream& operator << (std::ostream& os, World& world) {

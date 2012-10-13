@@ -71,7 +71,7 @@ ostream& operator << (std::ostream& os, Inventory& inventory) {
 
         os << endl;
     } else {
-        os << "nothink." << endl;
+        os << "nothing." << endl;
     }
 
     return os;

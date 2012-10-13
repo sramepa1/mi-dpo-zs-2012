@@ -9,6 +9,7 @@
 
 #include <list>
 #include <ostream>
+#include <tr1/memory>
 
 #include "Character.h"
 #include "Condition.h"
@@ -16,22 +17,16 @@
 #include "State.h"
 
 
-struct WorldInit{
-    const char* worldDescription;
-    const char* vicotryMessage;
-    const char* startRoomDescription;
-    const char* playerName;
-    const char* playerDescription;
-};
-
-
 class World {
 public:
-    World(const WorldInit&);
+    World();
     ~World();
 
     Room& getStartRoom();
     Character& getPlayer();
+
+    void setDescription(const char* description);
+    void setPlayer(const char* playerName, const char* playerDesc);
     
     Room& createRoom(const char* description);
 
@@ -59,6 +54,8 @@ private:
     State* state;
 
 };
+
+typedef std::tr1::shared_ptr<World> worldptr;
 
 #endif	/* WORLD_H */
 
