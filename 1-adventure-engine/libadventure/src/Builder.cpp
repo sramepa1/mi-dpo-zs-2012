@@ -45,7 +45,7 @@ void Builder::setPlayer(const char* name, const char* description) {
 void Builder::addItemInRoomEnd(const char *roomID, const char *itemName, bool victorious) {
     Room* room = lookup(rooms,roomID, "Attempted to tie victory to a nonexistant room.");
     checkError(items.count(string(itemName)) > 0, "Attempted to tie victory to a nonexistant item.");
-    world->addCondition(*(new ItemInRoomEndVictory(*room, itemName, victorious ? VICTORY : DEFEAT)));
+    world->addCondition(*(new ItemInRoomCondition(*room, itemName, victorious ? VICTORY : DEFEAT)));
 }
 
 gameptr Builder::exportGame() {
