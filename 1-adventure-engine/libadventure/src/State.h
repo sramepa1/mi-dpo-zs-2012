@@ -7,7 +7,7 @@ enum GameState {
 
 class State {
 public:
-    State();
+    State() : state(RUNNING) {}
     State(GameState _state) : state(_state) {}
 
     virtual void nextState(GameState);

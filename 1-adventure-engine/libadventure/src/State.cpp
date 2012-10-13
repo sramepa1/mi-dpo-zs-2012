@@ -10,10 +10,6 @@ static GameState TransitionLookup[][3]  = {
     {DEFEAT, VICOTRY, DEFEAT},
 };
 
-State::State() {
-    state = RUNNING;
-}
-
 void State::nextState(GameState nextState) {
     state = TransitionLookup[state][nextState];
 }

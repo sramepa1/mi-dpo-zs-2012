@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   World.cpp
  * Author: rusty
  * 
@@ -50,7 +50,6 @@ Room& World::createRoom(const char* description) {
     rooms.push_back(room);
     return *room;
 }
-
 
 void World::addCondition(ICondition& condition) {
     conditions.push_back(&condition);
