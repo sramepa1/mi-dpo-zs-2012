@@ -1,3 +1,4 @@
 libadventure.a
 build
 build/*
+*.autosave

@@ -3,3 +3,4 @@ Game.includes
 adventure
 build
 build/*
+*.autosave

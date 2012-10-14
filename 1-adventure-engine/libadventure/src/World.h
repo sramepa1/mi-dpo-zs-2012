@@ -33,16 +33,12 @@ public:
     const State& evaluateGameState();
 
     friend std::ostream& operator << (std::ostream&, World&);
-    
-   // std::list<IEvent*> events;
-
 
 private:
     World(const World& orig) {}
     World& operator = (const World& orig) {return *this;}
 
     const char* description;
-    const char* vicotryMessage;
 
     Room* startRoom;
     Character* player;

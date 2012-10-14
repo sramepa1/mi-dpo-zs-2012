@@ -33,3 +33,4 @@ libadventure/include/BuilderFactory.h
 libadventure/include/IGame.h
 libadventure/include/IBuilder.h
 libadventure/include/AdventureEngine.h
+game/testingmain.cpp

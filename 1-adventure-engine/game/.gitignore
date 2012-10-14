@@ -1,3 +1,4 @@
 game
 build
 build/*
+*.autosave
