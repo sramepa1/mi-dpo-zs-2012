@@ -41,11 +41,11 @@ void Character::dropItem(string itemName) {
 }
 
 void Character::listItems(ostream& os) {
-    os << "You have " << (*inventory);
+    os << "You have: " << endl << (*inventory);
 }
 
 ostream& operator << (std::ostream& os, Character& character) {
-    os << *(character.location) << endl;
+    os << *(character.location);
 
     return os;
 }

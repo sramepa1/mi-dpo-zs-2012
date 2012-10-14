@@ -18,6 +18,7 @@ void MyCommandGo::commandExecute(istringstream& iss, ostream& os, World& world) 
 
     try {
         world.getPlayer().goTo(destination);
+        os << world.getPlayer();
     } catch (const char* error) {
         os << error << endl;
     }
@@ -76,3 +77,8 @@ void MyCommandEcho::commandExecute(istringstream& iss, ostream& os, World& world
 
 }
 
+void MyCommandLook::commandExecute(istringstream& iss, ostream& os, World& world) {
+
+    os << world.getPlayer();
+
+}

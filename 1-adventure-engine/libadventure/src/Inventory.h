@@ -38,6 +38,11 @@ public:
      */
     void moveItemTo(std::string itemName, Inventory& inventory);
 
+    /**
+     * Returns true if the inventory contains no items.
+     */
+    bool isEmpty();
+
     friend std::ostream& operator << (std::ostream& os, Inventory& inventory);
     
 private:

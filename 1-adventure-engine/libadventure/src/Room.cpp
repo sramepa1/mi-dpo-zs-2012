@@ -51,13 +51,17 @@ Room& Room::findWay(string name) {
 
 ostream& operator << (std::ostream& os, Room& room) {
     os << room.description << endl;
-    os << "You can go";
-
-    for(map<std::string, Room&>::iterator it = room.ways.begin(); it != room.ways.end(); ++it) {
-        os << " " << it->first << ",";
+    if(!room.ways.empty()) {
+        os << "You can go ";
+        map<std::string, Room&>::iterator it = room.ways.begin();
+        os << it->first;
+        for(++it; it != room.ways.end(); ++it) {
+            os << ", " << it->first;
+        }
+        os << "." << endl;
     }
-
-    os << endl << "There is " << *(room.inventory);
-
+    if(!room.inventory->isEmpty()) {
+        os << "You see: " << endl << *(room.inventory);
+    }
     return os;
 }

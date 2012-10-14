@@ -6,6 +6,7 @@
 #include <map>
 #include <ostream>
 #include <string>
+#include <sstream>
 
 #include "Command.h"
 #include "World.h"
@@ -27,6 +28,10 @@ public:
     void run();
 
 private:
+
+    std::string prompt(std::string prompt);
+    bool continueGame(std::map<std::string, ICommand*>::iterator it, std::istringstream& commandStream);
+
     std::istream& is;
     std::ostream& os;
 

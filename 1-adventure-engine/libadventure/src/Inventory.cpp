@@ -60,19 +60,19 @@ void Inventory::moveItemTo(std::string name, Inventory& newInventory) {
 
 }
 
+bool Inventory::isEmpty() {
+    return items.empty();
+}
 
 ostream& operator << (std::ostream& os, Inventory& inventory) {
 
-    if(inventory.items.begin() != inventory.items.end()) {
+    if(inventory.items.empty()) {
+        os << "\tnothing." << endl;
 
-        for (map<string, Item&>::iterator it(inventory.items.begin()); it != inventory.items.end(); ++it) {
-            os << "a "  << it->first << " " << it->second << ", ";
-        }
-
-        os << endl;
     } else {
-        os << "nothing." << endl;
+        for (map<string, Item&>::iterator it(inventory.items.begin()); it != inventory.items.end(); ++it) {
+            os << "\ta "  << it->first << " " << it->second << endl;
+        }
     }
-
     return os;
 }

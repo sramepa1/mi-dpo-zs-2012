@@ -24,44 +24,47 @@ void Controller::addCommand(string text, ICommand* command) {
 
 void Controller::run() {
 
-    os << *world << endl;
-    os << world->getStartRoom();
-    os << "> ";
+    string commandName;
+    os << *world << endl << world->getPlayer();
 
-    string line;
+    for(;;) {
+        istringstream commandStream(prompt("> "));
+        commandName.clear();
+        commandStream >> commandName;
 
-    while(getline(is, line)) {
-        istringstream iss(line);
-        string command;
-
-        iss >> command;
-
-        if(command.compare("q") == 0) {
+        if(commandName.compare("q") == 0 || !continueGame(commands.find(commandName), commandStream)) {
             os << "Bye!" << endl;
             return;
         }
-
-        map<string, ICommand*>::iterator mit = commands.find(command);
-
-        if(mit == commands.end()) {
-            os << "Unknown command. Type \"help\" for command list." << endl;
-        } else {
-
-            const State& state = mit->second->execute(iss, os, *world);
-
-            if(state.isVictory()) {
-                os << "Congratulations, you have won the game." << endl;
-                break;
-            }
-
-            if(state.isDefeat()) {
-                os << "Sorry, you have lost the game." << endl;
-                break;
-            }
-
-            os << endl << world->getPlayer();
-        }
-
-        os << "> ";
     }
+}
+
+
+string Controller::prompt(string prompt) {
+    os << endl << prompt;
+    string line;
+    if(!getline(is, line)) {
+        line.assign("q");   // EOF is interpreted as exit.
+    }
+    os << endl;
+    return line;
+}
+
+
+bool Controller::continueGame(map<string, ICommand*>::iterator it, istringstream& commandStream) {
+    if(it == commands.end()) {
+        os << "Unknown command. Type \"help\" for command list." << endl;
+
+    } else {
+        const State& state = it->second->execute(commandStream, os, *world);
+
+        if(state.isVictory()) {
+            os << "Congratulations, you have won the game." << endl;
+            return false;
+        } else if(state.isDefeat()) {
+            os << "Sorry, you have lost the game." << endl;
+            return false;
+        }
+    }
+    return true;
 }

@@ -59,5 +59,13 @@ private:
     Character* player;
 };
 
+class MyCommandLook : public ACommand {
+public:
+    MyCommandLook() {}
+    virtual ~MyCommandLook() {}
+
+    virtual void commandExecute(std::istringstream&, std::ostream&, World&);
+};
+
 
 #endif // MYCOMMANDS_H

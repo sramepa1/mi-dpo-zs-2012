@@ -52,6 +52,7 @@ int main() {
         builder->addWay("BehindHouse","Kitchen","west");
         builder->addWay("Kitchen","Attic","up");
         builder->addWay("Kitchen","LRoom","west");
+        builder->addWay("Kitchen","BehindHouse","east");
         builder->addWay("Attic","Kitchen","down");
         builder->addWay("LRoom","Kitchen","east");
         builder->addWay("LRoom","Cellar","down");
