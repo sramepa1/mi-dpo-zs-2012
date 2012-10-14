@@ -14,10 +14,10 @@
 #include "xCharacterRoom.h"
 
 
-class Character {
+class Character : public AHasInventory {
 public:
     Character(const char* name, const char* description, Room& initLocation);
-    ~Character();
+    virtual ~Character();
     
     /**
      * Move character to a neighbour location.
@@ -48,6 +48,21 @@ public:
      * List character's inventory.
      */
     void listItems(std::ostream& os);
+
+    /**
+     * Add an item to the inventory.
+     */
+    virtual void addItem(std::string itemName, Item& item);
+
+    /**
+     * Remove an item from the inventory.
+     */
+    virtual void removeItem(std::string itemName);
+
+    /**
+     * Find an item in the inventory. If not found then method throws an const char* exception.
+     */
+    virtual Item& findItem(std::string itemName);
 
     friend std::ostream& operator << (std::ostream& os, Character& character);
     

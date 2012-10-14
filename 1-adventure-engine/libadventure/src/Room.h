@@ -17,15 +17,10 @@
 
 class World;
 
-class Room {
+class Room : public AHasInventory{
 public:
     
     friend class World;
-
-    /**
-     * Get the room's inventory.
-     */
-    Inventory& getInventory();
 
     /**
      * Add a way to another room.
@@ -42,11 +37,26 @@ public:
      */
     Room& findWay(std::string directionName);
     
+    /**
+     * Add an item to the inventory.
+     */
+    virtual void addItem(std::string itemName, Item& item);
+
+    /**
+     * Remove an item from the inventory.
+     */
+    virtual void removeItem(std::string itemName);
+
+    /**
+     * Find an item in the inventory. If not found then method throws an const char* exception.
+     */
+    virtual Item& findItem(std::string itemName);
+
     friend std::ostream& operator << (std::ostream&, Room&);
     
 private:
     Room(const char* _description);
-    ~Room();
+    virtual ~Room();
     Room(const Room& orig) {}
     Room& operator = (const Room& orig) {return *this;}
     

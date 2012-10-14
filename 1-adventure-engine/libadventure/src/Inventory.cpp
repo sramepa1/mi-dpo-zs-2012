@@ -9,8 +9,22 @@
 
 using namespace std;
 
-Inventory::Inventory() {
+void AHasInventory::moveItemTo(string itemName, AHasInventory& target) {
+    Item& item = findItem(itemName);
+
+    if(!item.canMove()) {
+
+        string str("You can not take ");
+        str.append(itemName);
+        str.append(".");
+
+        throw str.c_str();
+    }
+
+    target.addItem(itemName, item);
+    removeItem(itemName);
 }
+
 
 Inventory::~Inventory() {
     for (map<string, Item&>::iterator it(items.begin()); it != items.end(); ++it) {
@@ -40,24 +54,6 @@ Item& Inventory::findItem(string name) {
     }
 
     return it->second;
-}
-
-void Inventory::moveItemTo(std::string name, Inventory& newInventory) {
-
-    Item& item = findItem(name);
-
-    if(!item.canMove()) {
-
-        string str("You can not take ");
-        str.append(name);
-        str.append(".");
-
-        throw str.c_str();
-    }
-
-    newInventory.addItem(name, item);
-    removeItem(name);
-
 }
 
 bool Inventory::isEmpty() {

@@ -14,14 +14,7 @@ Room::Room(const char* _description) : description(_description) {
 }
 
 Room::~Room() {
-
-    //cesty nemažu
-    
     delete inventory;
-}
-
-Inventory& Room::getInventory() {
-    return *inventory;
 }
 
 void Room::addWay(string name, Room& room) {
@@ -48,6 +41,17 @@ Room& Room::findWay(string name) {
     return it->second;
 }
 
+void Room::addItem(string itemName, Item& item) {
+    inventory->addItem(itemName, item);
+}
+
+void Room::removeItem(string itemName) {
+    inventory->removeItem(itemName);
+}
+
+Item& Room::findItem(string itemName) {
+    return inventory->findItem(itemName);
+}
 
 ostream& operator << (std::ostream& os, Room& room) {
     os << room.description << endl;

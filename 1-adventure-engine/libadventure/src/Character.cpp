@@ -33,15 +33,27 @@ Room& Character::getLocation() {
 }
 
 void Character::takeItem(string itemName) {
-    location->getInventory().moveItemTo(itemName, *inventory);
+    location->moveItemTo(itemName, *inventory);
 }
 
 void Character::dropItem(string itemName) {
-    inventory->moveItemTo(itemName, location->getInventory());
+    inventory->moveItemTo(itemName, *location);
 }
 
 void Character::listItems(ostream& os) {
     os << "You have: " << endl << (*inventory);
+}
+
+void Character::addItem(string itemName, Item& item) {
+    inventory->addItem(itemName, item);
+}
+
+void Character::removeItem(string itemName) {
+    inventory->removeItem(itemName);
+}
+
+Item& Character::findItem(string itemName) {
+    return inventory->findItem(itemName);
 }
 
 ostream& operator << (std::ostream& os, Character& character) {

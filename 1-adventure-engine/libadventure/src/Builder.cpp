@@ -31,7 +31,7 @@ void Builder::addItemToRoom(const char *itemName, const char *roomID) {
     Room* room = lookup(rooms,roomID, "Attempted to add an item to a nonexistant room.");
     Item* item = lookup(items,itemName, "Attempted to add a nonexistant item to a room.");
     checkError(!itemsPlaced[itemName], "Attempted to put an item to multiple places.");
-    room->getInventory().addItem(string(itemName), *item); // TODO Demeter!
+    room->addItem(string(itemName), *item);
     itemsPlaced[itemName] = true;
 }
 
