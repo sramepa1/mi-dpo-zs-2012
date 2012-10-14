@@ -1,0 +1,12 @@
+go north
+go east
+go west
+go west
+take lantern
+go east
+go up
+take rope
+go down
+go west
+go down
+drop rope

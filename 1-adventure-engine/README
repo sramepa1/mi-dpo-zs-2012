@@ -1,0 +1,27 @@
+MI-DPO 2012/13 Project 1 - Adventure game engine
+
+Authors:
+	Šmarda Martin
+	Šrámek Pavel
+
+Assignment:
+	Create an engine for text-based adventure games.
+	The engine must allow for a world with multiple rooms which can be traversed.
+	Multiple items may be present in a room, items may be mobile or immobile.
+	Mobile items can be taken, carried and dropped by the player. Immobile ones can't.
+	There must be a way to specify victory.
+
+Implementation:
+	Implementation language is plain C++. Only dependency is tr1/shared_ptr which is in g++ 4.0.0 or higher.
+	The code should be platform independent but was not yet tested outside 64-bit Linux.
+	Build is makefile-driven, meaning no IDE is needed. See Instructions below.
+	However, this package can be used as a project for the "Qt Creator" C++ IDE (open Game.creator).
+
+Noteworthy details:
+	Our engine is an actual library with only a public builder interface specified in the headers. 
+	This means that you can create a game by including the headers and linking to the precompiled lib, as demoed.
+
+Instructions:
+	To compile and link both the library and the demo game, type "make".
+	To play, type "make run".
+	To automatically execute a scenario from autoplay.txt, type "make autoplay".
