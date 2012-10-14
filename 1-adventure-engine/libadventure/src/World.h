@@ -22,14 +22,34 @@ public:
     World();
     ~World();
 
+    /**
+     * Get the room where is the player at the start of the game.
+     */
     Room& getStartRoom();
+
+    /**
+     * Get the player's character.
+     */
     Character& getPlayer();
 
+    /**
+     * Set the world's description-
+     */
     void setDescription(const char* description);
     
+    /**
+     * Create a room in this world. This is a factory method.
+     */
     Room& createRoom(const char* description);
 
+    /**
+     * Add a condition which modifies the state of the game.
+     */
     void addCondition(ICondition&);
+
+    /**
+     * Determine the current gamestate from a given conditions.
+     */
     const State& evaluateGameState();
 
     friend std::ostream& operator << (std::ostream&, World&);
