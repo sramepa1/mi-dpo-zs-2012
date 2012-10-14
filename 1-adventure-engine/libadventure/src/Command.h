@@ -11,7 +11,7 @@ class ICommand {
 public:
 
     /**
-     * Executes an command which determines new game state.
+     * Executes a command which determines new game state.
      */
     virtual const State& execute(std::istringstream& is, std::ostream& os, World& world) = 0;
 
@@ -23,7 +23,7 @@ class ACommand : public ICommand {
 public:
 
     /**
-     * Executes an command and automaticaly determines the game state
+     * Executes ancommand and automatically determines the game state
      */
     virtual const State& execute(std::istringstream& is, std::ostream& os, World& world);
 

@@ -9,6 +9,10 @@
 #include "Game.h"
 #include "Condition.h"
 
+/**
+ * Builder implementation. See IBuilder.h for public method documentation.
+ */
+
 class Builder : public IBuilder
 {
 public:
@@ -18,12 +22,11 @@ public:
     virtual void addWay(const char* roomFromID, const char* roomToID, const char* direction);
 
     virtual void addItem(const char* uniqueName, const char* description, bool isMovable);
-    virtual void addItemToRoom(const char* roomID, const char* itemName);
+    virtual void addItemToRoom(const char* itemName, const char* roomID);
 
-    virtual void addItemInRoomEnd(const char* roomID, const char* itemName, bool victorious);
+    virtual void addItemInRoomEnd(const char* itemName, const char* roomID, bool victorious);
 
     virtual void setGreeting(const char* worldGreeting);
-    virtual void setPlayer(const char* name, const char* description);
 
     virtual gameptr exportGame();
 
@@ -34,11 +37,12 @@ private:
     Builder& operator = (const Builder& orig) {return *this;}
 
     void checkError(bool assertTrue, const char* errMsg);
+    void cleanUp();
 
-    bool playerSet;
     std::string greeting;
     std::map<const std::string, Room*> rooms;
     std::map<const std::string, Item*> items;
+    std::map<const std::string, bool> itemsPlaced;
     worldptr world;
 
     template<typename T> T* lookup(std::map<const std::string, T*>& container, const char* name, const char* errMsg) {

@@ -34,7 +34,7 @@ public:
     Item& findItem(std::string itemName);
 
     /**
-     * Move an to another inventory. If not found then method throws an const char* exception.
+     * Move an item to another inventory. If not found then method throws a const char* exception.
      */
     void moveItemTo(std::string itemName, Inventory& inventory);
 

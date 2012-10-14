@@ -17,7 +17,7 @@ public:
     ~Controller();
 
     /**
-     * Add command to the controller.
+     * Add a command to the controller.
      */
     void addCommand(std::string, ICommand*);
 

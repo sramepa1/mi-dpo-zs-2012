@@ -20,7 +20,7 @@ public:
     ~Character();
     
     /**
-     * Move character to a neighour location.
+     * Move character to a neighbour location.
      */
     void goTo(std::string locationName);
 
@@ -30,7 +30,7 @@ public:
     void teleport(Room& location);
 
     /**
-     * Get the charact's location.
+     * Get the character's location.
      */
     Room& getLocation();
 

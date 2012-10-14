@@ -1,9 +1,9 @@
 all: adventure
 
-adventure:	game/game
+adventure: game/game
 	cp game/game adventure
 
-game/game:	libadventure/libadventure.a
+game/game: libadventure/libadventure.a
 	cd game && $(MAKE) all
 
 libadventure/libadventure.a:
@@ -19,3 +19,5 @@ clean:
 run: adventure
 	./adventure
 
+autoplay: adventure autoplay.txt
+	./adventure < autoplay.txt

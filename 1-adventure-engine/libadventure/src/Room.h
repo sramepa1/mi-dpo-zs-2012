@@ -38,7 +38,7 @@ public:
     void removeWay(std::string directionName);
 
     /**
-     * Find a way to another room. If not found then method throws an const char* exception.
+     * Find a way to another room. If not found then method throws a const char* exception.
      */
     Room& findWay(std::string directionName);
     

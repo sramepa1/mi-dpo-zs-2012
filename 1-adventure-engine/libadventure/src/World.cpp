@@ -11,7 +11,7 @@
 using namespace std;
 
 
-World::World() : description(NULL), startRoom(NULL), player(NULL) { 
+World::World() : description(NULL), startRoom(NULL), player(new Character("Player","The player", *((Room*)NULL))) {
     state = new State();
 }
 
@@ -43,9 +43,7 @@ Room& World::createRoom(const char* description) {
     Room* room = new Room(description);
     if(startRoom == NULL) {
         startRoom = room;
-        if(player != NULL) {
-            player->teleport(*room);
-        }
+        player->teleport(*room);
     }
     rooms.push_back(room);
     return *room;
@@ -66,10 +64,6 @@ const State& World::evaluateGameState() {
 
 void World::setDescription(const char* _description) {
     description = _description;
-}
-
-void World::setPlayer(const char* playerName, const char* playerDesc) {
-    player = new Character(playerName,playerDesc, *startRoom);
 }
 
 ostream& operator << (std::ostream& os, World& world) {

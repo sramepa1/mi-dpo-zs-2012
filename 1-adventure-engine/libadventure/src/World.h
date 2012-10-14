@@ -26,7 +26,6 @@ public:
     Character& getPlayer();
 
     void setDescription(const char* description);
-    void setPlayer(const char* playerName, const char* playerDesc);
     
     Room& createRoom(const char* description);
 
