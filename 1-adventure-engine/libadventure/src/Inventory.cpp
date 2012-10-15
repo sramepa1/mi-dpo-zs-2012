@@ -6,6 +6,7 @@
  */
 
 #include "Inventory.h"
+#include <stdexcept>
 
 using namespace std;
 
@@ -56,13 +57,13 @@ Item& Inventory::findItem(string name) {
     return it->second;
 }
 
-Item* Inventory::matchItem(bool (*classifier)(Item &)) {
+Item& Inventory::matchItem(bool (*classifier)(Item &)) {
     for (map<string, Item&>::iterator it(items.begin()); it != items.end(); ++it) {
         if( (*classifier)(it->second) ) {
-            return &(it->second);
+            return it->second;
         }
     }
-    return NULL;
+    throw logic_error("404");
 }
 
 bool Inventory::isEmpty() {

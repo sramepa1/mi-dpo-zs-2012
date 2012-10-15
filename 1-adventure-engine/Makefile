@@ -1,4 +1,9 @@
 all: adventure
+	@echo "\n\n------------------------------------------"
+	@echo "To run the game and play, type 'make run'"
+	@echo "To run automatically, type 'make autoplay'"
+	@echo "------------------------------------------\n\n\n"
+
 
 adventure: game/game
 	cp game/game adventure

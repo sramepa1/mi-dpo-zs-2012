@@ -11,9 +11,8 @@ using namespace std;
 
 int main() {
 
-    // TODO Lantern, light/dark.
-
     try {
+
         BuilderFactory bf;
         builderptr builder = bf.createBuilder();
 
@@ -74,6 +73,7 @@ int main() {
         game->run(cin, cout);
 
     } catch(logic_error e) {
+
         // This exception signals misuse of the API. Consider this an assertion that execution should never get here.
         cerr << "ASSERTION FAILED - something went wrong during building: " << endl << e.what() << endl;
         return 1;

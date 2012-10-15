@@ -63,9 +63,10 @@ public:
     virtual Item& findItem(std::string itemName);
 
     /**
-     * Returns a pointer to the first item for wchich the supplied helper function returns true. NULL if none found.
+     * Attempts to find the first item for which the supplied helper function returns true.
+     * On success, returns a valid reference. On failure, throws logic_error.
      */
-    Item* matchItem(bool(*classifier)(Item&));
+    Item& matchItem(bool(*classifier)(Item&));
 
     /**
      * Returns true if the inventory contains no items.

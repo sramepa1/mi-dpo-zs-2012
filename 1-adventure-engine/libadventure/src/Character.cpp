@@ -7,6 +7,7 @@
 
 #include "Character.h"
 #include "Inventory.h"
+#include <stdexcept>
 
 using namespace std;
 
@@ -55,7 +56,11 @@ void Character::checkForLightSource(Item &item, bool incoming) {
         return;
     }
     if(!incoming && lightSource == &item) {
-        lightSource = (Torch*)inventory->matchItem(&torchHelper);
+        try {
+            lightSource = (Torch*)&(inventory->matchItem(&torchHelper));
+        } catch (logic_error) {
+            lightSource = NULL;
+        }
         ((Torch&)item).isLightened = false;  // light goes off when dropped
     }
 }
