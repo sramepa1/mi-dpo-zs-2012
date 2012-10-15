@@ -19,14 +19,14 @@ int main() {
 
         builder->setGreeting("BORK: The Very Small Underground Empire");
 
-        builder->addRoom("Start","You are standing in an open field west of a white house.");
-        builder->addRoom("NHouse","You are facing the north side of a white house.");
-        builder->addRoom("SHouse","You are facing the south side of a white house.");
-        builder->addRoom("BehindHouse","You are behind the white house. There is an open window in one corner.");
-        builder->addRoom("Kitchen","You are in the kitchen of the white house. A dark staircase can be seen leading upward.");
-        builder->addRoom("LRoom","You are in the living room. A rug lies beside an open trap door.");
-        builder->addRoom("Attic","This is the attic. The only exit is a stairway leading down.");
-        builder->addRoom("Cellar","You are in a dark and damp cellar. You feel that you need to put some rope on the ground to move on.");
+        builder->addRoom("Start","You are standing in an open field west of a white house.",false);
+        builder->addRoom("NHouse","You are facing the north side of a white house.",false);
+        builder->addRoom("SHouse","You are facing the south side of a white house.",false);
+        builder->addRoom("BehindHouse","You are behind the white house. There is an open window in one corner.",false);
+        builder->addRoom("Kitchen","You are in the kitchen of the white house. A dark staircase can be seen leading upward.",false);
+        builder->addRoom("LRoom","You are in the living room. A rug lies beside an open trap door.",false);
+        builder->addRoom("Attic","This is the attic. The only exit is a stairway leading down.",true);
+        builder->addRoom("Cellar","You are in a dark and damp cellar. You feel that you need to put some rope on the ground to move on.",true);
 
         builder->addWay("Start","NHouse","north");
         builder->addWay("Start","SHouse","south");
@@ -47,12 +47,13 @@ int main() {
 
         builder->addItem("mailbox","that cannot be opened",false);
         builder->addItem("table","recently used for preparation of food",false);
-        builder->addItem("lantern","with fresh batteries",true);
+        builder->addTorch("lantern","with fresh batteries");
         builder->addItem("sword","of great antiquity",true);
         builder->addItem("cupboard","- likely a trophy case",false);
         builder->addItem("rope","- a large coil of it",true);
         builder->addItem("knife","looking pretty nasty",true);
         builder->addItem("bottle","of water",true);
+        builder->addItem("leaflet","that says \"No computer should be without BORK!\"",true);
 
         builder->addItemToRoom("mailbox","Start");
         builder->addItemToRoom("table","Kitchen");
@@ -63,7 +64,11 @@ int main() {
         builder->addItemToRoom("knife","Attic");
         builder->addItemToRoom("bottle","Kitchen");
 
+        builder->addItemToPlayer("leaflet");
+
         builder->addItemInRoomEnd("rope","Cellar",true);
+        builder->addItemInRoomEnd("lantern","Cellar",false);
+        builder->addItemInRoomEnd("lantern","Attic",false);
 
         gameptr game = builder->exportGame();
         game->run(cin, cout);

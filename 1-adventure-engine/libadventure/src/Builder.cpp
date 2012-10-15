@@ -1,14 +1,15 @@
 #include "Builder.h"
 #include "Room.h"
 #include "MyEndCondition.h"
+#include "MyItems.h"
 
 using namespace std;
 
 Builder::Builder() :  world(new World()) { }
 
 
-void Builder::addRoom(const char* roomID, const char* description) {
-    bool result = rooms.insert(make_pair(roomID, &(world->createRoom(description)))).second;
+void Builder::addRoom(const char* roomID, const char* description, bool isDark) {
+    bool result = rooms.insert(make_pair(roomID, &(world->createRoom(description, isDark)))).second;
     checkError(result, "Attempted to insert a duplicate room.");
 }
 
@@ -21,9 +22,17 @@ void Builder::addWay(const char* roomFromID, const char* roomToID, const char* d
 
 
 void Builder::addItem(const char *uniqueName, const char *description, bool isMovable) {
-    checkError(items.count(string(uniqueName)) == 0, "Attempted to create an item with duplicate ID.");
-    items.insert(make_pair(uniqueName, new Item(description, isMovable)));
-    itemsPlaced[uniqueName] = false;
+    handleItem(uniqueName, auto_ptr<Item>(new Item(description, isMovable)));
+}
+
+void Builder::addTorch(const char *uniqueName, const char *description) {
+    handleItem(uniqueName, auto_ptr<Item>(new Torch(description, true, false)));
+}
+
+void Builder::handleItem(const char *name, auto_ptr<Item> item) {
+    checkError(items.count(string(name)) == 0, "Attempted to create an item with duplicate ID.");
+    items.insert(make_pair(name, item.release()));
+    itemsPlaced[name] = false;
 }
 
 
@@ -32,6 +41,13 @@ void Builder::addItemToRoom(const char *itemName, const char *roomID) {
     Item* item = lookup(items,itemName, "Attempted to add a nonexistant item to a room.");
     checkError(!itemsPlaced[itemName], "Attempted to put an item to multiple places.");
     room->addItem(string(itemName), *item);
+    itemsPlaced[itemName] = true;
+}
+
+void Builder::addItemToPlayer(const char *itemName) {
+    Item* item = lookup(items,itemName, "Attempted to add a nonexistant item to the player.");
+    checkError(!itemsPlaced[itemName], "Attempted to give the player an item already placed elsewhere.");
+    world->getPlayer().addItem(string(itemName), *item);
     itemsPlaced[itemName] = true;
 }
 

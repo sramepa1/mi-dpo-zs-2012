@@ -9,6 +9,7 @@
 
 #include <map>
 #include <ostream>
+#include <typeinfo>
 
 
 class Item {

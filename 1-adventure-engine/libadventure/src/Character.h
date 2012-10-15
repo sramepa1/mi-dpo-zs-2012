@@ -12,6 +12,7 @@
 
 #include "Inventory.h"
 #include "xCharacterRoom.h"
+#include "MyItems.h"
 
 
 class Character : public AHasInventory {
@@ -33,6 +34,16 @@ public:
      * Get the character's location.
      */
     Room& getLocation();
+
+    /**
+     * Attempt to switch the state of any light source the character might have.
+     */
+    bool toggleLight();
+
+    /**
+     * Returns true if the chatacter has an active light source.
+     */
+    bool emitsLight();
 
     /**
      * Take an item which is in character's location to the inventory.
@@ -67,12 +78,17 @@ public:
     friend std::ostream& operator << (std::ostream& os, Character& character);
     
 private:
+
+    void checkForLightSource(Item& item, bool incoming);
+    void requireLight();
+
     Character(const Character& orig) : location(orig.location) {}
     Character& operator = (const Character& orig) {return *this;}
 
     const char* name;
     const char* description;
 
+    Torch* lightSource;
     Inventory* inventory;
 
     Room* location;

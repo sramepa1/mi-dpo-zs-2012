@@ -50,7 +50,7 @@ private:
 
 class MyCommandLight : public ACommand {
 public:
-    MyCommandLight(Character* _player) : player(_player) {}
+    MyCommandLight() {}
     virtual ~MyCommandLight() {}
 
     virtual void commandExecute(std::istringstream&, std::ostream&, World&);

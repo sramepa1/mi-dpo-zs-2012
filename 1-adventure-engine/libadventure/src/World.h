@@ -33,6 +33,11 @@ public:
     Character& getPlayer();
 
     /**
+     * Get the room where is the player currently located.
+     */
+    Room& getCurrentRoom();
+
+    /**
      * Set the world's description-
      */
     void setDescription(const char* description);
@@ -40,7 +45,7 @@ public:
     /**
      * Create a room in this world. This is a factory method.
      */
-    Room& createRoom(const char* description);
+    Room& createRoom(const char* description, bool isDark);
 
     /**
      * Add a condition which modifies the state of the game.

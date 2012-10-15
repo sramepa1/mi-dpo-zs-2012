@@ -10,12 +10,14 @@ void Game::run(std::istream &input, std::ostream &output)
     c.addCommand("take", new MyCommandTake());
     c.addCommand("drop", new MyCommandDrop());
     c.addCommand("inventory", new MyCommandInventory());
+    c.addCommand("light", new MyCommandLight());
     c.addCommand("look", new MyCommandLook());
     c.addCommand("help", new MyCommandEcho(
         "go [direction] - go to next room\n"
         "take [item]    - take an item\n"
         "drop [item]    - drop an item\n"
         "inventory      - list the inventory\n"
+        "light          - toggle light source, if you have one\n"
         "look           - examine current room\n"
         "q              - quit the game"
     ));

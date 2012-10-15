@@ -14,7 +14,7 @@ void AHasInventory::moveItemTo(string itemName, AHasInventory& target) {
 
     if(!item.canMove()) {
 
-        string str("You can not take ");
+        string str("You can not take the");
         str.append(itemName);
         str.append(".");
 
@@ -54,6 +54,15 @@ Item& Inventory::findItem(string name) {
     }
 
     return it->second;
+}
+
+Item* Inventory::matchItem(bool (*classifier)(Item &)) {
+    for (map<string, Item&>::iterator it(items.begin()); it != items.end(); ++it) {
+        if( (*classifier)(it->second) ) {
+            return &(it->second);
+        }
+    }
+    return NULL;
 }
 
 bool Inventory::isEmpty() {

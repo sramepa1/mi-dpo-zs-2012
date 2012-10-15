@@ -36,6 +36,16 @@ public:
      * Find a way to another room. If not found then method throws a const char* exception.
      */
     Room& findWay(std::string directionName);
+
+    /**
+     * Returns true if the room is considered dark and needs a light source to interact.
+     */
+    bool isDark();
+
+    /**
+     * Returns true if there is enough light in this room to interact.
+     */
+    bool isIlluminated(Character& player);
     
     /**
      * Add an item to the inventory.
@@ -55,12 +65,13 @@ public:
     friend std::ostream& operator << (std::ostream&, Room&);
     
 private:
-    Room(const char* _description);
+    Room(const char* _description, bool isDark);
     virtual ~Room();
     Room(const Room& orig) {}
     Room& operator = (const Room& orig) {return *this;}
     
     const char* description;
+    bool dark;
 
     std::map<std::string, Room&> ways;
 

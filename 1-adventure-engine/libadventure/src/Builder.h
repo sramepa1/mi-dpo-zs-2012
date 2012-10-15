@@ -2,6 +2,7 @@
 #define BUILDER_H
 
 #include <map>
+#include <memory>
 
 #include "IBuilder.h"
 #include "Room.h"
@@ -18,11 +19,13 @@ class Builder : public IBuilder
 public:
     Builder();
 
-    virtual void addRoom(const char* roomID, const char* description);
+    virtual void addRoom(const char* roomID, const char* description, bool isDark);
     virtual void addWay(const char* roomFromID, const char* roomToID, const char* direction);
 
     virtual void addItem(const char* uniqueName, const char* description, bool isMovable);
+    virtual void addTorch(const char* uniqueName, const char* description);
     virtual void addItemToRoom(const char* itemName, const char* roomID);
+    virtual void addItemToPlayer(const char* itemName);
 
     virtual void addItemInRoomEnd(const char* itemName, const char* roomID, bool victorious);
 
@@ -36,6 +39,7 @@ private:
     Builder(const Builder& orig) {}
     Builder& operator = (const Builder& orig) {return *this;}
 
+    void handleItem(const char* name, std::auto_ptr<Item> item);
     void checkError(bool assertTrue, const char* errMsg);
     void cleanUp();
 

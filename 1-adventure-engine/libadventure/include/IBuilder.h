@@ -4,6 +4,7 @@
 #include <string>
 #include <tr1/memory>
 #include <stdexcept>
+#include <typeinfo>
 
 #include "IGame.h"
 
@@ -23,7 +24,7 @@ public:
      * The first room to be added this way will be the world's starting room.
      * Room's ID is a build-time unique handle, description will be displayed in-game.
      */
-    virtual void addRoom(const char* roomID, const char* description) =0;
+    virtual void addRoom(const char* roomID, const char* description, bool isDark) =0;
 
     /**
      * Adds a unidirectonal way from one existing room to another.
@@ -36,6 +37,17 @@ public:
      * Item's name must be unique an serves both as a build-time handle and as an in-game name.
      */
     virtual void addItem(const char* uniqueName, const char* description, bool isMovable) =0;
+
+    /**
+     * Adds a light source item to the world, not yet tied to any inventory.
+     * Name must be unique among all items an serves both as a build-time handle and as an in-game name.
+     */
+    virtual void addTorch(const char* uniqueName, const char* description) =0;
+
+    /**
+     * Adds an existing item to the player. An item can only be placed once.
+     */
+    virtual void addItemToPlayer(const char* itemName) =0;
 
     /**
      * Adds an existing item to an existing room. An item can only be placed once.

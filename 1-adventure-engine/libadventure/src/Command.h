@@ -3,6 +3,7 @@
 
 #include <ostream>
 #include <string>
+#include <sstream>
 
 #include "State.h"
 #include "World.h"
@@ -33,6 +34,9 @@ public:
     virtual void commandExecute(std::istringstream& is, std::ostream& os, World& world) = 0;
 
     virtual ~ACommand() {}
+
+protected:
+    std::string getWord(std::istringstream& iss, const char *errMsg);
 
 };
 

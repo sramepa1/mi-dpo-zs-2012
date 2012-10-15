@@ -34,13 +34,17 @@ Room& World::getStartRoom() {
     return *startRoom;
 }
 
+Room& World::getCurrentRoom() {
+    return player->getLocation();
+}
+
 Character& World::getPlayer() {
     return *player;
 }
 
-Room& World::createRoom(const char* description) {
+Room& World::createRoom(const char* description, bool isDark) {
 
-    Room* room = new Room(description);
+    Room* room = new Room(description, isDark);
     if(startRoom == NULL) {
         startRoom = room;
         player->teleport(*room);

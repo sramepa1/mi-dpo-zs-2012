@@ -20,6 +20,9 @@ Implementation:
 Noteworthy details:
 	Our engine is an actual library with only a public builder interface specified in the headers. 
 	This means that you can create a game by including the headers and linking to the precompiled lib, as demoed.
+	Arbitrary directional strings - game writer is not limited to a rigid enum.
+	The game can not only be won, but also lost.
+	Light mechanism is implemented. You need an active light source to interact with dark rooms.
 
 Instructions:
 	To compile and link both the library and the demo game, type "make".

@@ -38,6 +38,7 @@ public:
      * Move an item to another target's inventory. If not found then method throws a const char* exception.
      */
     virtual void moveItemTo(std::string itemName, AHasInventory& target);
+
 };
 
 
@@ -60,6 +61,11 @@ public:
      * Find an item in the inventory. If not found then method throws an const char* exception.
      */
     virtual Item& findItem(std::string itemName);
+
+    /**
+     * Returns a pointer to the first item for wchich the supplied helper function returns true. NULL if none found.
+     */
+    Item* matchItem(bool(*classifier)(Item&));
 
     /**
      * Returns true if the inventory contains no items.

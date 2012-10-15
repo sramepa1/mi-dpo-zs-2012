@@ -5,6 +5,7 @@ go west
 take lantern
 go east
 go up
+light
 take rope
 go down
 go west

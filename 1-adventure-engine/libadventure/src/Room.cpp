@@ -9,7 +9,7 @@
 
 using namespace std;
 
-Room::Room(const char* _description) : description(_description) {
+Room::Room(const char* _description, bool isDark) : description(_description), dark(isDark) {
     inventory = new Inventory();
 }
 
@@ -35,10 +35,18 @@ Room& Room::findWay(string name) {
     map<std::string, Room&>::iterator it = ways.find(name);
 
     if(it == ways.end()) {
-        throw "There is no such way";
+        throw "You can't go that way.";
     }
 
     return it->second;
+}
+
+bool Room::isDark() {
+    return dark;
+}
+
+bool Room::isIlluminated(Character &player) {
+    return dark ? player.emitsLight() : true;
 }
 
 void Room::addItem(string itemName, Item& item) {
