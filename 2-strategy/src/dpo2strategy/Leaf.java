@@ -14,22 +14,25 @@ import java.util.logging.Logger;
 public class Leaf implements INode {
 	
 	protected int value;
-    private final static String MESSAGE = "I found a cone! Pitty I am not a squirell.\n  Neverthless I was forced to stop for few moments and wander about it's beauty.";
+    protected String art;
+    private final static String MESSAGE = "I found a cone! Pitty I am not a squirell. Neverthless I was forced to stop for few moments and wander about it's beauty.";
 	
-	public Leaf() {
-		value = (int) (Math.random() * 5);
+    
+	public Leaf(String art) {
+		value = (int) ((Math.random() * 0.8 + 1.2) * 1000);
+        this.art = art;
 	}
 
 	@Override
 	public String evaluate() {
         
         try {
-            Thread.sleep(value * 1000);
+            Thread.sleep(value );
         } catch (InterruptedException ex) {
             //no action needed
         }
         
-		return MESSAGE;
+		return art + MESSAGE;
 	}
 
     @Override

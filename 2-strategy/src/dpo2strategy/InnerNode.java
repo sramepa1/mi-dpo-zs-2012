@@ -14,10 +14,12 @@ public class InnerNode implements INode {
 	protected INode middle = new NullNode();
 	protected INode right = new NullNode();
 
-    String value;
+    protected String value;
+    protected String art;
     
-    InnerNode(String message) {
+    InnerNode(String message, String art) {
         this.value = message;
+        this.art = art;
     }
     
 	public INode getLeft() {
@@ -46,7 +48,7 @@ public class InnerNode implements INode {
 
 	@Override
 	public String evaluate() {
-		return value;
+		return art + value;
 	}
     
     @Override

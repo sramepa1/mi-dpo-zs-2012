@@ -23,24 +23,24 @@ public class Main {
 	}
 	
 	private static INode createTree() {
-		InnerNode root = new InnerNode(ROOT_MESSAGE);
-        InnerNode branchMiddle1 = new InnerNode(BRANCH1_MESSAGE);
-        InnerNode branchMiddle2 = new InnerNode(BRANCH2_MESSAGE);
-        InnerNode branchRight1 = new InnerNode(BRANCH3_MESSAGE);
+		InnerNode root = new InnerNode(ROOT_MESSAGE, "| ");
+        InnerNode branchMiddle1 = new InnerNode(BRANCH1_MESSAGE, "-| ");
+        InnerNode branchMiddle2 = new InnerNode(BRANCH2_MESSAGE, "--| ");
+        InnerNode branchRight1 = new InnerNode(BRANCH3_MESSAGE, "---/ ");
         
-        root.setLeft(new Leaf());
+        root.setLeft(new Leaf("-\\\\ "));
         root.setMiddle(branchMiddle1);
-		root.setRight(new Leaf());
+		root.setRight(new Leaf("-// "));
         
-        branchMiddle1.setLeft(new Leaf());
+        branchMiddle1.setLeft(new Leaf("--\\\\ "));
         branchMiddle1.setMiddle(branchMiddle2);
         
-        branchMiddle2.setMiddle(new Leaf());
+        branchMiddle2.setMiddle(new Leaf("---|| "));
         branchMiddle2.setRight(branchRight1);
         
-        branchRight1.setLeft(new Leaf());
-        branchRight1.setMiddle(new Leaf());
-        branchMiddle1.setRight(new Leaf());
+        branchRight1.setLeft(new Leaf("----\\\\ "));
+        branchRight1.setMiddle(new Leaf("----|| "));
+        branchMiddle1.setRight(new Leaf("----// "));
 
 		return root;
 	}
