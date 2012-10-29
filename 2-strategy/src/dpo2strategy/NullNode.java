@@ -10,9 +10,15 @@ package dpo2strategy;
  */
 public class NullNode implements INode {
 
+    private final String MESSAGE = "Oh no. This twig is empty.";
+    
 	@Override
-	public String print() {
-		return "";
+	public String evaluate() {
+		return MESSAGE;
 	}
+
+    @Override
+    public void expand(IWalkStrategy strat) {}
 	
 }
+

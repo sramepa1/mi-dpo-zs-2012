@@ -14,6 +14,12 @@ public class InnerNode implements INode {
 	protected INode middle = new NullNode();
 	protected INode right = new NullNode();
 
+    String value;
+    
+    InnerNode(String message) {
+        this.value = message;
+    }
+    
 	public INode getLeft() {
 		return left;
 	}
@@ -39,9 +45,15 @@ public class InnerNode implements INode {
 	}
 
 	@Override
-	public String print() {
-		// TODO
-		return ".";
+	public String evaluate() {
+		return value;
 	}
+    
+    @Override
+    public void expand(IWalkStrategy strat) {
+        strat.insert(left);
+        strat.insert(middle);
+        strat.insert(right);
+    }
 
 }

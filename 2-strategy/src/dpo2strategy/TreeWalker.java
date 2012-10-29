@@ -28,7 +28,8 @@ public class TreeWalker {
 	}
 	
 	private void expand(INode node) {
-		// TODO node expansion, do something useful
-		System.out.println(node.print());
+        node.expand(strat);
+		System.out.println(node.evaluate());
 	}
+    
 }
