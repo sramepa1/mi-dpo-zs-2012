@@ -1,7 +1,5 @@
 package dpo2strategy;
 
-import java.security.InvalidParameterException;
-
 public class Main {
 
 	public static void main(String[] args) {
@@ -14,7 +12,7 @@ public class Main {
 			TreeWalker walker = new TreeWalker(strat);
 			walker.traverse(createTree());
 			
-		} catch(InvalidParameterException e) {
+		} catch(IllegalArgumentException e) {
 			incorrectUsage(e.getMessage());
 		}
 	}
