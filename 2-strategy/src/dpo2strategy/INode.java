@@ -11,6 +11,7 @@ package dpo2strategy;
 public interface INode {
 	
 	String evaluate();
+	
     void expand(IWalkStrategy strat);
 	
 }

@@ -4,9 +4,6 @@
  */
 package dpo2strategy;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author pavel
@@ -15,7 +12,7 @@ public class Leaf implements INode {
 	
 	protected int value;
     protected String art;
-    private final static String MESSAGE = "I found a cone! Pitty I am not a squirell. Neverthless I was forced to stop for few moments and wander about it's beauty.";
+    private final static String MESSAGE = "I found a cone! Pity I am not a squirrel. Nevertheless I was forced to stop for a few moments and wonder about its beauty.";
 	
     
 	public Leaf(String art) {
