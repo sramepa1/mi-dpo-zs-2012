@@ -2,11 +2,12 @@ package dpo2strategy;
 
 public class Main {
     
-    private final static String ROOT_MESSAGE = "What a beautiful tree! Let's fid ourselves some cones...";
+    private final static String ROOT_MESSAGE = "What a beautiful tree! Let's find ourselves some cones...";
     private final static String BRANCH1_MESSAGE = "A new branch leading from a mighty trunk. Lucky I am not afraid of heights.";
     private final static String BRANCH2_MESSAGE = "Wonderful view from here! Let's try to get a little higher.";
     private final static String BRANCH3_MESSAGE = "Wow. There is a huge branch heading right. I am curious what is there.";
     
+	
 	public static void main(String[] args) {
 		if(args.length != 1) {
 			incorrectUsage("You supplied " + args.length + " arguments.");			
@@ -21,6 +22,7 @@ public class Main {
 			incorrectUsage(e.getMessage());
 		}
 	}
+	
 	
 	private static INode createTree() {
 		InnerNode root = new InnerNode(ROOT_MESSAGE, "| ");
@@ -44,6 +46,7 @@ public class Main {
 
 		return root;
 	}
+	
 	
 	private static void	incorrectUsage(String msg) {
 		System.err.println("This requires exactly one argument naming a strategy.");
