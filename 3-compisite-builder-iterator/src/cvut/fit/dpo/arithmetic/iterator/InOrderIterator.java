@@ -6,6 +6,8 @@ import cvut.fit.dpo.arithmetic.elements.ExpressionElement;
 
 public class InOrderIterator implements Iterator<ExpressionElement>
 {
+    
+    
 
 	@Override
 	public boolean hasNext()

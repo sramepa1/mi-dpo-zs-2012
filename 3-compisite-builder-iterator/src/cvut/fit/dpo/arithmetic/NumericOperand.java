@@ -8,7 +8,8 @@ import cvut.fit.dpo.arithmetic.iterator.PostOrderIterator;
  * 
  * @author Jan Kurš
  */
-public class NumericOperand {
+public class NumericOperand implements IExpression {
+    
 	private Integer value;
 	
 	public NumericOperand(Integer value)
@@ -16,7 +17,7 @@ public class NumericOperand {
 		setValue(value);
 	}
 	
-	public Integer getValue()
+	public Integer evaluate()
 	{
 		return value;
 	}

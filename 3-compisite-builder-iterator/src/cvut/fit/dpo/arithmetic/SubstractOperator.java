@@ -8,15 +8,15 @@ package cvut.fit.dpo.arithmetic;
 public class SubstractOperator extends BinaryOperator
 {
 
-	public SubstractOperator(Object firstOperand, Object secondOperand)
+	public SubstractOperator(IExpression firstOperand, IExpression secondOperand)
 	{
 		super(firstOperand, secondOperand);
 	}
 
 	@Override
-	protected Integer evaluate(Integer val1, Integer val2)
+	public Integer evaluate()
 	{
-		return val1 - val2;
+		return firstOperand.evaluate() - secondOperand.evaluate();
 	}
 
 }

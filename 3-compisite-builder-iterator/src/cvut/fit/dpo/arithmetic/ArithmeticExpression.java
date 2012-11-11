@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import cvut.fit.dpo.arithmetic.elements.ExpressionElement;
 
-public class ArithmeticExpression
+public class ArithmeticExpression implements IExpression
 {
 	private BinaryOperator root;
 	

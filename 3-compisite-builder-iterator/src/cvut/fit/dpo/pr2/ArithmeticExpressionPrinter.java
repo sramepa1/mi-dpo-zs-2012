@@ -71,7 +71,7 @@ public class ArithmeticExpressionPrinter
 
 	private String printInOrder(NumericOperand o)
 	{
-		return o.getValue().toString();
+		return o.evaluate().toString();
 	}
 
 	private String printInOrder(BinaryOperator o)
@@ -135,7 +135,7 @@ public class ArithmeticExpressionPrinter
 
 	private String printPostOrder(NumericOperand o)
 	{
-		return o.getValue().toString();
+		return o.evaluate().toString();
 	}
 
 	private String printPostOrder(BinaryOperator o)
