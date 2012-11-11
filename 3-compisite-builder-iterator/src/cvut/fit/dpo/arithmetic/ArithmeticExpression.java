@@ -3,6 +3,7 @@ package cvut.fit.dpo.arithmetic;
 import java.util.Iterator;
 
 import cvut.fit.dpo.arithmetic.elements.ExpressionElement;
+import cvut.fit.dpo.arithmetic.iterator.PostOrderIterator;
 
 public class ArithmeticExpression
 {
@@ -47,7 +48,7 @@ public class ArithmeticExpression
 	 */
 	public Iterator<ExpressionElement> getPostOrderIterator()
 	{
-		return root.postOrderIterator();
+		return new PostOrderIterator(root.postOrderIterator());
 	}
 
 }

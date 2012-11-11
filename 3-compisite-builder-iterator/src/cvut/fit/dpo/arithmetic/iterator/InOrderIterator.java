@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 import cvut.fit.dpo.arithmetic.elements.ExpressionElement;
 import cvut.fit.dpo.arithmetic.elements.OpenBracketOperation;
+import cvut.fit.dpo.arithmetic.elements.SubstractOperation;
 import java.util.LinkedList;
 
 public class InOrderIterator implements Iterator<ExpressionElement>
@@ -21,7 +22,7 @@ public class InOrderIterator implements Iterator<ExpressionElement>
     public InOrderIterator(InOrderIterator a, InOrderIterator b, ExpressionElement element) {
         buffer = a.buffer;
         
-        if(element instanceof AddOperation) {
+        if(element instanceof AddOperation || element instanceof SubstractOperation) { //TODO better
             buffer.add(new OpenBracketOperation());
             buffer.add(element);  
             buffer.add(new CloseBracketOperation());  
