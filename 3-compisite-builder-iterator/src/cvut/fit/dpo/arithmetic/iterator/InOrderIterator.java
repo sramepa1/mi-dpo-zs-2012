@@ -21,16 +21,15 @@ public class InOrderIterator implements Iterator<ExpressionElement>
     
     public InOrderIterator(InOrderIterator a, InOrderIterator b, ExpressionElement element) {
         buffer = a.buffer;
+        buffer.add(element);  
+        buffer.addAll(b.buffer);
         
         if(element instanceof AddOperation || element instanceof SubstractOperation) { //TODO better
-            buffer.add(new OpenBracketOperation());
-            buffer.add(element);  
-            buffer.add(new CloseBracketOperation());  
-        } else {
-            buffer.add(element);  
+            buffer.addFirst(new OpenBracketOperation());
+            buffer.addLast(new CloseBracketOperation());
         }
         
-        buffer.addAll(b.buffer);
+        
     }
     
 	@Override
