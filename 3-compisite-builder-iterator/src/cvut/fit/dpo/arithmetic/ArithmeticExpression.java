@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import cvut.fit.dpo.arithmetic.elements.ExpressionElement;
 
-public class ArithmeticExpression implements IExpression
+public class ArithmeticExpression
 {
 	private BinaryOperator root;
 	
@@ -35,7 +35,7 @@ public class ArithmeticExpression implements IExpression
 	 */
 	public Iterator<ExpressionElement> getInOrderIterator()
 	{
-		throw new UnsupportedOperationException("Not yet implemented...");
+        return root.inOrderIterator(); 
 	}
 
 	/**
@@ -47,7 +47,7 @@ public class ArithmeticExpression implements IExpression
 	 */
 	public Iterator<ExpressionElement> getPostOrderIterator()
 	{
-		throw new UnsupportedOperationException("Not yet implemented...");
+		return root.postOrderIterator();
 	}
 
 }

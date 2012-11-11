@@ -1,7 +1,10 @@
 package cvut.fit.dpo.arithmetic;
 
+import cvut.fit.dpo.arithmetic.elements.Number;
+
 import cvut.fit.dpo.arithmetic.iterator.InOrderIterator;
 import cvut.fit.dpo.arithmetic.iterator.PostOrderIterator;
+
 
 /**
  * Represents number in the arithmetic expression
@@ -29,7 +32,7 @@ public class NumericOperand implements IExpression {
 	
 	public InOrderIterator inOrderIterator()
 	{
-		return null;
+		return new InOrderIterator(new Number(value));
 	}
 
 	public PostOrderIterator postOrderIterator()

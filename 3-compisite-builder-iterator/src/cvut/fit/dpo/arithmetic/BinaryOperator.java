@@ -1,5 +1,6 @@
 package cvut.fit.dpo.arithmetic;
 
+import cvut.fit.dpo.arithmetic.elements.AddOperation;
 import cvut.fit.dpo.arithmetic.iterator.InOrderIterator;
 import cvut.fit.dpo.arithmetic.iterator.PostOrderIterator;
 
@@ -30,32 +31,20 @@ public abstract class BinaryOperator implements IExpression
 		secondOperand = o;
 	}
 	
-	public Object getFirstOperand()
+	public IExpression getFirstOperand()
 	{
 		return firstOperand;
 	}
 	
-	public Object getSecondOperand()
+	public IExpression getSecondOperand()
 	{
 		return secondOperand;
 	}
 	
 	public abstract Integer evaluate();
-	/*{
-		int val1 = getOperandValue(firstOperand);
-		int val2 = getOperandValue(secondOperand);
-		
-		return evaluate(val1, val2);
-	}*/
 	
-	public InOrderIterator inOrderIterator()
-	{
-		return null;
-	}
+	public abstract InOrderIterator inOrderIterator();
 
-	public PostOrderIterator postOrderIterator()
-	{
-		return null;
-	}
+	public abstract PostOrderIterator postOrderIterator();
 
 }

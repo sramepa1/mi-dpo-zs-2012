@@ -24,8 +24,7 @@ public class PostOrderIterator implements Iterator<ExpressionElement>
 	@Override
 	public void remove()
 	{
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException("The remove operation is not supported by this Iterator");
 	}
 
 }
