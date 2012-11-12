@@ -24,12 +24,6 @@ public class PostOrderIterator implements Iterator<ExpressionElement>
         buffer.add(element);  
     }
     
-    public PostOrderIterator(PostOrderIterator a) {
-        buffer = a.buffer;
-        buffer.addFirst(new OpenBracketOperation());
-        buffer.addLast(new CloseBracketOperation());
-    }
-    
 	@Override
 	public boolean hasNext()
 	{
@@ -39,7 +33,7 @@ public class PostOrderIterator implements Iterator<ExpressionElement>
 	@Override
 	public ExpressionElement next()
 	{
-		return buffer.peekFirst();
+		return buffer.removeFirst();
 	}
 
 	@Override

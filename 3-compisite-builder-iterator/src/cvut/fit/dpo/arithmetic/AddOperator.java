@@ -33,7 +33,9 @@ public class AddOperator extends BinaryOperator
 
 	public PostOrderIterator getPostOrderIterator()
 	{
-		return null;
+        return new PostOrderIterator( (PostOrderIterator) firstOperand.getPostOrderIterator(),
+									  (PostOrderIterator) secondOperand.getPostOrderIterator(),
+                                      new AddOperation());
 	}
 
 }

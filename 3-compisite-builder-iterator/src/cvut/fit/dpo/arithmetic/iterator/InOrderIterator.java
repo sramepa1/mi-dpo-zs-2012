@@ -24,7 +24,7 @@ public class InOrderIterator implements Iterator<ExpressionElement>
         buffer.add(element);  
         buffer.addAll(b.buffer);
         
-        if(element instanceof AddOperation || element instanceof SubstractOperation) { //TODO better
+        if(element instanceof AddOperation || element instanceof SubstractOperation) {
             buffer.addFirst(new OpenBracketOperation());
             buffer.addLast(new CloseBracketOperation());
         }
@@ -39,9 +39,7 @@ public class InOrderIterator implements Iterator<ExpressionElement>
 	@Override
 	public ExpressionElement next()
 	{
-		//return buffer.peekFirst();
-		return buffer.removeFirst(); // prevention of infinite while(hasNext()){next()} loops
-									// TODO possibly replace with delegate LinkedList Iterator?
+		return buffer.removeFirst();
 	}
 
 	@Override
