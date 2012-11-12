@@ -28,8 +28,6 @@ public class InOrderIterator implements Iterator<ExpressionElement>
             buffer.addFirst(new OpenBracketOperation());
             buffer.addLast(new CloseBracketOperation());
         }
-        
-        
     }
     
 	@Override
@@ -41,7 +39,9 @@ public class InOrderIterator implements Iterator<ExpressionElement>
 	@Override
 	public ExpressionElement next()
 	{
-		return buffer.peekFirst();
+		//return buffer.peekFirst();
+		return buffer.removeFirst(); // prevention of infinite while(hasNext()){next()} loops
+									// TODO possibly replace with delegate LinkedList Iterator?
 	}
 
 	@Override

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="8" failures="0" hostname="NTB1" name="cvut.fit.dpo.pr2.ArithmeticExpressionPrinterTest" tests="8" time="0.099" timestamp="2012-11-12T13:10:47">
+<testsuite errors="3" failures="3" hostname="NTB1" name="cvut.fit.dpo.pr2.ArithmeticExpressionPrinterTest" tests="8" time="0.099" timestamp="2012-11-12T15:57:03">
   <properties>
     <property name="java.vendor" value="Sun Microsystems Inc." />
     <property name="env.SESSION_MANAGER" value="local/NTB1:@/tmp/.ICE-unix/1900,unix/NTB1:/tmp/.ICE-unix/1900" />
@@ -82,7 +82,7 @@
     <property name="java.runtime.name" value="OpenJDK Runtime Environment" />
     <property name="ant.version" value="Apache Ant(TM) version 1.8.2 compiled on December 3 2011" />
     <property name="java.class.path" value="/home/pavel/dpo/mi-dpo-zs-2012/3-compisite-builder-iterator/bin:/home/pavel/dpo/mi-dpo-zs-2012/3-compisite-builder-iterator/lib/junit-4.9.jar:/usr/share/java/ant-launcher-1.8.2.jar:/usr/share/ant/lib/ant.jar:/usr/share/ant/lib/ant-junit.jar:/usr/share/ant/lib/ant-junit4.jar" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner cvut.fit.dpo.pr2.ArithmeticExpressionPrinterTest filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.OutErrSummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/pavel/dpo/mi-dpo-zs-2012/3-compisite-builder-iterator/junit/TEST-cvut.fit.dpo.pr2.ArithmeticExpressionPrinterTest.xml crashfile=/home/pavel/dpo/mi-dpo-zs-2012/3-compisite-builder-iterator/junitvmwatcher6496000510155429236.properties propsfile=/home/pavel/dpo/mi-dpo-zs-2012/3-compisite-builder-iterator/junit7167780358055947713.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner cvut.fit.dpo.pr2.ArithmeticExpressionPrinterTest filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.OutErrSummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/pavel/dpo/mi-dpo-zs-2012/3-compisite-builder-iterator/junit/TEST-cvut.fit.dpo.pr2.ArithmeticExpressionPrinterTest.xml crashfile=/home/pavel/dpo/mi-dpo-zs-2012/3-compisite-builder-iterator/junitvmwatcher7146666990476908996.properties propsfile=/home/pavel/dpo/mi-dpo-zs-2012/3-compisite-builder-iterator/junit3086073729191904717.properties" />
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
     <property name="ant.file.type" value="file" />
     <property name="java.vm.specification.version" value="1.0" />
@@ -121,62 +121,44 @@
     <property name="env.LC_NAME" value="cs_CZ.UTF-8" />
     <property name="env.LESSCLOSE" value="/usr/bin/lesspipe %s %s" />
   </properties>
-  <testcase classname="cvut.fit.dpo.pr2.ArithmeticExpressionPrinterTest" name="testPrintInOrder1" time="0.011">
-    <error message="You shall not pass!!!" type="java.lang.UnsupportedOperationException">java.lang.UnsupportedOperationException: You shall not pass!!!
-	at cvut.fit.dpo.arithmetic.ArithmeticExpression.getRoot(ArithmeticExpression.java:27)
-	at cvut.fit.dpo.pr2.ArithmeticExpressionPrinter.printInOrder(ArithmeticExpressionPrinter.java:48)
+  <testcase classname="cvut.fit.dpo.pr2.ArithmeticExpressionPrinterTest" name="testPrintInOrder1" time="0.013">
+    <failure message="expected:&lt;(3-([1+2]))&gt; but was:&lt;(3-([2+1]))&gt;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: expected:&lt;(3-([1+2]))&gt; but was:&lt;(3-([2+1]))&gt;
 	at cvut.fit.dpo.pr2.ArithmeticExpressionPrinterTest.testPrintInOrder1(ArithmeticExpressionPrinterTest.java:19)
-</error>
+</failure>
   </testcase>
   <testcase classname="cvut.fit.dpo.pr2.ArithmeticExpressionPrinterTest" name="testPrintInOrder2" time="0.001">
-    <error message="You shall not pass!!!" type="java.lang.UnsupportedOperationException">java.lang.UnsupportedOperationException: You shall not pass!!!
-	at cvut.fit.dpo.arithmetic.ArithmeticExpression.getRoot(ArithmeticExpression.java:27)
-	at cvut.fit.dpo.pr2.ArithmeticExpressionPrinter.printInOrder(ArithmeticExpressionPrinter.java:48)
+    <failure message="expected:&lt;([(3-1)+2])&gt; but was:&lt;([2+(3-1)])&gt;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: expected:&lt;([(3-1)+2])&gt; but was:&lt;([2+(3-1)])&gt;
 	at cvut.fit.dpo.pr2.ArithmeticExpressionPrinterTest.testPrintInOrder2(ArithmeticExpressionPrinterTest.java:29)
-</error>
+</failure>
   </testcase>
   <testcase classname="cvut.fit.dpo.pr2.ArithmeticExpressionPrinterTest" name="testPrintInOrder3" time="0.005">
-    <error message="You shall not pass!!!" type="java.lang.UnsupportedOperationException">java.lang.UnsupportedOperationException: You shall not pass!!!
-	at cvut.fit.dpo.arithmetic.ArithmeticExpression.getRoot(ArithmeticExpression.java:27)
-	at cvut.fit.dpo.pr2.ArithmeticExpressionPrinter.printInOrder(ArithmeticExpressionPrinter.java:48)
+    <failure message="expected:&lt;(([1+2)-(3+4]))&gt; but was:&lt;(([2+1)-(4+3]))&gt;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: expected:&lt;(([1+2)-(3+4]))&gt; but was:&lt;(([2+1)-(4+3]))&gt;
 	at cvut.fit.dpo.pr2.ArithmeticExpressionPrinterTest.testPrintInOrder3(ArithmeticExpressionPrinterTest.java:39)
-</error>
+</failure>
   </testcase>
-  <testcase classname="cvut.fit.dpo.pr2.ArithmeticExpressionPrinterTest" name="testPrintInOrder4" time="0.012">
-    <error message="You shall not pass!!!" type="java.lang.UnsupportedOperationException">java.lang.UnsupportedOperationException: You shall not pass!!!
-	at cvut.fit.dpo.arithmetic.ArithmeticExpression.getRoot(ArithmeticExpression.java:27)
-	at cvut.fit.dpo.pr2.ArithmeticExpressionPrinter.printInOrder(ArithmeticExpressionPrinter.java:48)
-	at cvut.fit.dpo.pr2.ArithmeticExpressionPrinterTest.testPrintInOrder4(ArithmeticExpressionPrinterTest.java:49)
-</error>
-  </testcase>
+  <testcase classname="cvut.fit.dpo.pr2.ArithmeticExpressionPrinterTest" name="testPrintInOrder4" time="0.002" />
   <testcase classname="cvut.fit.dpo.pr2.ArithmeticExpressionPrinterTest" name="testPrintPostOrder1" time="0.001">
-    <error message="You shall not pass!!!" type="java.lang.UnsupportedOperationException">java.lang.UnsupportedOperationException: You shall not pass!!!
-	at cvut.fit.dpo.arithmetic.ArithmeticExpression.getRoot(ArithmeticExpression.java:27)
-	at cvut.fit.dpo.pr2.ArithmeticExpressionPrinter.printPostOrder(ArithmeticExpressionPrinter.java:112)
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at cvut.fit.dpo.pr2.ArithmeticExpressionPrinter.print(ArithmeticExpressionPrinter.java:34)
+	at cvut.fit.dpo.pr2.ArithmeticExpressionPrinter.printPostOrder(ArithmeticExpressionPrinter.java:62)
 	at cvut.fit.dpo.pr2.ArithmeticExpressionPrinterTest.testPrintPostOrder1(ArithmeticExpressionPrinterTest.java:59)
 </error>
   </testcase>
-  <testcase classname="cvut.fit.dpo.pr2.ArithmeticExpressionPrinterTest" name="testPrintPostOrder2" time="0.001">
-    <error message="You shall not pass!!!" type="java.lang.UnsupportedOperationException">java.lang.UnsupportedOperationException: You shall not pass!!!
-	at cvut.fit.dpo.arithmetic.ArithmeticExpression.getRoot(ArithmeticExpression.java:27)
-	at cvut.fit.dpo.pr2.ArithmeticExpressionPrinter.printPostOrder(ArithmeticExpressionPrinter.java:112)
+  <testcase classname="cvut.fit.dpo.pr2.ArithmeticExpressionPrinterTest" name="testPrintPostOrder2" time="0.006">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at cvut.fit.dpo.pr2.ArithmeticExpressionPrinter.print(ArithmeticExpressionPrinter.java:34)
+	at cvut.fit.dpo.pr2.ArithmeticExpressionPrinter.printPostOrder(ArithmeticExpressionPrinter.java:62)
 	at cvut.fit.dpo.pr2.ArithmeticExpressionPrinterTest.testPrintPostOrder2(ArithmeticExpressionPrinterTest.java:69)
 </error>
   </testcase>
   <testcase classname="cvut.fit.dpo.pr2.ArithmeticExpressionPrinterTest" name="testPrintPostOrder3" time="0.003">
-    <error message="You shall not pass!!!" type="java.lang.UnsupportedOperationException">java.lang.UnsupportedOperationException: You shall not pass!!!
-	at cvut.fit.dpo.arithmetic.ArithmeticExpression.getRoot(ArithmeticExpression.java:27)
-	at cvut.fit.dpo.pr2.ArithmeticExpressionPrinter.printPostOrder(ArithmeticExpressionPrinter.java:112)
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at cvut.fit.dpo.pr2.ArithmeticExpressionPrinter.print(ArithmeticExpressionPrinter.java:34)
+	at cvut.fit.dpo.pr2.ArithmeticExpressionPrinter.printPostOrder(ArithmeticExpressionPrinter.java:62)
 	at cvut.fit.dpo.pr2.ArithmeticExpressionPrinterTest.testPrintPostOrder3(ArithmeticExpressionPrinterTest.java:79)
 </error>
   </testcase>
-  <testcase classname="cvut.fit.dpo.pr2.ArithmeticExpressionPrinterTest" name="testPrintPostOrder4" time="0.002">
-    <error message="You shall not pass!!!" type="java.lang.UnsupportedOperationException">java.lang.UnsupportedOperationException: You shall not pass!!!
-	at cvut.fit.dpo.arithmetic.ArithmeticExpression.getRoot(ArithmeticExpression.java:27)
-	at cvut.fit.dpo.pr2.ArithmeticExpressionPrinter.printInOrder(ArithmeticExpressionPrinter.java:48)
-	at cvut.fit.dpo.pr2.ArithmeticExpressionPrinterTest.testPrintPostOrder4(ArithmeticExpressionPrinterTest.java:89)
-</error>
-  </testcase>
+  <testcase classname="cvut.fit.dpo.pr2.ArithmeticExpressionPrinterTest" name="testPrintPostOrder4" time="0.002" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
