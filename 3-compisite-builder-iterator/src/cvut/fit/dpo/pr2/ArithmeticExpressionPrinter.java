@@ -29,9 +29,11 @@ public class ArithmeticExpressionPrinter
 	}
 
 	
-	private String print(Iterator<ExpressionElement> it) {
-		StringBuilder sb = new StringBuilder();		
+	private String print(Iterator<ExpressionElement> it, boolean addSpaces) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(it.next());
 		while(it.hasNext()) {
+			sb.append(addSpaces ? " " : "");
 			sb.append(it.next().stringValue());
 		}		
 		return sb.toString();
@@ -46,7 +48,7 @@ public class ArithmeticExpressionPrinter
 	 */
 	public String printInOrder()
 	{
-		return print(expression.getInOrderIterator());
+		return print(expression.getInOrderIterator(), false);
 	}
 	
 	/**
@@ -59,6 +61,6 @@ public class ArithmeticExpressionPrinter
 	 */
 	public String printPostOrder()
 	{
-		return print(expression.getPostOrderIterator());
+		return print(expression.getPostOrderIterator(), true);
 	}
 }
