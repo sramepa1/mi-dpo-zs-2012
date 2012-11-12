@@ -10,41 +10,35 @@ import cvut.fit.dpo.arithmetic.iterator.PostOrderIterator;
  * @author Jan Kurš
  *
  */
-public abstract class BinaryOperator implements IExpression
+public abstract class BinaryOperator extends ArithmeticExpression
 {
-	protected IExpression firstOperand;
-	protected IExpression secondOperand;
+	protected ArithmeticExpression firstOperand;
+	protected ArithmeticExpression secondOperand;
 
-	public BinaryOperator(IExpression firstOperand, IExpression secondOperand)
+	public BinaryOperator(ArithmeticExpression firstOperand, ArithmeticExpression secondOperand)
 	{
 		setFirstOperand(firstOperand);
 		setSecondOperand(secondOperand);
 	}
 	
-	void setFirstOperand(IExpression o)
+	void setFirstOperand(ArithmeticExpression o)
 	{
 		firstOperand = o;
 	}
     
-	void setSecondOperand(IExpression o)
+	void setSecondOperand(ArithmeticExpression o)
 	{
 		secondOperand = o;
 	}
 	
-	public IExpression getFirstOperand()
+	public ArithmeticExpression getFirstOperand()
 	{
 		return firstOperand;
 	}
 	
-	public IExpression getSecondOperand()
+	public ArithmeticExpression getSecondOperand()
 	{
 		return secondOperand;
-	}
-	
-	public abstract Integer evaluate();
-	
-	public abstract InOrderIterator inOrderIterator();
-
-	public abstract PostOrderIterator postOrderIterator();
+	}	
 
 }

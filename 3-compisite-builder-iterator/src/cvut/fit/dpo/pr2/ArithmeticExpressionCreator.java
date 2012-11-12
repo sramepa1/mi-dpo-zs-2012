@@ -6,6 +6,8 @@ import cvut.fit.dpo.arithmetic.BinaryOperator;
 import cvut.fit.dpo.arithmetic.NumericOperand;
 import cvut.fit.dpo.arithmetic.SubstractOperator;
 
+import cvut.fit.dpo.arithmetic.builder.*;
+
 
 /**
  * Stupid class which can create some {@link ArithmeticExpression}s.
@@ -16,14 +18,11 @@ import cvut.fit.dpo.arithmetic.SubstractOperator;
 public class ArithmeticExpressionCreator
 {
 	/**
-	 * Creates 3 - (1 + 2)
-	 * 
-	 * This is ugly. I don't like creating expressions in this
-	 * 	form. I never know, what expression I have created...
+	 * Creates 3 1 2 + -, or 3 - (1 + 2)
 	 */
 	public ArithmeticExpression createExpression1()
 	{
-		ArithmeticExpression e = new ArithmeticExpression();
+		/*ArithmeticExpression e = new ArithmeticExpression();
 		
 		NumericOperand op1 = new NumericOperand(1);
 		NumericOperand op2 = new NumericOperand(2);
@@ -33,18 +32,25 @@ public class ArithmeticExpressionCreator
 		BinaryOperator o1 = new SubstractOperator(op3, o2);
 		
 		e.setRoot(o1);
-		return e;
+		return e;*/
+		
+		ExpressionBuilder b = new ExpressionBuilder();
+		
+		b.pushNumber(3);
+		b.pushNumber(1);
+		b.pushNumber(2);
+		b.add();
+		b.substract();
+		
+		return (ArithmeticExpression) b.pop();
 	}
 
 	/**
-	 * Creates (3 - 1) + 2
-	 *
-	 * This is ugly. I don't like creating expressions in this
-	 * 	form. I never know, what expression I have created...
+	 * Creates 3 1 - 2 +, or (3 - 1) + 2
 	 */
 	public ArithmeticExpression createExpression2()
 	{
-		ArithmeticExpression e = new ArithmeticExpression();
+		/*ArithmeticExpression e = new ArithmeticExpression();
 		
 		NumericOperand op1 = new NumericOperand(1);
 		NumericOperand op2 = new NumericOperand(2);
@@ -54,7 +60,17 @@ public class ArithmeticExpressionCreator
 		BinaryOperator o2 = new AddOperator(o1, op2);
 		
 		e.setRoot(o2);
-		return e;
+		return e;*/
+		
+		ExpressionBuilder b = new ExpressionBuilder();
+		
+		b.pushNumber(3);
+		b.pushNumber(1);
+		b.substract();
+		b.pushNumber(2);
+		b.add();		
+		
+		return (ArithmeticExpression) b.pop();
 	}
 	
 	/**
@@ -68,7 +84,7 @@ public class ArithmeticExpressionCreator
 	 */
 	public ArithmeticExpression createExpressionFromRPN(String input)
 	{
-		// Good entry point for Builder :)
-		throw new UnsupportedOperationException("Don't know how to do it :(");
+		RPNBuilder b = new RPNBuilder();
+		return b.createExpressionFromRPN(input);
 	}
 }

@@ -3,20 +3,18 @@ package cvut.fit.dpo.arithmetic;
 import java.util.Iterator;
 
 import cvut.fit.dpo.arithmetic.elements.ExpressionElement;
-import cvut.fit.dpo.arithmetic.iterator.PostOrderIterator;
 
-public class ArithmeticExpression
+public abstract class ArithmeticExpression
 {
-	private BinaryOperator root;
 	
-	public Integer evaluate()
-	{
-		return root.evaluate();
-	}
-	
+	/**
+	 * {@link #root} field setter.
+	 * 
+	 * @deprecated Do not provide access to the inner representation
+	 */
 	public void setRoot(BinaryOperator root)
 	{
-		this.root = root;
+		throw new UnsupportedOperationException("You shall not pass!!!");
 	}
 
 	/**
@@ -26,29 +24,23 @@ public class ArithmeticExpression
 	 */
 	public BinaryOperator getRoot()
 	{
-		return root;
+		throw new UnsupportedOperationException("You shall not pass!!!");
 	}
+	
+	public abstract Integer evaluate();
 	
 	/**
 	 * Should be implemented.
 	 * 
 	 * @return
 	 */
-	public Iterator<ExpressionElement> getInOrderIterator()
-	{
-        return root.inOrderIterator(); 
-	}
+	public abstract Iterator<ExpressionElement> getInOrderIterator();
 
 	/**
 	 * Should be implemented
 	 * 
-	 * TODO
-	 * 
 	 * @return
 	 */
-	public Iterator<ExpressionElement> getPostOrderIterator()
-	{
-		return new PostOrderIterator(root.postOrderIterator());
-	}
+	public abstract Iterator<ExpressionElement> getPostOrderIterator();
 
 }

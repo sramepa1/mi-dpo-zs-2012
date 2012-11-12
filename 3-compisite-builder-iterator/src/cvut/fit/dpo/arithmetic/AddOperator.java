@@ -13,7 +13,7 @@ import cvut.fit.dpo.arithmetic.iterator.PostOrderIterator;
 public class AddOperator extends BinaryOperator
 {
 
-	public AddOperator(IExpression firstOperand, IExpression secondOperand)
+	public AddOperator(ArithmeticExpression firstOperand, ArithmeticExpression secondOperand)
 	{
 		super(firstOperand, secondOperand);
 	}
@@ -24,12 +24,14 @@ public class AddOperator extends BinaryOperator
 		return firstOperand.evaluate() + secondOperand.evaluate();
 	}
     
-    public InOrderIterator inOrderIterator()
+    public InOrderIterator getInOrderIterator()
 	{
-		return new InOrderIterator(firstOperand.inOrderIterator(), secondOperand.inOrderIterator(), new AddOperation());
+		return new InOrderIterator(	(InOrderIterator) firstOperand.getInOrderIterator(),
+									(InOrderIterator) secondOperand.getInOrderIterator(),
+									new AddOperation());
 	}
 
-	public PostOrderIterator postOrderIterator()
+	public PostOrderIterator getPostOrderIterator()
 	{
 		return null;
 	}

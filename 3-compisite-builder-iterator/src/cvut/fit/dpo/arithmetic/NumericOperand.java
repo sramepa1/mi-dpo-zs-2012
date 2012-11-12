@@ -11,7 +11,7 @@ import cvut.fit.dpo.arithmetic.iterator.PostOrderIterator;
  * 
  * @author Jan Kurš
  */
-public class NumericOperand implements IExpression {
+public class NumericOperand extends ArithmeticExpression {
     
 	private Integer value;
 	
@@ -30,14 +30,14 @@ public class NumericOperand implements IExpression {
 		this.value = value;
 	}
 	
-	public InOrderIterator inOrderIterator()
+	public InOrderIterator getInOrderIterator()
 	{
 		return new InOrderIterator(new Number(value));
 	}
 
-	public PostOrderIterator postOrderIterator()
+	public PostOrderIterator getPostOrderIterator()
 	{
-		return null;
+		return new PostOrderIterator(new Number(value));
 	}
 	
 }
