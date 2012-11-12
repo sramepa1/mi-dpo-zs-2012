@@ -28,6 +28,7 @@ public class ArithmeticExpressionPrinter
 		this.expression = expression;
 	}
 
+
     private String print(Iterator<ExpressionElement> it) {
 		StringBuilder sb = new StringBuilder();		
 		while(it.hasNext()) {
@@ -39,6 +40,7 @@ public class ArithmeticExpressionPrinter
     
 	private String print(Iterator<ExpressionElement> it, char delimiter) {
 		StringBuilder sb = new StringBuilder();		
+
 		while(it.hasNext()) {
 			sb.append(it.next().stringValue());
             sb.append(delimiter);
