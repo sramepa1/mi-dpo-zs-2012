@@ -27,26 +27,16 @@ public class ArithmeticExpressionPrinter
 	{
 		this.expression = expression;
 	}
-
-
-    private String print(Iterator<ExpressionElement> it) {
-		StringBuilder sb = new StringBuilder();		
-		while(it.hasNext()) {
-			sb.append(it.next().stringValue());
-		}
-        
-		return sb.toString();
-	}
     
-	private String print(Iterator<ExpressionElement> it, char delimiter) {
+	private String print(Iterator<ExpressionElement> it, String delimiter) {
 		StringBuilder sb = new StringBuilder();		
 
 		while(it.hasNext()) {
 			sb.append(it.next().stringValue());
             sb.append(delimiter);
 		}
-        
-        sb.delete(sb.length() - 1, sb.length());
+		
+        sb.delete(sb.length() - delimiter.length(), sb.length());
         
 		return sb.toString();
 	}
@@ -60,7 +50,7 @@ public class ArithmeticExpressionPrinter
 	 */
 	public String printInOrder()
 	{
-		return print(expression.getInOrderIterator());
+		return print(expression.getInOrderIterator(), "");
 	}
 	
 	/**
@@ -73,6 +63,6 @@ public class ArithmeticExpressionPrinter
 	 */
 	public String printPostOrder()
 	{
-		return print(expression.getPostOrderIterator(), ' ');
+		return print(expression.getPostOrderIterator(), " ");
 	}
 }
