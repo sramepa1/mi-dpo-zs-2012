@@ -24,16 +24,30 @@ public class ExpressionBuilder {
 	}
 	
 	public void add() {
-		stack.push(new AddOperator(stack.pop(), stack.pop()));
+		Crate c = popCrate();
+		stack.push(new AddOperator(c.left, c.right));
 	}
 	
 	public void substract() {
-		ArithmeticExpression right = stack.pop();
-		ArithmeticExpression left = stack.pop();
-		stack.push(new SubstractOperator(left, right));		
+		Crate c = popCrate();
+		stack.push(new SubstractOperator(c.left, c.right));	
 	}
 	
 	public ArithmeticExpression pop() {
 		return stack.pop();
+	}
+	
+	
+	
+	protected Crate popCrate() {
+		Crate crate = new Crate();
+		crate.right = stack.pop();
+		crate.left = stack.pop();
+		return crate;
+	}
+	
+	protected class Crate {		
+		public ArithmeticExpression left;
+		public ArithmeticExpression right;		
 	}
 }
