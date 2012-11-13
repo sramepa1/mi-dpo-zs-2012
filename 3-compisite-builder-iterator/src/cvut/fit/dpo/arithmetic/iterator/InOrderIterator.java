@@ -4,6 +4,7 @@ import cvut.fit.dpo.arithmetic.elements.AddOperation;
 import cvut.fit.dpo.arithmetic.elements.CloseBracketOperation;
 import java.util.Iterator;
 
+import cvut.fit.dpo.arithmetic.elements.ExpressionBinaryElement;
 import cvut.fit.dpo.arithmetic.elements.ExpressionElement;
 import cvut.fit.dpo.arithmetic.elements.OpenBracketOperation;
 import cvut.fit.dpo.arithmetic.elements.SubstractOperation;
@@ -20,14 +21,19 @@ public class InOrderIterator implements Iterator<ExpressionElement>
     }
     
     public InOrderIterator(InOrderIterator a, InOrderIterator b, ExpressionElement element) {
-        buffer = a.buffer;
+    	addElement(a, b, element);
+    }
+    
+    public InOrderIterator(InOrderIterator a, InOrderIterator b, ExpressionBinaryElement element) {
+    	addElement(a, b, element);
+        buffer.addFirst(new OpenBracketOperation());
+        buffer.addLast(new CloseBracketOperation());
+    }
+    
+    private void addElement(InOrderIterator a, InOrderIterator b, ExpressionElement element) {
+    	buffer = a.buffer;
         buffer.add(element);  
         buffer.addAll(b.buffer);
-        
-        if(element instanceof AddOperation || element instanceof SubstractOperation) {
-            buffer.addFirst(new OpenBracketOperation());
-            buffer.addLast(new CloseBracketOperation());
-        }
     }
     
 	@Override
