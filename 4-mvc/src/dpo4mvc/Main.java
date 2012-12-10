@@ -1,10 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package dpo4mvc;
 
-import javax.swing.JLabel;
+import ui.*;
 import javax.swing.SwingUtilities;
 
 /**
@@ -21,9 +17,9 @@ public class Main {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
             public void run() {
-				MainFrame mainFrame = new MainFrame("MVC");
-				// TODO add views
-				mainFrame.getContentPane().add(new JLabel("Hello, world!"));
+				ViewPanel leftPanel = new GraphicView();
+				ViewPanel rightPanel = new TableView();
+				MainFrame mainFrame = new MainFrame("MVC", leftPanel, rightPanel);
 				mainFrame.setVisible(true);
             }
         });
