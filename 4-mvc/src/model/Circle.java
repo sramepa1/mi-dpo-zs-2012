@@ -24,8 +24,17 @@ public class Circle extends Shape {
         }
         
         this.r = r;
+        notifyListeners();
     }
     
    
+    @Override
+    public String[] getAttributeNames() {
+        String[] names = {
+            "X", "Y", "R"
+        };
+        
+        return names;
+    }
     
 }

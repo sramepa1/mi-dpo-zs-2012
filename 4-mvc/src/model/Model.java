@@ -8,38 +8,51 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import ui.IView;
 
 
 /**
  *
  * @author rusty
  */
-public class Model {
+public class Model implements INotifiable {
     
     Model() {
-        shapeTypes = new HashMap<String, ArrayList<Shape>>();
+        this.shapesByTypes = new HashMap<String, ArrayList<Shape>>();
+        this.viewsByTypes = new HashMap<String, ArrayList<IView>>();
     }
     
-    private HashMap<String, ArrayList<Shape>> shapeTypes;
+    
+    
+    private HashMap<String, ArrayList<Shape>> shapesByTypes;
+    
+    private HashMap<String, ArrayList<IView>> viewsByTypes;;
+    
+   
     
     public void addShapeType(String typeName) {
-        if(shapeTypes.containsKey(typeName)) {
+        if(shapesByTypes.containsKey(typeName)) {
             throw new IllegalArgumentException("This type of shapes already exists.");
         }
         
-        shapeTypes.put(typeName, new ArrayList<Shape>());
+        shapesByTypes.put(typeName, new ArrayList<Shape>());
     }
     
-    public void addShape(String typeName, Shape shape) {
-        if(!shapeTypes.containsKey(typeName)) {
+    public int addShape(String typeName, Shape shape) {
+        if(!shapesByTypes.containsKey(typeName)) {
             throw new IllegalArgumentException("Unknown shape type.");
         }
         
-        shapeTypes.get(typeName).add(shape);
+        ArrayList<Shape> shapeStorage = shapesByTypes.get(typeName);
+        shapeStorage.add(shape);
+        
+        shape.addListener(this, typeName);
+        
+        return shapeStorage.size() - 1;
     }
     
     public void clearAll() {
-        for (Map.Entry<String, ArrayList<Shape>> entry : shapeTypes.entrySet())
+        for (Map.Entry<String, ArrayList<Shape>> entry : shapesByTypes.entrySet())
         {
             entry.setValue(new ArrayList<Shape>());
         }
@@ -48,7 +61,7 @@ public class Model {
     public Iterable<String> getShapeTypes() {
         LinkedList<String> types = new LinkedList<String>();
         
-        for (Map.Entry<String, ArrayList<Shape>> entry : shapeTypes.entrySet())
+        for (Map.Entry<String, ArrayList<Shape>> entry : shapesByTypes.entrySet())
         {
             types.add(entry.getKey());
         }
@@ -57,19 +70,50 @@ public class Model {
     }
     
     public Shape getShape(String typeName, int id) {   
-        if(!shapeTypes.containsKey(typeName)) {
+        if(!shapesByTypes.containsKey(typeName)) {
             throw new IllegalArgumentException("Unknown shape type.");
         }
         
-        return shapeTypes.get(typeName).get(id);
+        return shapesByTypes.get(typeName).get(id);
     }
     
     public Iterable<Shape> getAllShapes(String typeName) {
-        if(!shapeTypes.containsKey(typeName)) {
+        if(!shapesByTypes.containsKey(typeName)) {
             throw new IllegalArgumentException("Unknown shape type.");
         }
         
-        return (Iterable<Shape>) shapeTypes.get(typeName).clone();
+        return (Iterable<Shape>) shapesByTypes.get(typeName).clone();
+    }
+    
+    
+    
+    public void addView(IView view) {
+        for (Map.Entry<String, ArrayList<Shape>> entry : shapesByTypes.entrySet())
+        {
+            addViewByType(entry.getKey(), view);
+        }
+    }
+    
+    public void addViewByType(String typeName, IView view) {
+        ArrayList<IView> listeningViews = viewsByTypes.get(typeName);
+        
+        if(listeningViews == null) {
+            listeningViews = new ArrayList<IView>();
+            viewsByTypes.put(typeName, listeningViews);
+        }
+        
+        listeningViews.add(view);
+    }
+
+    @Override
+    public void reportChange(Object changed, Object mark) {
+        
+        String changedType = (String) mark;
+        ArrayList<IView> listeningViews = viewsByTypes.get(changedType);
+        
+        for(IView view : listeningViews) {
+            view.notifyChange();
+        }
     }
 
 }

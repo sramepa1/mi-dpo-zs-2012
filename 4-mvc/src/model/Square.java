@@ -24,8 +24,16 @@ public class Square extends Shape {
         }
         
         this.a = a;
+        notifyListeners();
     }
-    
-   
+
+    @Override
+    public String[] getAttributeNames() {
+        String[] names = {
+            "X", "Y", "A"
+        };
+        
+        return names;
+    }
     
 }
