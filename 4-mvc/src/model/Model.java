@@ -150,32 +150,32 @@ public class Model implements INotifiable {
 
         @Override
         public int getColumnCount() {
-            throw new UnsupportedOperationException("Not supported yet.");
+            return model.shapesPrototypes.get(typeName).getAttributeNames().length;
         }
 
         @Override
         public String getColumnName(int i) {
-            throw new UnsupportedOperationException("Not supported yet.");
+            return model.shapesPrototypes.get(typeName).getAttributeNames()[i];
         }
 
         @Override
         public Class<?> getColumnClass(int i) {
-            throw new UnsupportedOperationException("Not supported yet.");
+            return Integer.class;
         }
 
         @Override
         public boolean isCellEditable(int i, int i1) {
-            throw new UnsupportedOperationException("Not supported yet.");
+            return true;
         }
 
         @Override
         public Object getValueAt(int i, int i1) {
-            throw new UnsupportedOperationException("Not supported yet.");
+            return model.getShape(typeName, i).getAttribute(model.shapesPrototypes.get(typeName).getAttributeNames()[i1]);
         }
 
         @Override
         public void setValueAt(Object o, int i, int i1) {
-            throw new UnsupportedOperationException("Not supported yet.");
+            model.getShape(typeName, i).setAttribute(model.shapesPrototypes.get(typeName).getAttributeNames()[i1], ((Integer) o).intValue() );
         }
 
         @Override
