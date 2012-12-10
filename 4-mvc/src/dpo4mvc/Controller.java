@@ -21,7 +21,7 @@ public class Controller {
 	}
 	
 	public void addShape(Shape s) {
-		model.addShape("Circle", s);	// TODO refactor addShape to one param
+		model.addShape(s);
 	}
 	
 }

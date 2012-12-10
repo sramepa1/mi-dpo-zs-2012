@@ -18,8 +18,8 @@ public class Main {
 		final Controller ctrl = new Controller();
 		final Model model = new Model(ctrl);
 		ctrl.setModel(model);
-		model.addShapeType(Circle.CIRCLE_TYPE_NAME);
-		model.addShapeType(Square.SQUARE_TYPE_NAME);
+		model.registerPrototype(new Circle(0, 0, 0));
+		model.registerPrototype(new Square(0, 0, 0));
 		
 		
 		

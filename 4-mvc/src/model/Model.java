@@ -23,35 +23,38 @@ public class Model implements INotifiable {
     public Model(Controller ctrl) {
         this.shapesByTypes = new HashMap<String, ArrayList<Shape>>();
         this.viewsByTypes = new HashMap<String, ArrayList<IView>>();
+        this.shapesPrototypes = new HashMap<String, Shape>();
     }
     
     private Controller ctrl;
     
+    private HashMap<String, Shape> shapesPrototypes;
     private HashMap<String, ArrayList<Shape>> shapesByTypes;
-    
     private HashMap<String, ArrayList<IView>> viewsByTypes;;
+    
     
    
     
     //////////////// Storage logic
     
-    public void addShapeType(String typeName) {
-        if(shapesByTypes.containsKey(typeName)) {
+    public void registerPrototype(Shape prototype) {
+        if(shapesPrototypes.containsKey(prototype.getTypeName())) {
             throw new IllegalArgumentException("This type of shapes already exists.");
         }
         
-        shapesByTypes.put(typeName, new ArrayList<Shape>());
+        shapesByTypes.put(prototype.getTypeName(), new ArrayList<Shape>());
+        shapesPrototypes.put(prototype.getTypeName(), prototype);
     }
     
-    public int addShape(String typeName, Shape shape) {
-        if(!shapesByTypes.containsKey(typeName)) {
+    public int addShape(Shape shape) {
+        if(!shapesByTypes.containsKey(shape.getTypeName())) {
             throw new IllegalArgumentException("Unknown shape type.");
         }
         
-        ArrayList<Shape> shapeStorage = shapesByTypes.get(typeName);
+        ArrayList<Shape> shapeStorage = shapesByTypes.get(shape.getTypeName());
         shapeStorage.add(shape);
         
-        shape.addListener(this, typeName);
+        shape.addListener(this, shape.getTypeName());
         
         return shapeStorage.size() - 1;
     }
