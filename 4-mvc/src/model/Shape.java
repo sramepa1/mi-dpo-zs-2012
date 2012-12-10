@@ -18,7 +18,7 @@ public abstract class Shape {
         this.x = x;
         this.y = y;
         
-        this.listeneters = new ArrayList<NotifiablePair>();
+        this.listeneters = new ArrayList<INotifiable>();
         this.attributeAccessors = new HashMap<String, IAttributeAccessor>();
 		this.attributeNames = new ArrayList<String>();
         
@@ -30,28 +30,17 @@ public abstract class Shape {
     protected int y;
     
     
-    private ArrayList<NotifiablePair> listeneters;
+    private ArrayList<INotifiable> listeneters;
     
-    public void addListener(INotifiable listener, Object mark) {
-        listeneters.add(new NotifiablePair(listener, mark));
+    public void addListener(INotifiable listener) {
+        listeneters.add(listener);
     }
     
     protected void notifyListeners() {
-        for(NotifiablePair pair : listeneters) {
-            pair.listener.reportChange(this, pair.mark);
+        for(INotifiable listener : listeneters) {
+            listener.reportChange(this);
         }
-    }
-    
-    class NotifiablePair {
-        public NotifiablePair(INotifiable first, Object second) {
-            this.listener = first;
-            this.mark = second;
-        }
-        
-        INotifiable listener;
-        Object mark;
-    }
-    
+    }    
     
     public abstract String getTypeName();
 	

@@ -7,6 +7,7 @@ package model;
 import dpo4mvc.Controller;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
 import javax.swing.event.TableModelListener;
@@ -23,6 +24,7 @@ public class Model implements INotifiable {
     public Model(Controller ctrl) {
         this.shapesByTypes = new HashMap<String, ArrayList<Shape>>();
         this.viewsByTypes = new HashMap<String, ArrayList<IView>>();
+        this.allViews = new HashSet<IView>();
         this.shapesPrototypes = new HashMap<String, Shape>();
     }
     
@@ -30,10 +32,10 @@ public class Model implements INotifiable {
     
     private HashMap<String, Shape> shapesPrototypes;
     private HashMap<String, ArrayList<Shape>> shapesByTypes;
+    
     private HashMap<String, ArrayList<IView>> viewsByTypes;;
+    private HashSet<IView> allViews;
     
-    
-   
     
     //////////////// Storage logic
     
@@ -54,7 +56,8 @@ public class Model implements INotifiable {
         ArrayList<Shape> shapeStorage = shapesByTypes.get(shape.getTypeName());
         shapeStorage.add(shape);
         
-        shape.addListener(this, shape.getTypeName());
+        shape.addListener(this);
+        reportChange(shape);
         
         return shapeStorage.size() - 1;
     }
@@ -113,6 +116,8 @@ public class Model implements INotifiable {
         {
             addViewByType(entry.getKey(), view);
         }
+        
+        allViews.add(view);
     }
     
     public void addViewByType(String typeName, IView view) {
@@ -124,15 +129,21 @@ public class Model implements INotifiable {
         }
         
         listeningViews.add(view);
+        allViews.add(view);
     }
 
     @Override
-    public void reportChange(Object changed, Object mark) {
+    public void reportChange(Shape changedObj) {
         
-        String changedType = (String) mark;
-        ArrayList<IView> listeningViews = viewsByTypes.get(changedType);
+        ArrayList<IView> listeningViews = viewsByTypes.get(changedObj.getTypeName());
         
         for(IView view : listeningViews) {
+            view.notifyChange();
+        }
+    }
+    
+    public void reportChange() {
+        for(IView view : allViews) {
             view.notifyChange();
         }
     }

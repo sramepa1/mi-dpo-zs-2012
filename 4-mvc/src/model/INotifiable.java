@@ -10,6 +10,6 @@ package model;
  */
 public interface INotifiable {
     
-    void reportChange(Object changed, Object mark);
+    void reportChange(Shape changedObj);
     
 }
