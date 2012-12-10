@@ -94,6 +94,18 @@ public class Model implements INotifiable {
         return (Iterable<Shape>) shapesByTypes.get(typeName).clone();
     }
     
+    public Iterable<Shape> getAllShapes() {
+        
+        ArrayList<Shape> myclone = new ArrayList<Shape>();
+        
+        for (Map.Entry<String, ArrayList<Shape>> entry : shapesByTypes.entrySet())
+        {
+            myclone.addAll( (ArrayList<Shape>) entry.getValue().clone());
+        }
+        
+        return myclone;
+    }
+    
     //////////////// Listening views
     
     public void addView(IView view) {
