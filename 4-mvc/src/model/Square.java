@@ -11,27 +11,15 @@ import java.awt.Graphics;
  * @author rusty
  */
 public class Square extends Shape {
-	
-	public static final String SQUARE_TYPE_NAME = "Square";
 
     public Square(int x, int y, int a) {
         super(x, y);
         
-        attributeAccessors.put("A", new aAccessor());
-        setAttribute("A", a);
+		initAttribute("A", a, new aAccessor());
     }
 
     private int a;
   
-    
-    @Override
-    public String[] getAttributeNames() {
-        String[] names = {
-            "X", "Y", "A"
-        };
-        
-        return names;
-    }
 
     @Override
     public String getTypeName() {

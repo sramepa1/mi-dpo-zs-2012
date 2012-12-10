@@ -20,12 +20,10 @@ public abstract class Shape {
         
         this.listeneters = new ArrayList<NotifiablePair>();
         this.attributeAccessors = new HashMap<String, IAttributeAccessor>();
+		this.attributeNames = new ArrayList<String>();
         
-        attributeAccessors.put("X", new xAccessor());
-        attributeAccessors.put("Y", new yAccessor());
-        
-        setAttribute("X", x);
-        setAttribute("Y", y);
+		initAttribute("X", x, new xAccessor());
+		initAttribute("Y", y, new yAccessor());
     }
     
     protected int x;
@@ -56,7 +54,13 @@ public abstract class Shape {
     
     
     public abstract String getTypeName();
-    public abstract String[] getAttributeNames();
+	
+	protected ArrayList<String> attributeNames;
+	
+	
+    public String[] getAttributeNames() {
+		return (String[]) attributeNames.toArray();
+	}
     
     protected HashMap<String, IAttributeAccessor> attributeAccessors;
     
@@ -72,6 +76,12 @@ public abstract class Shape {
     public final void setAttribute(String attributeName, int value) {
         attributeAccessors.get(attributeName).setAttribute(value);
     }
+	
+	public final void initAttribute(String attributeName, int value, IAttributeAccessor accessor) {
+		attributeAccessors.put(attributeName, accessor);
+        setAttribute(attributeName, value);
+		attributeNames.add(attributeName);
+	}
     
     
     class xAccessor implements IAttributeAccessor {

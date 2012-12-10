@@ -5,34 +5,21 @@
 package model;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 
 /**
  *
  * @author rusty
  */
 public class Circle extends Shape {
-	
-	public static final String CIRCLE_TYPE_NAME = "Circle";
 
     public Circle(int x, int y, int r) {
         super(x, y);
         
-        attributeAccessors.put("R", new rAccessor());
-        setAttribute("R", r);
+        initAttribute("R", r, new rAccessor());
     }
 
     private int r;
-  
-    
-    @Override
-    public String[] getAttributeNames() {
-        String[] names = {
-            "X", "Y", "R"
-        };
-        
-        return names;
-    }
+	
 
     @Override
     public String getTypeName() {
