@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
 import javax.swing.event.TableModelListener;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import ui.IView;
 
@@ -67,7 +68,7 @@ public class Model implements INotifiable {
         {
             entry.setValue(new ArrayList<Shape>());
         }
-		System.out.println("Boom!");	// TODO for testing purposes only, remove later!
+		reportChange();
     }
     
     public Iterable<String> getShapeTypes() {
@@ -156,7 +157,7 @@ public class Model implements INotifiable {
     }
     
     
-    public class TableAdapter implements TableModel {
+    public class TableAdapter extends AbstractTableModel implements IView {
 
         public TableAdapter(Model model, String typeName) {
             this.model = model;
@@ -201,15 +202,10 @@ public class Model implements INotifiable {
             model.getShape(typeName, i).setAttribute(model.shapesPrototypes.get(typeName).getAttributeNames()[i1], ((Integer) o).intValue() );
         }
 
-        @Override
-        public void addTableModelListener(TableModelListener tl) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public void removeTableModelListener(TableModelListener tl) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
+		@Override
+		public void notifyChange() {
+			fireTableDataChanged();
+		}
 
     }
 }

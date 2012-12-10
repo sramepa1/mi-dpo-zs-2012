@@ -48,7 +48,7 @@ public abstract class Shape {
 	
 	
     public String[] getAttributeNames() {
-		return (String[]) attributeNames.toArray();
+		return attributeNames.toArray(new String[attributeNames.size()]);
 	}
     
     protected HashMap<String, IAttributeAccessor> attributeAccessors;

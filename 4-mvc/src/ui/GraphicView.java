@@ -44,10 +44,8 @@ public class GraphicView extends JPanel implements IView {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		for (String type : model.getShapeTypes()) {		//TODO single-for
-			for(Shape shape : model.getAllShapes(type)) {
-				shape.paint(g);
-			}
+		for(Shape shape : model.getAllShapes()) {
+			shape.paint(g);
 		}
 	}
 	
