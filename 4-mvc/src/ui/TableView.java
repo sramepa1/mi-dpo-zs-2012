@@ -1,26 +1,25 @@
 package ui;
 
-import java.awt.GridLayout;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.UIManager;
+import model.Model;
 
 /**
  *
  * @author pavel
  */
-public class TableView extends ViewPanel {
+public class TableView extends JScrollPane implements IView {
 	
-	public TableView() { // TODO pass model and controller
-		setLayout(new GridLayout(0,1));
-		setBackground(UIManager.getColor("window"));
-		add(new JScrollPane(new JTable(20,4)));
-		add(new JScrollPane(new JTable(20,4)));
+	JTable table;
+	
+	public TableView(Model model, String type) {		
+		//table = new JTable(model.createTableAdapter(type)); TODO enable when adapter is ready
+		table = new JTable(3,3);
+		setViewportView(table);
 	}
 
 	@Override
 	public void notifyChange() {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}	
-	
+		table.revalidate();
+	}
 }

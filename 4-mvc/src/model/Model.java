@@ -4,6 +4,7 @@
  */
 package model;
 
+import dpo4mvc.Controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -19,12 +20,12 @@ import ui.IView;
  */
 public class Model implements INotifiable {
     
-    Model() {
+    public Model(Controller ctrl) {
         this.shapesByTypes = new HashMap<String, ArrayList<Shape>>();
         this.viewsByTypes = new HashMap<String, ArrayList<IView>>();
     }
     
-    
+    private Controller ctrl;
     
     private HashMap<String, ArrayList<Shape>> shapesByTypes;
     
@@ -60,6 +61,7 @@ public class Model implements INotifiable {
         {
             entry.setValue(new ArrayList<Shape>());
         }
+		System.out.println("Boom!");	// TODO for testing purposes only, remove later!
     }
     
     public Iterable<String> getShapeTypes() {

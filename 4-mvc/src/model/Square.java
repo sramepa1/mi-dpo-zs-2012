@@ -9,6 +9,8 @@ package model;
  * @author rusty
  */
 public class Square extends Shape {
+	
+	public static final String SQUARE_TYPE_NAME = "Square";
 
     Square(int x, int y, int a) {
         super(x, y);

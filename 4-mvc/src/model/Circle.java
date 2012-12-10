@@ -9,6 +9,8 @@ package model;
  * @author rusty
  */
 public class Circle extends Shape {
+	
+	public static final String CIRCLE_TYPE_NAME = "Circle";
 
     Circle(int x, int y, int r) {
         super(x, y);
