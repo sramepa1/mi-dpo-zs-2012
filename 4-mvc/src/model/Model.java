@@ -7,9 +7,7 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
-import javax.swing.JTable;
 
 
 /**
@@ -66,12 +64,12 @@ public class Model {
         return shapeTypes.get(typeName).get(id);
     }
     
-    public final Iterable<Shape> getAllShapes(String typeName) {
+    public Iterable<Shape> getAllShapes(String typeName) {
         if(!shapeTypes.containsKey(typeName)) {
             throw new IllegalArgumentException("Unknown shape type.");
         }
         
-        return shapeTypes.get(typeName);
+        return (Iterable<Shape>) shapeTypes.get(typeName).clone();
     }
 
 }
