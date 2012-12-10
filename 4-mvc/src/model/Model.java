@@ -110,6 +110,10 @@ public class Model implements INotifiable {
         return myclone;
     }
     
+    public void setShapeAttribute(String typeName, int id, String attribute, int value) {
+        getShape(typeName, id).setAttribute(attribute, value);
+    }
+    
     //////////////// Listening views
     
     public void addView(IView view) {
