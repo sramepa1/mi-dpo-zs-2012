@@ -10,9 +10,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableModel;
 import ui.IView;
 
 
@@ -27,6 +25,7 @@ public class Model implements INotifiable {
         this.viewsByTypes = new HashMap<String, ArrayList<IView>>();
         this.allViews = new HashSet<IView>();
         this.shapesPrototypes = new HashMap<String, Shape>();
+		this.ctrl = ctrl;
     }
     
     private Controller ctrl;
@@ -157,19 +156,23 @@ public class Model implements INotifiable {
     //////////////// ...
     
     public TableAdapter createTableAdapter(String typeName) {
-        return new TableAdapter(this, typeName);
+        return new TableAdapter(this, typeName, ctrl);
     }
     
     
     public class TableAdapter extends AbstractTableModel implements IView {
 
-        public TableAdapter(Model model, String typeName) {
+        public TableAdapter(Model model, String typeName, Controller controller) {
             this.model = model;
             this.typeName = typeName;
+			this.controller = controller;
+			this.attributeNames = model.shapesPrototypes.get(typeName).getAttributeNames();
         }
 
         private Model model;
         private String typeName;
+		private Controller controller;
+		private String[] attributeNames;
         
         @Override
         public int getRowCount() {
@@ -178,12 +181,12 @@ public class Model implements INotifiable {
 
         @Override
         public int getColumnCount() {
-            return model.shapesPrototypes.get(typeName).getAttributeNames().length;
+            return attributeNames.length;
         }
 
         @Override
         public String getColumnName(int i) {
-            return model.shapesPrototypes.get(typeName).getAttributeNames()[i];
+            return attributeNames[i];
         }
 
         @Override
@@ -198,13 +201,13 @@ public class Model implements INotifiable {
 
         @Override
         public Object getValueAt(int i, int i1) {
-            return model.getShape(typeName, i).getAttribute(model.shapesPrototypes.get(typeName).getAttributeNames()[i1]);
+            return model.getShape(typeName, i).getAttribute(attributeNames[i1]);
         }
 
         @Override
-        public void setValueAt(Object o, int i, int i1) {
-            model.getShape(typeName, i).setAttribute(model.shapesPrototypes.get(typeName).getAttributeNames()[i1], ((Integer) o).intValue() );
-        }
+        public void setValueAt(Object o, int i, int i1) {			
+			controller.setShapeAttribute(typeName, i, attributeNames[i1], ((Integer) o).intValue());
+		}
 
 		@Override
 		public void notifyChange() {

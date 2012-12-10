@@ -31,6 +31,7 @@ public class Main {
 				TableViewPanel rightPanel = new TableViewPanel(model);
 				model.addView(leftPanel);
 				MainFrame mainFrame = new MainFrame("MVC", leftPanel, rightPanel, ctrl);
+				ctrl.setMainFrame(mainFrame);
 				mainFrame.setVisible(true);
             }
         });

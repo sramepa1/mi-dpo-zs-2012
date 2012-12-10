@@ -17,7 +17,7 @@ public class MainFrame extends JFrame {
 	
 	public MainFrame(String title, JPanel leftPanel, JPanel rightPanel, Controller ctrl) {
        super(title);
-	   Dimension size = new Dimension(640, 480);
+	   Dimension size = new Dimension(800, 480);
        setSize(size);
 	   setMinimumSize(size);
 	   setLayout(new BorderLayout());
