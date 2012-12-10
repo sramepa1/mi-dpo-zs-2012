@@ -30,6 +30,11 @@ public class Square extends Shape {
         
         return names;
     }
+
+    @Override
+    public String getTypeName() {
+        return "Square";
+    }
     
     
     class aAccessor implements IAttributeAccessor {

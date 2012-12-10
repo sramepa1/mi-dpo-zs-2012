@@ -30,6 +30,11 @@ public class Circle extends Shape {
         
         return names;
     }
+
+    @Override
+    public String getTypeName() {
+        return "Circle";
+    }
     
     class rAccessor implements IAttributeAccessor {
 

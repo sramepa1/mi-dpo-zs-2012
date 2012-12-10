@@ -54,8 +54,9 @@ public abstract class Shape {
     }
     
     
-    
+    public abstract String getTypeName();
     public abstract String[] getAttributeNames();
+    
     protected HashMap<String, IAttributeAccessor> attributeAccessors;
     
     protected interface IAttributeAccessor {
