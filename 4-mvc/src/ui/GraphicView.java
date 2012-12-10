@@ -10,6 +10,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import model.Circle;
 import model.Model;
+import model.Rectangle;
 import model.Shape;
 import model.Square;
 
@@ -42,6 +43,7 @@ public class GraphicView extends JPanel implements IView {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		
 		for (String type : model.getShapeTypes()) {		//TODO single-for
 			for(Shape shape : model.getAllShapes(type)) {
 				shape.paint(g);
@@ -57,15 +59,22 @@ public class GraphicView extends JPanel implements IView {
 		public Clicker(Controller ctrl) {
 			this.ctrl = ctrl;
 		}
+		
+		protected int rnd() {
+			return (int) (Math.random() * 42);
+		}
 
         @Override
         public void mousePressed(MouseEvent e) {
             switch(e.getButton()) {
 				case MouseEvent.BUTTON1:
-					ctrl.addShape(new Circle(e.getX(), e.getY(), (int) (Math.random() * 42) ));
+					ctrl.addShape(new Circle(e.getX(), e.getY(), rnd() ));
+					break;
+				case MouseEvent.BUTTON2:
+					ctrl.addShape(new Rectangle(e.getX(), e.getY(), rnd(), rnd()));
 					break;
 				case MouseEvent.BUTTON3:
-					ctrl.addShape(new Square(e.getX(), e.getY(), (int) (Math.random() * 42) ));
+					ctrl.addShape(new Square(e.getX(), e.getY(), rnd() ));
 					break;
 					
 				default:

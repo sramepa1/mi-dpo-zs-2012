@@ -20,6 +20,7 @@ public class Main {
 		ctrl.setModel(model);
 		model.registerPrototype(new Circle(0, 0, 0));
 		model.registerPrototype(new Square(0, 0, 0));
+		model.registerPrototype(new Rectangle(0, 0, 0, 0));
 		
 		
 		

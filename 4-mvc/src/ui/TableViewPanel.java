@@ -23,6 +23,4 @@ public class TableViewPanel extends JPanel {
 			model.addViewByType(shapeType, tableView);
 		}
 	}
-	
-	// TODO: Controller link
 }
