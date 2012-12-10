@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.awt.Graphics;
+
 /**
  *
  * @author rusty
@@ -12,7 +14,7 @@ public class Square extends Shape {
 	
 	public static final String SQUARE_TYPE_NAME = "Square";
 
-    Square(int x, int y, int a) {
+    public Square(int x, int y, int a) {
         super(x, y);
         
         attributeAccessors.put("A", new aAccessor());
@@ -55,4 +57,10 @@ public class Square extends Shape {
         }
         
     }
+	
+	
+	@Override
+	public void paint(Graphics g) {
+		g.drawRect(x, y, a, a);
+	}
 }

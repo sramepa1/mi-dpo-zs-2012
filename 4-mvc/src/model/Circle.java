@@ -4,6 +4,9 @@
  */
 package model;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
 /**
  *
  * @author rusty
@@ -12,7 +15,7 @@ public class Circle extends Shape {
 	
 	public static final String CIRCLE_TYPE_NAME = "Circle";
 
-    Circle(int x, int y, int r) {
+    public Circle(int x, int y, int r) {
         super(x, y);
         
         attributeAccessors.put("R", new rAccessor());
@@ -54,5 +57,11 @@ public class Circle extends Shape {
         }
         
     }
+	
+	
+	@Override
+	public void paint(Graphics g) {
+		g.drawOval(x, y, 2*r, 2*r);
+	}
     
 }

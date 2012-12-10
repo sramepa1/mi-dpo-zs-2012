@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -103,4 +104,8 @@ public abstract class Shape {
         
     }
     
+	
+	
+	public abstract void paint(Graphics g);
+	
 }

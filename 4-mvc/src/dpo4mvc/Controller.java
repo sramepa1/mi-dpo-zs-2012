@@ -1,6 +1,7 @@
 package dpo4mvc;
 
 import model.Model;
+import model.Shape;
 
 /**
  *
@@ -17,6 +18,10 @@ public class Controller {
 	
 	public void nuke() {
 		model.clearAll();
+	}
+	
+	public void addShape(Shape s) {
+		model.addShape("Circle", s);	// TODO refactor addShape to one param
 	}
 	
 }
