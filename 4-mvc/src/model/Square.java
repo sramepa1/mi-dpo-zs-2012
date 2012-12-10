@@ -13,20 +13,13 @@ public class Square extends Shape {
     Square(int x, int y, int a) {
         super(x, y);
         
-        setA(a);
+        attributeAccessors.put("A", new aAccessor());
+        setAttribute("A", a);
     }
 
     private int a;
   
-    public final void setA(int a) {
-        if(a < 0) {
-            throw new IllegalArgumentException("Square side size can not be negative.");
-        }
-        
-        this.a = a;
-        notifyListeners();
-    }
-
+    
     @Override
     public String[] getAttributeNames() {
         String[] names = {
@@ -36,4 +29,23 @@ public class Square extends Shape {
         return names;
     }
     
+    
+    class aAccessor implements IAttributeAccessor {
+
+        @Override
+        public int getAttribute() {
+            return a;
+        }
+
+        @Override
+        public void setAttribute(int value) {
+            if(value < 0) {
+                throw new IllegalArgumentException("Square side size can not be negative.");
+            }
+
+            a = value;
+            notifyListeners();
+        }
+        
+    }
 }

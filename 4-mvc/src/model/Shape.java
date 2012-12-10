@@ -5,6 +5,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -17,29 +18,20 @@ public abstract class Shape {
         this.y = y;
         
         this.listeneters = new ArrayList<NitifiablePair>();
+        this.attributeAccessors = new HashMap<String, IAttributeAccessor>();
+        
+        attributeAccessors.put("X", new xAccessor());
+        attributeAccessors.put("Y", new yAccessor());
+        
+        setAttribute("X", x);
+        setAttribute("Y", y);
     }
     
     protected int x;
     protected int y;
     
+    
     private ArrayList<NitifiablePair> listeneters;
-    
-    public void setX(int x) {
-        this.x = x;
-        notifyListeners();
-    }
-    
-    public void setY(int x) {
-        this.x = x;
-    }
-    
-    public int getX() {
-        return x;
-    }
-    
-    public int getY() {
-        return y;
-    }
     
     public void addListener(INotifiable listener, Object mark) {
         listeneters.add(new NitifiablePair(listener, mark));
@@ -61,6 +53,53 @@ public abstract class Shape {
         Object mark;
     }
     
+    
+    
     public abstract String[] getAttributeNames();
+    protected HashMap<String, IAttributeAccessor> attributeAccessors;
+    
+    protected interface IAttributeAccessor {
+        int getAttribute();
+        void setAttribute(int value);
+    }
+    
+    public final int getAttribute(String attributeName) {
+        return attributeAccessors.get(attributeName).getAttribute();
+    }
+    
+    public final void setAttribute(String attributeName, int value) {
+        attributeAccessors.get(attributeName).setAttribute(value);
+    }
+    
+    
+    class xAccessor implements IAttributeAccessor {
+
+        @Override
+        public int getAttribute() {
+            return x;
+        }
+
+        @Override
+        public void setAttribute(int value) {
+            x = value;
+            notifyListeners();
+        }
+        
+    }
+    
+    class yAccessor implements IAttributeAccessor {
+
+        @Override
+        public int getAttribute() {
+            return y;
+        }
+
+        @Override
+        public void setAttribute(int value) {
+            y = value;
+            notifyListeners();
+        }
+        
+    }
     
 }

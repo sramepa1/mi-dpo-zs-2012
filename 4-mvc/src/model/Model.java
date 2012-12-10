@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.TableModel;
 import ui.IView;
 
 
@@ -29,6 +31,8 @@ public class Model implements INotifiable {
     private HashMap<String, ArrayList<IView>> viewsByTypes;;
     
    
+    
+    //////////////// Storage logic
     
     public void addShapeType(String typeName) {
         if(shapesByTypes.containsKey(typeName)) {
@@ -85,7 +89,7 @@ public class Model implements INotifiable {
         return (Iterable<Shape>) shapesByTypes.get(typeName).clone();
     }
     
-    
+    //////////////// Listening views
     
     public void addView(IView view) {
         for (Map.Entry<String, ArrayList<Shape>> entry : shapesByTypes.entrySet())
@@ -115,5 +119,69 @@ public class Model implements INotifiable {
             view.notifyChange();
         }
     }
+    
+    
+    //////////////// ...
+    
+    public TableAdapter createTableAdapter(String typeName) {
+        return new TableAdapter(this, typeName);
+    }
+    
+    
+    public class TableAdapter implements TableModel {
 
+        public TableAdapter(Model model, String typeName) {
+            this.model = model;
+            this.typeName = typeName;
+        }
+
+        private Model model;
+        private String typeName;
+        
+        @Override
+        public int getRowCount() {
+            return model.shapesByTypes.get(typeName).size();
+        }
+
+        @Override
+        public int getColumnCount() {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public String getColumnName(int i) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public Class<?> getColumnClass(int i) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public boolean isCellEditable(int i, int i1) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public Object getValueAt(int i, int i1) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void setValueAt(Object o, int i, int i1) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void addTableModelListener(TableModelListener tl) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void removeTableModelListener(TableModelListener tl) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+    }
 }

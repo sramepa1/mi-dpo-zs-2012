@@ -13,21 +13,13 @@ public class Circle extends Shape {
     Circle(int x, int y, int r) {
         super(x, y);
         
-        setR(r);
+        attributeAccessors.put("R", new rAccessor());
+        setAttribute("R", r);
     }
 
     private int r;
   
-    public final void setR(int r) {
-        if(r < 0) {
-            throw new IllegalArgumentException("Circle radius can not be negative.");
-        }
-        
-        this.r = r;
-        notifyListeners();
-    }
     
-   
     @Override
     public String[] getAttributeNames() {
         String[] names = {
@@ -35,6 +27,25 @@ public class Circle extends Shape {
         };
         
         return names;
+    }
+    
+    class rAccessor implements IAttributeAccessor {
+
+        @Override
+        public int getAttribute() {
+            return r;
+        }
+
+        @Override
+        public void setAttribute(int value) {
+            if(value < 0) {
+                throw new IllegalArgumentException("Circle radius can not be negative.");
+            }
+
+            r = value;
+            notifyListeners();
+        }
+        
     }
     
 }
