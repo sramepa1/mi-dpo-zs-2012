@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
 import javax.swing.table.AbstractTableModel;
-import ui.IView;
+import dpo4mvc.IView;
 
 
 /**
@@ -50,7 +50,7 @@ public class Model implements INotifiable {
     
     public int addShape(Shape shape) {
         if(!shapesByTypes.containsKey(shape.getTypeName())) {
-            throw new IllegalArgumentException("Unknown shape type.");
+            throw new IllegalArgumentException("Unsupported shape type.");
         }
         
         ArrayList<Shape> shapeStorage = shapesByTypes.get(shape.getTypeName());
@@ -107,10 +107,6 @@ public class Model implements INotifiable {
         }
         
         return myclone;
-    }
-    
-    public void setShapeAttribute(String typeName, int id, String attribute, int value) {
-        getShape(typeName, id).setAttribute(attribute, value);
     }
     
     //////////////// Listening views

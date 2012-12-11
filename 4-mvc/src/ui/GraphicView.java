@@ -1,5 +1,6 @@
 package ui;
 
+import dpo4mvc.IView;
 import dpo4mvc.Controller;
 import java.awt.Color;
 import java.awt.Dimension;

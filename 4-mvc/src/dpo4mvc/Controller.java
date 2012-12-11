@@ -27,13 +27,24 @@ public class Controller {
 		model.clearAll();
 	}
 	
+	public void move(int xOffset, int yOffset) {
+		for(Shape s : model.getAllShapes()) {
+			s.setAttribute("X", s.getAttribute("X") + xOffset);
+			s.setAttribute("Y", s.getAttribute("Y") + yOffset);
+		}
+	}
+	
 	public void addShape(Shape s) {
-		model.addShape(s);
+		try {
+			model.addShape(s);
+		} catch (IllegalArgumentException e) {
+			JOptionPane.showMessageDialog(mainFrame, e.getMessage(), "Unable to add new shape", JOptionPane.WARNING_MESSAGE);
+		}
 	}
 	
 	public void setShapeAttribute(String typeName, int id, String attributeName, int value) {
 		try {
-			model.setShapeAttribute(typeName, id, attributeName, value);
+			model.getShape(typeName, id).setAttribute(attributeName, value);
 		} catch (IllegalArgumentException e) {
 			JOptionPane.showMessageDialog(mainFrame, e.getMessage(), "Illegal argument", JOptionPane.WARNING_MESSAGE);
 		}		

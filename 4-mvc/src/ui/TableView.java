@@ -1,5 +1,6 @@
 package ui;
 
+import dpo4mvc.IView;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import model.Model;
@@ -20,5 +21,6 @@ public class TableView extends JScrollPane implements IView {
 	@Override
 	public void notifyChange() {
 		table.revalidate();
+		repaint();
 	}
 }

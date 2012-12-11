@@ -24,8 +24,11 @@ public class MainFrame extends JFrame {
 	   
 	   JPanel bottomPanel = new JPanel();
 	   JButton clearButton = new JButton("Clear all");
+	   JButton moveButton = new JButton("Move all");
 	   clearButton.addActionListener(new Nuker(ctrl));
+	   moveButton.addActionListener(new Mover(ctrl));
 	   bottomPanel.add(clearButton);
+	   bottomPanel.add(moveButton);
 	   
 	   getContentPane().add(bottomPanel, BorderLayout.PAGE_END);
 	   getContentPane().add(leftPanel, BorderLayout.CENTER);
@@ -47,6 +50,26 @@ public class MainFrame extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent ae) {
 			bigRedButton.nuke();
+		}
+		
+	}
+	
+	
+	protected class Mover implements ActionListener {
+		
+		protected Controller ctrl;
+		
+		Mover(Controller ctrl) {
+			this.ctrl = ctrl;
+		}
+		
+		protected int rndMove() {
+			return (int)(Math.random() * 82) - 42;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent ae) {
+			ctrl.move(rndMove(), rndMove());
 		}
 		
 	}
